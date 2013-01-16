@@ -1,9 +1,9 @@
 ## SuperSocket 1.5 Documentation
 
 * [A Telnet Example](A-Telnet-Example.md)
-* [Implement your AppServer and AppSession](Implement-your-AppServer-and-AppSessions.md)
-* [Start SuperSocket by Configuration](Start-SuperSocket-by-configuration.md)
-* [SuperSocket Basic Configuration](SuperSocket-basic-configuration.md)
+* [Implement your AppServer and AppSession](Implement-your-AppServer-and-AppSession.md)
+* [Start SuperSocket by Configuration](Start-SuperSocket-by-Configuration.md)
+* [SuperSocket Basic Configuration](SuperSocket-Basic-Configuration.md)
 * [The Built-in Command Line Protocol](The-Built-in-Command-Line-Protocol.md)
 * [Implement Your Own Communication Protocol with IRequestInfo, IReceiveFilter and etc](Implement-Your-Own-Communication-Protocol-with-IRequestInfo,-IReceiveFilter-and-etc.md)
 * [The Built-in Common Format Protocol Implementation Tools](The-Built-in-Common-Format-Protocol-Implementation-Tools.md)
