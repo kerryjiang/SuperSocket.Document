@@ -34,7 +34,7 @@
 
 ## Root Configuration
 
-The configuration node "socketServer" is the root of the SuperSocket configuration, it defines the global parameters of SuperSocket requires. Let me explain all the attributes of the root node:
+The configuration node "superSocket" is the root of the SuperSocket configuration, it defines the global parameters of SuperSocket requires. Let me explain all the attributes of the root node:
 
 * maxWorkingThreads: maximum working threads count of .NET thread pool
 * minWorkingThreads: minimum working threads count of .NET thread pool
