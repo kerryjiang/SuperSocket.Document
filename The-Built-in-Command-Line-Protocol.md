@@ -78,7 +78,7 @@ If you want to customize the request format much deeper, you can implement a Req
     
 ## Text Encoding
 
-The default encoding of the command line protocol is Ascii. You can change to use other encoding than Ascii by instantiating CommandLineReceiveFilterFactory with the specific enoding:
+The default encoding of the command line protocol is Ascii. You can change to other encoding than Ascii by instantiating CommandLineReceiveFilterFactory with the specific enoding:
 
     public class YourServer : AppServer<YourSession>
     {
