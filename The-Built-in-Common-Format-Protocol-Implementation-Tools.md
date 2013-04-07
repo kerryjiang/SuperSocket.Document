@@ -1,6 +1,12 @@
-After reading the previous document, you probably find implementing your own protocol using SuperSocket probably is not easy for you. To make this job easier, SuperSocket provides some common protocol tools, which you can use to build your own protocol easily and fast.
+After reading the previous document, you probably find implementing your own protocol using SuperSocket probably is not easy for you. To make this job easier, SuperSocket provides some common protocol tools, which you can use to build your own protocol easily and fast:
 
-## Terminator Protocol
+* **TerminatorReceiveFilter**
+* **CountSpliterReceiveFilter**
+* **FixedSizeReceiveFilter**
+* **BeginEndMarkReceiveFilter**
+* **FixedHeaderReceiveFilter**
+
+## TerminatorReceiveFilter - Terminator Protocol
 
 Similar with command line protocol, some protocols use a terminator to identify a request.
 For example, one protocol uses two chars "##" as terminator, then you can use the class "TerminatorReceiveFilterFactory":
@@ -38,7 +44,7 @@ Implement your ReceiveFilterFactory which can create your request filter instanc
 And then use the request filter factory in your AppServer.
 
 
-## Fixed Number Split Parts with Separator Protocol
+## CountSpliterReceiveFilter - Fixed Number Split Parts with Separator Protocol
 
 Some protocols defines their requests look like in the format of "#part1#part2#part3#part4#part5#part6#part7#". There are 7 parts in one request and all parts are separated by char '#'. This kind protocol's implementing also is quite easy:
         
@@ -62,7 +68,7 @@ You also can customize your protocol deeper using the classes below:
     CountSpliterReceiveFilterFactory<TReceiveFilter, TRequestInfo>
 
 
-## Fixed Header with Body Length Protocol
+## FixedHeaderReceiveFilter - Fixed Header with Body Length Protocol
 
 This kind protocol defines each request has two parts, the first part contains some basic information of this request include the length of the second part. We usually call the first part is header and the second part is body.
 

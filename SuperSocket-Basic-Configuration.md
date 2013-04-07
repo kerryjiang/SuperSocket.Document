@@ -43,8 +43,8 @@ The configuration node "superSocket" is the root of the SuperSocket configuratio
 * disablePerformanceDataCollector: whether disable performance data collector
 * performanceDataCollectInterval: performance data collecting interval (in seconds, default value: 60)
 * isolation: SuperSocket instances isolation level
-       None - no isolation
-       AppDomain - server instances will be isolated by AppDomains
+       * None - no isolation
+       * AppDomain - server instances will be isolated by AppDomains
 * logFactory: the name of default logFactory, all log factories are defined in the child node "logFactories" which will be introduced in following documentation
 
 
