@@ -45,6 +45,7 @@ The configuration node "superSocket" is the root of the SuperSocket configuratio
 * isolation: SuperSocket instances isolation level
        * None - no isolation
        * AppDomain - server instances will be isolated by AppDomains
+	   * Process - server instances will be isolated by processes
 * logFactory: the name of default logFactory, all log factories are defined in the child node "logFactories" which will be introduced in following documentation
 
 
@@ -76,6 +77,7 @@ All server node's attributes:
 * idleSessionTimeOut: The session timeout period. Default value is 300, in seconds.
 * security: Empty, Tls, Ssl3. The security option of the socket server. Default value is empty.
 * maxRequestLength: The maximum allowed request length. Default value is 1024.
+* textEncoding: The default text encoding in the server instance. Default value is ASCII.
 * disableSessionSnapshot: Indicate whether disable session snapshot. Default value is false.
 * sessionSnapshotInterval: The interval of taking session snapshot. Default value is 5, in seconds.
 * keepAliveTime: The interval of keeping alive. Default value is 600, in seconds.
