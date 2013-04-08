@@ -13,4 +13,6 @@ In Unix/Linux operating system, SuperSocket also can run as a console applicatio
 
 **Mono Service:**
 
-    mono-service -l:supersocket.lock -m:supersocket.log SuperSocket.SocketService.exe
+    mono-service -l:supersocket.lock -m:supersocket.log -d:<workdir> SuperSocket.SocketService.exe
+
+The parameter &lt;workdir> is required, it is the root of your application where the file SuperSocket.SocketService.exe locates.
