@@ -47,7 +47,7 @@ The configuration node "superSocket" is the root of the SuperSocket configuratio
        * AppDomain - server instances will be isolated by AppDomains
 	   * Process - server instances will be isolated by processes
 * logFactory: the name of default logFactory, all log factories are defined in the child node "logFactories" which will be introduced in following documentation;
-
+* defaultCulture: default thread culture for the global application, only available in .Net 4.5;
 
 ## Servers Configuration
 In the root configuration node, there is child node named "servers", you can define one or many server configuration nodes in it which represent app server instances. The server instances can be same AppServer type, also can be different AppServer types.
@@ -78,6 +78,7 @@ All server node's attributes:
 * security: Empty, Tls, Ssl3. The security option of the socket server, default value is empty;
 * maxRequestLength: The maximum allowed request length, default value is 1024;
 * textEncoding: The default text encoding in the server instance, default value is ASCII;
+* defaultCulture: default thread culture for this appserver instance, only available in .Net 4.5 and cannot be set if the isolation model is 'None';
 * disableSessionSnapshot: Indicate whether disable session snapshot, default value is false.
 * sessionSnapshotInterval: The interval of taking session snapshot, default value is 5, in seconds;
 * keepAliveTime: The interval of keeping alive, default value is 600, in seconds;
