@@ -1,4 +1,4 @@
-## New Features and Breakings
+## New Features and Breakings in SuperSocket 1.6
 
 ### 1. The new configuration attribute "textEncoding"
 
