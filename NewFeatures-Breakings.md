@@ -1,7 +1,7 @@
 ## New Features and Breakings
 
-!!! The new configuration attribute "textEncoding"
+1. The new configuration attribute "textEncoding"
 
-!!! The new configuration attribute "defaultCulture"
+2. The new configuration attribute "defaultCulture"
 
-!!! Process level isolation
+3. Process level isolation
