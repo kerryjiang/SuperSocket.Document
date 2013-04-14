@@ -20,4 +20,4 @@
 * [Enable TLS/SSL trasnferring layer encryption in SuperSocket](Enable-TLS-SSL-trasnferring-layer-encryption-in-SuperSocket.md)
 * [Run SuperSocket in Windows Azure](Run-SuperSocket-in-Windows-Azure.md)
 * [Run SuperSocket in Linux/Unix](Run-SuperSocket-in-Linux-Unix.md)
-* [Upgrade from SuperSocket 1.4](Upgrade-from-SuperSocket-1.4.md)
+* [New Features and Breakings](NewFeatures-Breakings.md)
