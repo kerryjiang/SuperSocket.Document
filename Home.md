@@ -1,4 +1,4 @@
-## SuperSocket 1.5 Documentation
+## SuperSocket 1.6 Documentation
 
 * [A Telnet Example](A-Telnet-Example.md)
 * [Implement your AppServer and AppSession](Implement-your-AppServer-and-AppSession.md)
