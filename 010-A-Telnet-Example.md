@@ -5,7 +5,7 @@
 3. Add log4net.dll in this project's reference, because SuerSocket uses it as default logging framework
 4. Include log4net.config which is provided by SuperSocket in the project folder "Config" and set it's Build Action to be "Content" and Copy to Output Directory to be "Copy if newer", because log4net require it
 
-![Telnet Project](https://raw.github.com/wiki/kerryjiang/SuperSocket/images/Telnetproject.jpg)
+![Telnet Project](images/telnetproject.jpg)
 
 
 ## Write the Start/Stop Server Code

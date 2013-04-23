@@ -84,7 +84,7 @@ Same with the other normal SuperSocket application, the startup code should be w
 
 Because of Windows Azure's internal network infostructure, you cannot listen the ip/port you configured directly. In this case, you need to configure input endpoint in Windows Azure project:
 
-![endpoint](https://raw.github.com/wiki/kerryjiang/SuperSocket/images/WindowsAzure.jpg)
+![endpoint](images/windowsazure.jpg)
 
 The endpoint's naming rule is "AppServerName_ConfiguredListenPort".
 For example, we have a server named "RemoteProcessServer" configured like below:
