@@ -1,14 +1,16 @@
-## Create a Console project and add references of SuperSocket
+#  一个Telnet示例
 
-1. Create a "Console Application" project. After the project is created, you should change the target framework of this project from "Client Profile" to a full framework. Because this application will run as server and the SuperSocket is not compiled with "Client Profile".
-2. Add SuperSocket's dll (SuperSocket.Common.dll, SuperSocket.SocketBase.dll, SuperSocket.SocketEngine.dll) in this project's reference
-3. Add log4net.dll in this project's reference, because SuerSocket uses it as default logging framework
-4. Include log4net.config which is provided by SuperSocket in the project folder "Config" and set it's Build Action to be "Content" and Copy to Output Directory to be "Copy if newer", because log4net require it
+## 创建一个控制台项目然后引用SuperSocket
+
+1. 创建一个控制台应用程序项目。 由于该项目将要以服务器的形式运行，而却引用的SuperSocket并非通过Client Profile编译，所以 当项目创建好之后，你要修改此项目的目标框架从“Cllient Profile”到完整的框架。
+2. 添加SuperSocket的dll文件(SuperSocket.Common.dll, SuperSocket.SocketBase.dll, SuperSocket.SocketEngine.dll)到此项目的引用。
+3. 添加log4net.dll到项目引用。 如果是你使用默认的日志框架(log4net)，此步骤是必须的。 
+4. 引用SuperSocket提供的日志配置文件log4net.config到项目文件夹的"Config"文件夹然后设置它的Build Action 为 "Content"，设置它的Copy to Output Directory 为 "Copy if newer"，因为这个配置文件是log4net需要的
 
 ![Telnet Project](images/telnetproject.jpg)
 
 
-## Write the Start/Stop Server Code
+## 服务器启动和停止代码
 
 	static void Main(string[] args)
 	{
@@ -54,15 +56,15 @@
 
 
 
-## Handle the Incomming Connection
+## 处理连接
 
-1. Register new session connected event handler
+1. 注册回话新建事件处理方法
 	
 
 		appServer.NewSessionConnected += new SessionHandler<AppSession>(appServer_NewSessionConnected);
 	
 
-2. Send a welcome message to client in the handler
+2. 在事件处理代码中发送欢迎信息给客户端
 
 
 		static void appServer_NewSessionConnected(AppSession session)
@@ -70,21 +72,21 @@
 			session.Send("Welcome to SuperSocket Telnet Server");
 		}
 	
-3. Test by telnet client
+3. 使用Telnet客户端进行测试
 
 	1. open a telnet client
 	2. type "telnet localhost 2012" ending with an "ENTER"
 	3. you will get the message "Welcome to SuperSocket Telnet Server"
 
-## Process Requests
+## 处理请求
 
-1. Register request handler	
+1. 注册请求处理方法	
 	
 		appServer.NewRequestReceived += new RequestHandler<AppSession, StringRequestInfo>(appServer_NewRequestReceived);
 
 
 
-2. Implement request handler
+2. 实现请求处理
 	
 		static void appServer_NewRequestReceived(AppSession session, StringRequestInfo requestInfo)
 		{
@@ -112,13 +114,15 @@
 			}
 		}
 
-	requestInfo.Key is the request command line's first segment delimited by space, requestInfo.Parameters is the left segments delimited by space
+	requestInfo.Key 是请求的命令行用空格分隔开的第一部分
 
-3. Test by telnet client
+    requestInfo.Parameters 是用空格分隔开的其余部分
 
-	You can open a telnet client to verify the above code.
+3. 通过Telnet客户端进行测试
 
-	After you connect the server, you can interact with server in this way (the message after "C:" stands for client's request, the message after "S:" stands for server's response):
+	你可以打开telnet客户端去验证以上代码。
+
+	当然和服务器端建立连接之后，你可以通过下面的方式与服务器端交互("C:"之后的信息代表客户端的请求，"S:"之后的信息代表服务器端的响应):
 
 		C: ECHO ABCDEF
 		S: ABCDEF
@@ -132,11 +136,11 @@
 		S: 250
 
 
-## Usage of Command
-In the previous part, you have seen how to deal the client's request in SuperSocket. But at the meanwhile you probably have found a problem, if you have a complex business logic in your server, the switch case would be long and urgly and actually it doens't confront with the OOD.
-In this case, SuperSocket provides a command framework which allow define independ classes to deal the defferent kind requests.
+## Command的用法
+在本文档的前半部分，你可能已经了解到了如歌在SuperSocket处理客户端请求。 但是同时你可能会发现一个问题，如果你的服务器端包含有很多复杂的业务逻辑，这样的switch/case代码将会很长而且非常难看，并且没有遵循OOD的原则。
+在这种情况下，SuperSocket提供了一个让你在多个独立的类中处理各自不同的请求的命令框架。
 
-For a instance, you can define a class named "ADD" to process the requests with the requestInfo's key equals "ADD":
+例如，你可以定义一个名为"ADD"的类去处理Key为"ADD"的请求:
 
 	public class ADD : CommandBase<AppSession, StringRequestInfo>
     {
@@ -146,7 +150,7 @@ For a instance, you can define a class named "ADD" to process the requests with 
         }
     }
 	
-and define a class named "MULT" to process the requests with the requestInfo's key equals "MULT":
+定义一个名为"MULT"的类去处理Key为"MULT"的请求:
 
 	public class MULT : CommandBase<AppSession, StringRequestInfo>
     {
@@ -163,7 +167,7 @@ and define a class named "MULT" to process the requests with the requestInfo's k
         }
     }
  
- at the same time, you also need to remove the defined reqauest handler because request handler and command cannot work together:
+ 同时你要移除请求处理方法的注册，因为它和命令不能同时被支持：
  
 	//Remove this line
 	appServer.NewRequestReceived += new RequestHandler<AppSession, StringRequestInfo>(appServer_NewRequestReceived);
