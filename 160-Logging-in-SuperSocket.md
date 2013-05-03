@@ -65,6 +65,24 @@ B -
         }
     }
 
+## Extend your logger
+SuperSocket allow you to customize your logger by yourself. For example, if you want to save your business operations log into another file than the default SuperSocket logging files,
+then you can define a new logger in your log4net configuration (assume you are using log4net by default):
+
+    <appender name="myBusinessAppender">
+        <!--Your appender details-->
+    </appender>
+    <logger name="MyBusiness" additivity="false">
+      <level value="ALL" />
+      <appender-ref ref="myBusinessAppender" />
+    </logger>
+
+
+and then create this logger instance in your code:
+
+    var myLogger = server.LogFactory.GetLog("MyBusiness");
+
+
 
 ## Use other logging framework than log4net
 
