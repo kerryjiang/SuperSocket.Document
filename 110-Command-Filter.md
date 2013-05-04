@@ -1,3 +1,5 @@
+# Command Filter
+
 The Command Filter feature in SuperSocket looks like Action Filter in ASP.NET MVC, you can use it to intercept execution of Command, the Command Filter will be invoked before or after a command execution.
 
 Command Filter class must inherit from Attribute CommandFilterAttribute:
