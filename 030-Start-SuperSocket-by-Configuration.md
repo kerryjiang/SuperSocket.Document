@@ -1,20 +1,21 @@
-# Start SuperSocket by Configuration
+# 通过配置启动SuperSocket
 
-## Why Start Server by Configuration
-1. Avoid hard coding
-2. SuperSocket provides lots of useful configuration options
-3. Take full use of the tools of SuperSocket
+## 为什么要通过配置启动？
+1. 避免硬编码
+2. SuperSocket提供了很多有用的配置选项
+3. 可以充分利用SuperSocket提供的工具
 
-## How to Start Server by Configuration with Bootstrap
-* SuperSocket configuration section
-    SuperSocket uses .NET default configuration technology, a configuration section designed for SuperSocket:
+## 如何使用Bootstrap来通过配置启动SuperSocket
+
+* SuperSocket配置section
+    SuperSocket使用.NET自带的配置技术，SuperSocket有一个专门的配置Section:
 
         <configSections>
             <section name="superSocket"
                  type="SuperSocket.SocketEngine.Configuration.SocketServiceConfig, SuperSocket.SocketEngine" />
         </configSections>
 
-* Server instance configuration
+* Server实例的配置
 
         <superSocket>
             <servers>
@@ -25,16 +26,16 @@
             </servers>
         </superSocket>
 
-    Now, I explain the configuration of server node here:
+    现在，我在这里解释配置的服务器节点：
 
-        name: the name of appServer instance
-        serverType: the full name of the AppServer your want to run
-        ip: listen ip
-        port: listen port
+        name: 实例名称
+        serverType: 实例运行的AppServer类型
+        ip: 侦听ip
+        port: 侦听端口
 
-    We'll have the full introduction about the configuration in next document.
+    我们将在下一份文档中有关于配置的更加完整的介绍。
 
-* Start SuperSocket using BootStrap
+* 使用BootStrap启动SuperSocket
 
         static void Main(string[] args)
         {
@@ -80,9 +81,9 @@
             Console.ReadKey();
         }
 
-* Some configurations samples
+* 一些配置示例
 
-1. Server types nodes:
+1. Server types 节点:
 
             <superSocket>
                 <servers>
@@ -97,7 +98,7 @@
             </superSocket>
 
 
-2. Multiple server instances:
+2. 多服务器实例:
 
             <superSocket>
                 <servers>
@@ -115,28 +116,28 @@
                 </serverTypes>
               </superSocket>
 
-## SuperSocket.SocketService.exe, the Running Container provided by SuperSocket
+## SuperSocket.SocketService.exe, SuperSocket提供的运行容器
 
-* Use SuperSocket.SocketService.exe directly
+* 直接使用SuperSocket.SocketService.exe
 
-1. make sure all assemblies required by your server are in the same directory with SuperSocket.SocketService.exe
-2. put your SuperSocket configuration node in the file SuperSocket.SocketService.exe.config
-3. run "SuperSocket.SocketService.exe" directly, your defined server will run
+1. 务必使你的server所需要的所有程序集都和SuperSocket.SocketService.exe在同一目录
+2. 将你的SuperSocket配置放置于SuperSocket.SocketService.exe.config文件之中
+3. 直接运行"SuperSocket.SocketService.exe"，你定义的服务器将会运行 
 
-* Install SuperSocket.SocketService.exe as windows service
+* 安装SuperSocket.SocketService.exe为Windows服务
 
-You can install SuperSocket.SocketService.exe as windows service by running it with an extra command line parameter "-i":
+通过在命令行下加参数"-i"运行SuperSocket.SocketService.exe，你可以安装它成为一个Windows服务：
 
     SuperSocket.SocketSerrvice.exe -i
 
 
-The windows service name is defined in configuration file, you can change it as your requirement:
+这个Windows服务的名字定义在配置文件之中，你可以根据你的需要修改它：
 
     <appSettings>
         <add key="ServiceName" value="SupperSocketService" />
     </appSettings>
 
 
-The service also can be uninstalled by the parameter "-u":
+你也可以通过参数"-u"来卸载该服务：
 
     SuperSocket.SocketSerrvice.exe -u
