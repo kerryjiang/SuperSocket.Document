@@ -1,13 +1,13 @@
-# Implement Your AppServer and AppSession
+# 实现你的AppServer和AppSession
 
-## What is AppSession?
-AppSession represents a logic socket connection, connection based operations should be defined in this class. You can use the instance of this class to send data to tcp clients, receive data from connection or close the connection.
+## 什么是AppSession?
+AppSession 代表一个和客户端的逻辑连接，基于连接的操作应该定于在该类之中。你可以用该类的实例发送数据到客户端，接收客户端发送的数据或者关闭连接。
 
-## What is AppServer?
-AppServer stands for the server instance which listens all clients' connections, hosts all tcp connections. Ideally, we can get any session which we want to find from the AppServer. Application level operations and logics should be defined in it.
+## 什么是AppServer?
+AppServer 代表了监听客户端连接，承载TCP连接的服务器实例。理想情况下，我们可以通过AppServer实例获取任何你想要的客户端连接，服务器级别的操作和逻辑应该定义在此类之中。
 
-## Create your AppSession
-1. You can override base AppSession's operations
+## 创建你的AppSession
+1. 你可以重写基类的方法
     
         public class TelnetSession : AppSession<TelnetSession>
         {
@@ -33,10 +33,10 @@ AppServer stands for the server instance which listens all clients' connections,
             }
         }
 
-    In above code, the server send the welcome message to the client immediately after the session is connected. The code also overrided the other methods of AppSession to process it's own logic.
+    
+    在上面的代码中，当一个新的连接连接上时，服务器端立即向客户端发送欢迎信息。 这段代码还重写了其它AppSession的方法用以实现自己的业务逻辑。
 
-2. You can add new properties for your session according your business requirement
-   Let me create a AppSession which would be used in a game server:
+2. 你可以根据你的业务需求来给Session类增加新的属性，让我来创建一个将用在游戏服务器中的AppSession类：
 
         public class PlayerSession ：AppSession<PlayerSession>
         {
@@ -45,9 +45,9 @@ AppServer stands for the server instance which listens all clients' connections,
             public int RoomId { get; internal set; }
         }
 
-3. Relationship with Commands
+3. 和Command之间的关系
 
-    In the first document, we talked about commands, now we revise this point here:
+    在上一篇文档中，我们谈到了Command, 现在我们重新来回顾一下这个知识点：
 
         public class ECHO : CommandBase<AppSession, StringRequestInfo>
         {
@@ -57,7 +57,7 @@ AppServer stands for the server instance which listens all clients' connections,
             }
         }
 
-    In the command's code, you should have found the parent class pf ECHO is CommandBase<AppSession, StringRequestInfo>, which has a generic type parameter AppSession. Yes, it's the default AppSession. If you want to use your new AppSession, please pass your AppSession type as the parameter, or the server cannot discover the command:
+    在这个command代码中，你可以看到类ECHO的父类是CommandBase<AppSession, StringRequestInfo>， 它有一个泛型参数AppSession。 是的，它是默认的AppSession类。 如果你在你的系统中使用你自己建立的AppSession类，那么你必须将你自己定义的AppSession类传进去，否则你的服务器无法发现这个Command：
 
         public class ECHO : CommandBase<PlayerSession, StringRequestInfo>
         {
@@ -67,18 +67,20 @@ AppServer stands for the server instance which listens all clients' connections,
             }
         }
 
-## Create your AppServer
+## 创建你的AppServer类型
 
-1. Work with Session
-    If you want to make available your AppSession, you must alter your AppServer to use it:
+1. 如果你想使用你的AppSession作为会话，你必须修改你的AppServer来使用它
+
 
         public class TelnetServer : AppServer<TelnetSession>
         {
 
         }
-    Then the session TelnetSession will can be used in TelnetServer.
 
-2. There are also many protected methods you can override
+    
+    现在 TelnetSession 将可以用在 TelnetServer 的会话中。
+
+2. 这里也有很多protected方法你可以重写
 
         public class TelnetServer : AppServer<TelnetSession>
         {
@@ -98,5 +100,5 @@ AppServer stands for the server instance which listens all clients' connections,
             }
         }
 
-## Benifits
-Imeplement your AppSession and AppServer allow you extend SuperSocket as your business requirement, you can hook session's connected and closed event, server instance's startup and stopped event. You can read your own customized configuration in AppServer's Setup() method. In summary it give you lots of abilities to build a socket server which is exact what you want very easily.
+## 优点
+实现你自己的AppSession和AppServer允许你根据你业务的需求来方便的扩展SuperSocket，你可以绑定session的连接和断开事件，服务器实例的启动和停止事件。你还可以在AppServer的Setup方法中读取你的自定义配置信息。总而言之，这些功能让你方便的创建一个你所需要的socket服务器成为可能。
