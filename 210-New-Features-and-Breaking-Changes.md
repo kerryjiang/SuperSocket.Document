@@ -1,3 +1,5 @@
+# New Features and Breaking Changes
+
 ## The new configuration attribute "textEncoding"
 In the __SuperSocket__ before 1.6, when you send a text message via session object, the default encoding to convert the text message to binary data which can be sent over socket is UTF8.
 You can change it by assigning a new encoding to the session's Charset property.
