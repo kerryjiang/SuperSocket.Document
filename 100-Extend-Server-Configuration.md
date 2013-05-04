@@ -1,3 +1,5 @@
+# Extend Server Configuration
+
 When you implement your socket server by SuperSocket, it is unavoidable to define some parameters in configuration file.The SuperSocket provides a very easy way to store the parameters in your configuration file and then read and use them in AppServer.
 
 Please take a look at the following configuration code:

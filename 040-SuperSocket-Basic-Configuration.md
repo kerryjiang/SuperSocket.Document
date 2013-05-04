@@ -1,3 +1,5 @@
+# SuperSocket Basic Configuration
+
 ## A Sample Configuration
 
     <?xml version="1.0"?>

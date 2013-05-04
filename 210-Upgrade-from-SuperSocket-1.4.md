@@ -1,3 +1,5 @@
+# Upgrade from SuperSocket 1.4
+
 ## Naming changes
 
 * ICommandInfo => IRequestInfo
