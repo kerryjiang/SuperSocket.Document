@@ -1,4 +1,4 @@
-# Enable TLS SSL trasnferring layer encryption in SuperSocket
+# Enable TLS/SSL trasnferring layer encryption in SuperSocket
 
 ## SuperSocket supports the transport layer encryption (TLS/SSL)
 
