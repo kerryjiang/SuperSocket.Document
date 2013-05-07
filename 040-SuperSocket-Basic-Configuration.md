@@ -1,6 +1,6 @@
-# SuperSocket Basic Configuration
+# SuperSocket 基本配置
 
-## A Sample Configuration
+## 一个配置示例
 
     <?xml version="1.0"?>
     <configuration>
@@ -34,7 +34,7 @@
         </startup>
     </configuration>
 
-## Root Configuration
+## 根配置
 
 The configuration node "superSocket" is the root of the SuperSocket configuration, it defines the global parameters of SuperSocket requires. Let me explain all the attributes of the root node:
 
@@ -51,7 +51,7 @@ The configuration node "superSocket" is the root of the SuperSocket configuratio
 * logFactory: the name of default logFactory, all log factories are defined in the child node "logFactories" which will be introduced in following documentation;
 * defaultCulture: default thread culture for the global application, only available in .Net 4.5;
 
-## Servers Configuration
+## 服务器实例配置
 In the root configuration node, there is child node named "servers", you can define one or many server configuration nodes in it which represent app server instances. The server instances can be same AppServer type, also can be different AppServer types.
 All server node's attributes:
 
@@ -141,7 +141,7 @@ Because of the defined server type's name is "TelnetServerType", you can set the
         </server>
 
 
-## Log Factories Configuration
+## Log Factories 配置
 Same as server type configuration, you also can define one or more log factories and use it in server, the only one difference is the log factory also can be set in root configuration:
 
     <logFactories>
