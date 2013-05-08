@@ -164,3 +164,19 @@ Use it in server node:
            ip="Any"
            port="2020">
     </server>
+
+
+## SuperSocket Windows Service Configuration
+As you know, SuperSocket provides a running container "SuperSocket.SocketService.exe" which can run as a windows service.
+
+You can define the windows service's name by configuring:
+
+    <appSettings>
+        <add key="ServiceName" value="SupperSocketService" />
+    </appSettings>
+
+
+There are some other configuration attributes for the windows service:
+
+    ServiceDescription: the description of this windows service
+    ServicesDependedOn: the other windows service which this service depends on; this windows service will start after the depended windows service; multiple depended service should be separated by character ',' or ';'
