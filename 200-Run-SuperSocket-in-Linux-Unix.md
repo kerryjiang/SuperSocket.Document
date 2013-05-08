@@ -1,14 +1,14 @@
-# Run SuperSocket in Linux/Unix
+# 在Linux/Unix上运行SuperSocket
 
-## SuperSocket supports cross-platform compatibility (Unix/Linux) of .NET applications by Mono (Mono 2.10 or later version)
+## SuperSocket通过(Mono 2.10或更新版本)来实现跨平台的特性
 
-As the Unix/Linux has different file path format with Windows, SuperSocket provides a different log4net configuration file (/Solution Items/log4net.unix.config) for Unix/Linux systems.
+由于Unix/Linux不同于Windows上的文件路径格式，SuperSocket提供了专用于Unix/Linux系统上的log4net文件：/Solution Items/log4net.unix.config
 
-Therefore, you need to include this file to your project in subdirectory "Config" of output directory.
+因此，你需要将此文件包含到你的项目输出目录的Config子目录下。
 
-In Unix/Linux operating system, SuperSocket also can run as a console application or a service (Mono Service) like it in Windows.
+在Unix/Linux操作系统中，SuperSocket同样可以通过Mono以控制台和服务(Mono Service)这两种形式运行.
 
-**Console:**
+**控制台:**
 
     mono SuperSocket.SocketService.exe
 
@@ -17,4 +17,4 @@ In Unix/Linux operating system, SuperSocket also can run as a console applicatio
 
     mono-service -l:supersocket.lock -m:supersocket.log -d:<workdir> SuperSocket.SocketService.exe
 
-The parameter &lt;workdir> is required, it is the root of your application where the file SuperSocket.SocketService.exe locates.
+命令中参数 &lt;workdir> 是必须的，它是指你的可执行程序SuperSocket.SocketService.exe所在的目录。
