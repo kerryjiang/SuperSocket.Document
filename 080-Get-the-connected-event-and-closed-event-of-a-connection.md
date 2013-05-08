@@ -1,8 +1,8 @@
-# 获取会话的连接和断开事件
+# Get the Connected Event and Closed Event of a Connection
 
-## AppSession 的虚方法 OnSessionStarted() 和 OnSessionClosed(CloseReason reason)
+## AppSession's virtual methods OnSessionStarted() and OnSessionClosed(CloseReason reason)
 
-你可以覆盖基类的虚方法 OnSessionStarted() 和 OnSessionClosed(CloseReason reason) 用于在会话连接和断开时执行一些逻辑操作：
+You can override the base virtual methods OnSessionStarted() and OnSessionClosed(CloseReason reason) to do some business operations when a new session connects or a session drops:
 
     public class TelnetSession : AppSession<TelnetSession>
     {
@@ -18,14 +18,15 @@
         }
     }
 
-## AppServer 的两个事件： NewSessionConnected 和 SessionClosed
+## AppServer's event NewSessionConnected and event SessionClosed
 
-订阅事件：
+Subscribe event:
 
     appServer.NewSessionConnected += new SessionHandler<AppSession>(appServer_NewSessionConnected);
     appServer.SessionClosed += new SessionHandler<AppSession, CloseReason>(appServer_SessionClosed);
 
-定义事件处理方法：
+
+Define event handling method:
     
     static void appServer_SessionClosed(AppSession session, CloseReason reason)
     {
