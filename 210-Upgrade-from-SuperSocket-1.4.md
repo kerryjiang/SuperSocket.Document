@@ -1,5 +1,7 @@
 # Upgrade from SuperSocket 1.4
 
+> __Keywords__: SuperSocket 1.5, SuperSocket 1.4, Upgrade, Naming changes, Configuration changes, Bootstrap
+
 ## Naming changes
 
 * ICommandInfo => IRequestInfo

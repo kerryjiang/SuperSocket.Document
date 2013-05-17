@@ -1,5 +1,7 @@
 # A Telnet Example
 
+> __Keywords__: Telnet, Console Project, References
+
 ## Create a Console project and add references of SuperSocket
 
 1. Create a "Console Application" project. After the project is created, you should change the target framework of this project from "Client Profile" to a full framework. Because this application will run as server and the SuperSocket is not compiled with "Client Profile".

@@ -1,5 +1,7 @@
 # Logging in SuperSocket
 
+> __Keywords__: Logging, log4net, Logging API, Logging Customization, LogFactory
+
 ## The logging system in SuperSocket
 
 The logging system is enabled automatically when the SuperSocket boostrap is starting, so you needn't create your own logging tool by yourself. You'd better to use the logging function in SuperSocket.

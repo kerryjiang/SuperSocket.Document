@@ -1,5 +1,7 @@
 # Enable TLS/SSL trasnferring layer encryption in SuperSocket
 
+> __Keywords__: TLS, SSL, Certificate, X509 Certificate, Local Certificate Store
+
 ## SuperSocket supports the transport layer encryption (TLS/SSL)
 
 SuperSocket has automatically support for TLS/SSL. You needn't change any code to let your socket server support TLS/SSL.

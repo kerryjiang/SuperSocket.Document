@@ -1,5 +1,7 @@
 # Connection Filter
 
+> __Keywords__: Connection Filter, Session Filter, Allow Connect
+
 Connection Filter in SuperSocket is the interface which is used for filtering client connections. By connection filter, you can allow or disallow the client connections from the specified source.
 
 Connection Filter interface is defined like below:

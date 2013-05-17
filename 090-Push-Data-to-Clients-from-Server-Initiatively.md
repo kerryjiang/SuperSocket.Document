@@ -1,5 +1,7 @@
 # Push Data to Clients from Server Initiative
 
+> __Keywords__: Server Push, Send Data, Get Session
+
 ## Send Data to Client by Session Object
 
 Having said that, AppSession represents a logic socket connection, connection based operations should be defined in this class. The AppSession also wraps the sending data method of the socket. You can use the method "Send(...)" of AppSession to send data to client:

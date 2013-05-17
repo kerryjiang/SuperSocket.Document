@@ -1,5 +1,7 @@
 # Run SuperSocket in Windows Azure
 
+> __Keywords__: Windows Azure, WorkRole, InstanceEndpoints
+
 ## What is Windows Azure?
 
 Windows Azure is Microsoft's cloud computing platform! Microsoft's Windows Azure provides on-demand computing power and storage capacity to host, scale and manage applications on the Internet to developers by it's data center.
@@ -84,7 +86,7 @@ Same with the other normal SuperSocket application, the startup code should be w
 
 ## Configure Input Endpoint and then Use it
 
-Because of Windows Azure's internal network infostructure, you cannot listen the ip/port you configured directly. In this case, you need to configure input endpoint in Windows Azure project:
+Because of Windows Azure's internal network infrastructure, you cannot listen the ip/port you configured directly. In this case, you need to configure input endpoint in Windows Azure project:
 
 ![endpoint](images/windowsazure.jpg)
 

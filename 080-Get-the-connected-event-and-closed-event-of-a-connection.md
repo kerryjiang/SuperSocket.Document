@@ -1,5 +1,7 @@
 # Get the Connected Event and Closed Event of a Connection
 
+> __Keywords__: Session, Connected Event, Closed Event
+
 ## AppSession's virtual methods OnSessionStarted() and OnSessionClosed(CloseReason reason)
 
 You can override the base virtual methods OnSessionStarted() and OnSessionClosed(CloseReason reason) to do some business operations when a new session connects or a session drops:
