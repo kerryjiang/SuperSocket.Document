@@ -1,5 +1,7 @@
 # The Built in Flash Silverlight Policy Server in SuperSocket
 
+> __Keywords__: Policy File, Policy Server, Silverlight, Flash, Cross Domain, clientaccesspolicy
+
 **SuperSocket** contains a built-in Socket Policy Server for both Flash and Silverlight client. And it's implementation code is included in the assembly SuperSocket.Facility.dll. Thus, to enable the policy server, you need to make sure SuperSocket.Facility.dll exist in SuperSocket run directory firstly, and then add the policy server's configuration node in configuration file, like the following code.
 
 **Flash Policy Server:**

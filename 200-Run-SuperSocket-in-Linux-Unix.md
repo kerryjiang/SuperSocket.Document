@@ -1,5 +1,7 @@
 # Run SuperSocket in Linux/Unix
 
+> __Keywords__: Mono, Linux, Unix, Mono Service, Cross Platform
+
 ## SuperSocket supports cross-platform compatibility (Unix/Linux) of .NET applications by Mono (Mono 2.10 or later version)
 
 As the Unix/Linux has different file path format with Windows, SuperSocket provides a different log4net configuration file (/Solution Items/log4net.unix.config) for Unix/Linux systems.

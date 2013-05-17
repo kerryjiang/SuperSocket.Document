@@ -1,5 +1,7 @@
 # SuperSocket Basic Configuration
 
+> __Keywords__: Basic Configuration, Configuration Documentation
+
 ## A Sample Configuration
 
     <?xml version="1.0"?>
