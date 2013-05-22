@@ -101,7 +101,7 @@ Then, we should create an endpoint with the name "RemoteProcessServer_2012".
 
 In the code, we can get the input endpoint's real port by programming:
 
-    var instanceEndpoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints[serverConfig.Name + "Endpoint"].Port;
+    var instanceEndpoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints[serverConfig.Name + "_" + serverConfig.Port].Port;
 
 
 But you needn't do it for SuperSocket by yourself, because the listen endpoint replacement has been implemented within the SuperSocket. What you should do is passing in the input endpoint dictionary when initialize the bootstrap, the final code should look like the code below:
