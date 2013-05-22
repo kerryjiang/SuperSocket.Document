@@ -1,13 +1,13 @@
-# Run SuperSocket in Windows Azure
+# 在 Windows Azure 中运行SuperSocket
 
-## What is Windows Azure?
+## 什么是 Windows Azure?
 
-Windows Azure is Microsoft's cloud computing platform! Microsoft's Windows Azure provides on-demand computing power and storage capacity to host, scale and manage applications on the Internet to developers by it's data center.
+Windows Azure 是微软的云计算平台！微软的Windows Azure通过它的数据中心提供了按需分配的计算能力和存储空间用于在互联网上托管，扩展和管理应用程序。
 
-The application running on Windows Azure has high reliability and scalability. SuperSocket based server program can easily run on Windows Azure platform.
+这些在 Windows Azure 上运行的应用有很高的可靠性和可扩展能力。基于SuperSocket开发的服务器程序一样也能够很方便的运行在 Windows Azure 平台上。
 
-## SuperSocket Configuration
-The configuration file (app.config) which is used for Windows Azure hosting should be same with the standalone SuperSocket application.
+## SuperSocket 配置
+用于在 Windows Azure 上运行的配置文件 app.config 和直接运行的SuperSocket的配置文件相同。
 
     <?xml version="1.0" encoding="utf-8" ?>
     <configuration>
@@ -38,9 +38,8 @@ The configuration file (app.config) which is used for Windows Azure hosting shou
 
 
 
-## Add SuperSocket start code in the WorkRole project
-
-Same with the other normal SuperSocket application, the startup code should be written in application entry point which is OnStart() method in Windows Azure WorkRole project:
+## 添加SuperSocket的启动代码到 Windows Azure 的 WorkRole 项目
+与其它SuperSocket程序相同，启动代码同样也要写到程序的入口处，如 Windows Azure 的 WorkRole 项目的OnStart() 方法：
 
     public override bool OnStart()
     {
@@ -82,27 +81,28 @@ Same with the other normal SuperSocket application, the startup code should be w
         return base.OnStart();
     }
 
-## Configure Input Endpoint and then Use it
+## 配置和使用 Input Endpoint
 
-Because of Windows Azure's internal network infostructure, you cannot listen the ip/port you configured directly. In this case, you need to configure input endpoint in Windows Azure project:
+由于Windows Azure的内部网络架构，你不能直接监听你配置中的IP和端口。在这种情况下，你需要在Windows Azure项目中配置Input Endpoint:
 
 ![endpoint](images/windowsazure.jpg)
 
-The endpoint's naming rule is "AppServerName_ConfiguredListenPort".
-For example, we have a server named "RemoteProcessServer" configured like below:
+这些 endpoint的命名规则是 "AppServerName_ConfiguredListenPort"。
+
+例如，我们在配置文件中配置了名为"RemoteProcessServer"的server：
 
     <server name="RemoteProcessServer"
               serverTypeName="remoteProcess"
               ip="Any" port="2012" />
 
-Then, we should create an endpoint with the name "RemoteProcessServer_2012".
+然后我们就应该创建一个名为"RemoteProcessServer_2012"的Endpoint。
 
-In the code, we can get the input endpoint's real port by programming:
+在代码中，你可以通过编程的方式获得该Endpoint真正的端口号：
 
-    var instanceEndpoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints[serverConfig.Name + "Endpoint"].Port;
+    var instanceEndpoint = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints[serverConfig.Name + "_" + serverConfig.Port].Port;
 
 
-But you needn't do it for SuperSocket by yourself, because the listen endpoint replacement has been implemented within the SuperSocket. What you should do is passing in the input endpoint dictionary when initialize the bootstrap, the final code should look like the code below:
+但是你不用为SuperSocket这样做，因为 SuperSocket 已经实现了监听Endpoint的替换已经。 因此，你只需当SuperSocket的Bootstrap初始化的时候将Endpoint的字典传入就行了，最终代码如下：
 
     public override bool OnStart()
     {
@@ -144,4 +144,4 @@ But you needn't do it for SuperSocket by yourself, because the listen endpoint r
         return base.OnStart();
     }
 
-Finally, you can try to start your Windows Azure instance now.
+最后，你就可以启动你的Windows Azure实例了。
