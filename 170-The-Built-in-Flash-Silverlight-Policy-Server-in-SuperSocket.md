@@ -1,8 +1,8 @@
-# The Built in Flash Silverlight Policy Server in SuperSocket
+# SuperSocket 中内置的 Flash/Silverlight 策略服务器
 
-**SuperSocket** contains a built-in Socket Policy Server for both Flash and Silverlight client. And it's implementation code is included in the assembly SuperSocket.Facility.dll. Thus, to enable the policy server, you need to make sure SuperSocket.Facility.dll exist in SuperSocket run directory firstly, and then add the policy server's configuration node in configuration file, like the following code.
+**SuperSocket** 包含一个可用于Flash和Silverlight的Socket策略服务器。 它被包含在SuperSocket.Facility.dll 这个程序集内。 因此，你要启用此策略服务器，你首先需要保证程序集SuperSocket.Facility.dll 只存在于SuperSocket的运行目录，然后在配置文件中增加策略服务器节点，配置代码如下：
 
-**Flash Policy Server:**
+**Flash 策略服务器:**
 
     <?xml version="1.0"?>
     <configuration>
@@ -29,7 +29,7 @@
         </startup>
     </configuration>
 
-**Silverlight Policy Server:**
+**Silverlight 策略服务器:**
 
 
     <?xml version="1.0"?>
@@ -58,4 +58,4 @@
     </configuration>
 
 
-**Note: the policyFile property in server node is your policy file stored path.**
+**提示：server节点的配置属性policyFile的值为你的策略文件的存放路径。**

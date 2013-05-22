@@ -1,18 +1,18 @@
-# Push Data to Clients from Server Initiative
+# 主动从服务器端推送数据到客户端
 
-## Send Data to Client by Session Object
+## 通过Session对象发送数据到客户端
 
-Having said that, AppSession represents a logic socket connection, connection based operations should be defined in this class. The AppSession also wraps the sending data method of the socket. You can use the method "Send(...)" of AppSession to send data to client:
+前面已经说过，AppSession 代表了一个逻辑的 socket 连接，基于连接的操作都应该定义在此类之中。 这个AppSession 类也封装了通过 socket 发送数据的方法。 你可以使用 AppSession 的方法 "Send(...)" 来发送数据到客户端：
 
     session.Send(data, 0, data.Length);
     or
     session.Send("Welcome to use SuperSocket!");
 
-## Get Session by SessionID
+## 通过 SessionID 获取 Session
 
-As mentioned in previous part, if you have got the connection's session instance, then you can send data to the client by the "Send(..)" method. But in some cases, you cannot get the session instance you want directly.
+前面提到过，如果你获取了连接的 Session 实例，你就可以通过 "Send()" 方法向客户端发送数据。但是在某些情况下，你无法直接获取 Session 实例。
 
-SuperSocket provide a API to allow you get a session by session ID from the AppServer's session container.
+SuperSocket 提供了一个 API 让你从 AppServer 的 Session 容器中通过 SessionID 获取 Session
 
     var session = appServer.GetSessionByID(sessionID);
 
@@ -20,24 +20,24 @@ SuperSocket provide a API to allow you get a session by session ID from the AppS
         session.Send(data, 0, data.Length);
 
 
-What is the SessionID?
+SessionID是什么？
 
-SessionID is a property of the AppSession class which is used for identifying a Session. In a SuperSocket TCP server, the SessionID is a GUID string which is assigned as soon as the session is created. If you don't use UdpRequestInfo in a SuperSocket UDP server, the SessionID will be consist of the remote endpoint's IP and port. If you use UdpRequestInfo in a SuperSocket UDP server, the value of SessionID is passed from the client.
+SessionID 是 AppSession 类的一个属性，用于唯一标识一个 Session 实例。 在一个 SuperSocket TCP 服务器中，当 Session 一创建， SessionID 就会被赋值为一个 GUID 字符串。 如果你不在 SuperSocket UDP 服务器中使用 UdpRequestInfo，SessionID 就会有客户端的IP和端口组成。 如果你使用UdpRequestInfo，SessionID将会从客户端传过来。
 
-## Get All Connected Sessions
+## 获取所有连接上的 Session
 
-You also can get all connected sessions from the AppServer instances and then push data to all clients:
+你也可以从 AppServer 实例获取所有连接上的 session 然后推送数据到所有客户端：
 
     foreach(var session in appServer.GetAllSessions())
     {
         session.Send(data, 0, data.Length);
     }    
 
-If you enable session snapshot, the sessions get from method AppServer.GetAllSessions() are not updated realtime. They are all the connected sessions of the AppServer in the time when the last snapshot is taken.
+如果你启用了 Session 快照, 这些从 AppServer.GetAllSessions() 获取的 sessions 将不是实时更新的。 他们是在上次获取快照时所有连接到服务器的 Session。 快照相关配置，请参考配置文档。
 
-## Get Sessions by Criteria
+## 根据条件获取 Session
 
-If you have a custom property "CompanyId" in your AppSession, and you want get all connected session whose CompanyId are equal with your specific value, the methd of AppServer "GetSession(...)" should be useful:
+如果你有一个自定义的属性 "CompanyId" 在你的 AppSession 类之中，如果你想要获取这个属性等于某值的 的所有 Session， 你可以使用 AppServer 的方法 GetSessions(...):
 
     var sessions = appServer.GetSessions(s => s.CompanyId == companyId);
     foreach(var s in sessions)
@@ -45,4 +45,4 @@ If you have a custom property "CompanyId" in your AppSession, and you want get a
         s.Send(data, 0, data.Length);
     }
 
-Same as the method "GetAllSessions(...)", if you enable session snapshot, the sessions also come from snapshot.
+和方法 "GetAllSessions(...)" 一样, 如果你启用了 Session 快照，这些返回的 session 也一样也来自于快照之中。
