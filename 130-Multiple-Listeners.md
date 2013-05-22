@@ -1,7 +1,7 @@
-# Multiple Listeners
+# 多个 Listener
 
-## Single listener
-In the configuration below, you can configure the server instance's listening IP and port:
+## 单个 listener
+在下面的配置中，你可以配置服务器的监听 ip/port：
 
     <superSocket>
         <servers>
@@ -12,8 +12,8 @@ In the configuration below, you can configure the server instance's listening IP
        </servers>
     </superSocket>
 
-## Multiple listeners
-You can add a child configuration node "listeners" to add more listening ip/port pairs:
+## 多个 listener
+你可以增加一个子节点 "listeners" 用于添加多对监听 ip/port：
 
     <superSocket>
       <servers>
@@ -30,9 +30,9 @@ You can add a child configuration node "listeners" to add more listening ip/port
       </serverTypes>
     </superSocket>
 
-In this case, the server instance "EchoServer" will listen two local endpoints. It is very similar with that a website can has many bindings in IIS.
+在这种情况下，服务器实例将监听两个本地端口。 这个功能和 IIS 站点的多绑定功能非常相似。
 
-You also can set different options for the different listeners:
+你也可以给不同的监听器设置不同的选项：
 
     <superSocket>
         <servers>
