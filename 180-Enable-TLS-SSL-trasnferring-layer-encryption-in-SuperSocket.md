@@ -1,25 +1,26 @@
-# Enable TLS SSL trasnferring layer encryption in SuperSocket
+# 在SuperSocket中启用TLS/SSL传输层加密
 
-## SuperSocket supports the transport layer encryption (TLS/SSL)
+## SuperSocket 支持传输层加密(TLS/SSL)
 
-SuperSocket has automatically support for TLS/SSL. You needn't change any code to let your socket server support TLS/SSL.
+SuperSocket 有自动的对TLS/SSL的支持，你可以无须增加或者修改任何代码，就能让你的服务器支持TLS/SSL。
 
-## To enable TLS/SSL for your SuperSocket server, you should prepare a certificate at first.
-There are two ways to provide the certificate:
+## 想要为你的 SuperSocket 服务器启用 TLS/SSL，你需要先准备好一个授权证书
 
-1. a X509 certificate file with private key
-    * for testing purpose you can generate a certificate file by the CertificateCreator in SuperSocket(http://supersocket.codeplex.com/releases/view/59311)
-    * in production environment, you should purchase a certificate from a certificate authority
-2. a certificate in local certificate store
+你有两种方式提供证书:
 
-## Enable TLS/SSL by a certificate file
+1. 一个带有私钥的 X509 证书文件
+    * 你可以通过 CertificateCreator in SuperSocket(http://supersocket.codeplex.com/releases/view/59311) 生成证书文件用于测试
+    * 在生产环境，你应该向证书颁发机构购买证书
+2. 一个在你本地证书仓库的证书
 
-You should change the configuration file to use the certificate file following the below steps:
+## 通过证书文件启用 TLS/SSL
 
-1. set security attribute for the server node;
-2. add the certificate node in server node as child.
+你需要通过下面的步骤修改配置文件来使用你准备好的证书文件：
 
-The configuration should look like:
+1. 在server节点设置security属性；
+2. 在server节点下增加certificate子节点；
+
+最后配置应该像这样：
 
     <server name="EchoServer"
             serverTypeName="EchoService"
@@ -28,11 +29,11 @@ The configuration should look like:
         <certificate filePath="localhost.pfx" password="supersocket"></certificate>
     </server>
 
-Note: the password of the certificate node is the private key of the certificate file
+提示: certificate节点的password属性的值是这个证书文件的私钥
 
-## Enable TLS/SSL by a certificate in local certificate store
+## 通过本地证书仓库的证书来启用 TLS/SSL
 
-You also can use a certificate in your local certificate store without a physical file. The thumbprint of the certificate you want to use is required:
+你也可以通过本地证书仓库的证书，而不是使用一个物理文件。 你只需要在配置中设置你要使用的证书的storeName和thumbprint：
 
     <server name="EchoServer"
             serverTypeName="EchoService"
@@ -41,7 +42,7 @@ You also can use a certificate in your local certificate store without a physica
         <certificate storeName="My" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"></certificate>
     </server>
 
-## You also can only apply TLS/SSL for one listener of the appserver instance
+## 你也可以只为服务器实例的其中一个监听启用TLS/SSL，而其它监听仍然使用明文传输。
 
     <server name="EchoServer" serverTypeName="EchoService" maxConnectionNumber="10000">
         <certificate storeName="My" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"></certificate>
