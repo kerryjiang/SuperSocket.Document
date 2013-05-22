@@ -4,7 +4,7 @@
 
 ## Send Data to Client by Session Object
 
-Having said that, AppSession represents a logic socket connection, connection based operations should be defined in this class. The AppSession also wraps the sending data method of the socket. You can use the method "Send(...)" of AppSession to send data to client:
+It was said before, AppSession represents a logic socket connection, connection based operations should be defined in this class. The AppSession also wraps the sending data method of the socket. You can use the method "Send(...)" of AppSession to send data to client:
 
     session.Send(data, 0, data.Length);
     or
