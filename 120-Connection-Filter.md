@@ -1,8 +1,8 @@
-# Connection Filter
+# 连接过滤器
 
-Connection Filter in SuperSocket is the interface which is used for filtering client connections. By connection filter, you can allow or disallow the client connections from the specified source.
+SuperSocket 中的连接过滤器是一个用于过滤客户端连接的接口。 通过连接过滤器，你可以允许或者禁止从某些地址过来的连接。
 
-Connection Filter interface is defined like below:
+连接过滤器的接口定义如下：
 
     /// <summary>
     /// The basic interface of connection filter
@@ -33,19 +33,18 @@ Connection Filter interface is defined like below:
 
 **bool Initialize(string name, IAppServer appServer);**
 
-This method is used to initialize the connection filter, name is the name of Filter.
+此方法用于初始化连接过滤器
 
 **string Name {get;}**
 
-Return Filter name
+返回连接过滤器名称
 
 **bool AllowConnect (IPEndPoint remoteAddress);**
 
-This method requires the client to achieve the endpoint to determine whether to allow connection to the server.
+这个方法通过判断客户端的地址来决定是否允许该连接。
 
 
-
-**The following code implemented a connection filter which only allow connection from the specific ip range:**
+**下面的代码实现了只允许来自指定IP地址范围的连接的功能:**
 
     public class IPConnectionFilter : IConnectionFilter
     {
@@ -127,9 +126,9 @@ This method requires the client to achieve the endpoint to determine whether to 
         }
     }
 
-**Then you need to update the configuration file to use this connection filter:**
+**然后你需要更新配置文件来气用这个连接过滤器:**
 
-1) add configuration node "connectionFilters";
+1) 添加配置节点 "connectionFilters":
 
     <connectionFilters>
       <add name="IpRangeFilter"
@@ -137,7 +136,7 @@ This method requires the client to achieve the endpoint to determine whether to 
     </connectionFilters>
 
 
-2) add configuration attributes for server instance;
+2) 为server实例添加connectionFilter属性:
 
     <server name="EchoServer"
             serverTypeName="EchoService" ip="Any" port="2012"
@@ -145,7 +144,7 @@ This method requires the client to achieve the endpoint to determine whether to 
             ipRange="127.0.1.0-127.0.1.255">
     </server>
 
-3) the finally configuration should look like;
+3) 完整的配置文件如下:
 
     <?xml version="1.0" encoding="utf-8" ?>
     <configuration>
