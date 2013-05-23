@@ -2,7 +2,7 @@
 
 ## 创建一个控制台项目然后引用SuperSocket
 
-1. 创建一个控制台应用程序项目。 由于该项目将要以服务器的形式运行，而却引用的SuperSocket并非通过Client Profile编译，所以 当项目创建好之后，你要修改此项目的目标框架从“Cllient Profile”到完整的框架。
+1. 创建一个控制台应用程序项目。 由于控制台应用程序项目的默认目标框架是Client Profile (.Net 3.5, .Net 4.0), 但SuperSocket需要使用完整的框架，所以当项目创建好之后，你要将项目的目标框架改成完整的框架。
 2. 添加SuperSocket的dll文件(SuperSocket.Common.dll, SuperSocket.SocketBase.dll, SuperSocket.SocketEngine.dll)到此项目的引用。
 3. 添加log4net.dll到项目引用。 如果是你使用默认的日志框架(log4net)，此步骤是必须的。 
 4. 引用SuperSocket提供的日志配置文件log4net.config到项目文件夹的"Config"文件夹然后设置它的Build Action 为 "Content"，设置它的Copy to Output Directory 为 "Copy if newer"，因为这个配置文件是log4net需要的
