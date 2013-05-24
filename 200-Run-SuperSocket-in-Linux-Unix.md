@@ -1,5 +1,7 @@
 # 在Linux/Unix上运行SuperSocket
 
+> Linux, Unix, Mono, Mono Service
+
 ## SuperSocket通过(Mono 2.10或更新版本)来实现跨平台的特性
 
 由于Unix/Linux不同于Windows上的文件路径格式，SuperSocket提供了专用于Unix/Linux系统上的log4net文件：/Solution Items/log4net.unix.config

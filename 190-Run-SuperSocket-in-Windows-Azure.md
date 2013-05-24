@@ -1,5 +1,7 @@
 # 在 Windows Azure 中运行SuperSocket
 
+> Windows Azure, WorkRole, InputEndPoint, 云计算, 微软云
+
 ## 什么是 Windows Azure?
 
 Windows Azure 是微软的云计算平台！微软的Windows Azure通过它的数据中心提供了按需分配的计算能力和存储空间用于在互联网上托管，扩展和管理应用程序。

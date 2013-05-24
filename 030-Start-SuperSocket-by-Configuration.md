@@ -1,5 +1,7 @@
 # 通过配置启动SuperSocket
 
+> 配置启动, Boostrap, 配置示例, 服务形式运行, Windows服务
+
 ## 为什么要通过配置启动？
 1. 避免硬编码
 2. SuperSocket提供了很多有用的配置选项
