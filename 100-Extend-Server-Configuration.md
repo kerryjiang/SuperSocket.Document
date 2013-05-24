@@ -1,8 +1,8 @@
-# Extend Server Configuration
+# 扩展服务器配置
 
-When you implement your socket server by SuperSocket, it is unavoidable to define some parameters in configuration file.The SuperSocket provides a very easy way to store the parameters in your configuration file and then read and use them in AppServer.
+当你使用 SuperSocket 实现 Socket 服务器的时候，不可避免的需要在配置文件中定义一些参数。 SuperSocket 提供了非常简单的方法，让你在配置文件中定义这些参数，然后在你的代码中读取它们。
 
-Please take a look at the following configuration code:
+请看下面的配置代码：
 
     <server name="FlashPolicyServer"
             serverType="SuperSocket.Facility.PolicyServer.FlashPolicyServer, SuperSocket.Facility"
@@ -13,7 +13,7 @@ Please take a look at the following configuration code:
             policyFile="Policy\flash.xml">
     </server>
 
-In above server configuration,the attribute "policyFile" is not defined in SuperSocket, but you also can read it in your AppServer class:
+在上面的配置中， 属性 "policyFile" 未在 SuperSocket 中定义， 不过你任然可以在你的 AppServer 类中读取它：
 
     public class YourAppServer : AppServer
     {
@@ -34,7 +34,7 @@ In above server configuration,the attribute "policyFile" is not defined in Super
         }
     }
 
-Not only we can add customized attributes in server node, we also can add the customized child configuration like below:
+你不仅可以在 server 节点定义属性， 而且你还能像下面的代码那样定义子节点：
 
     <server name="SuperWebSocket"
             serverTypeName="SuperWebSocket"
@@ -44,7 +44,7 @@ Not only we can add customized attributes in server node, we also can add the cu
         </subProtocols>
     </server>
 
-A configuration element type is required:
+下面是所需的节点对应的配置类:
     
     /// <summary>
     /// SubProtocol configuration
@@ -62,7 +62,7 @@ A configuration element type is required:
         //Configuration attributes
     }
 
-Then you can read the child configuration node in your AppServer:
+然后你就能在 AppServer 类中读取这个子节点了：
 
     public class YourAppServer : AppServer
     {
