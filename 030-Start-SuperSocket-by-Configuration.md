@@ -1,6 +1,6 @@
 # 通过配置启动SuperSocket
 
-> 配置启动, Boostrap, 配置示例, 服务形式运行, Windows服务
+> 关键字: 配置启动, Boostrap, 配置示例, 服务形式运行, Windows服务
 
 ## 为什么要通过配置启动？
 1. 避免硬编码

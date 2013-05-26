@@ -1,6 +1,6 @@
 # 在SuperSocket中启用TLS/SSL传输层加密
 
-> TLS, SSL, 传输层加密, 传输层安全, 证书使用, X509Certificate
+> 关键字: TLS, SSL, 传输层加密, 传输层安全, 证书使用, X509Certificate
 
 ## SuperSocket 支持传输层加密(TLS/SSL)
 

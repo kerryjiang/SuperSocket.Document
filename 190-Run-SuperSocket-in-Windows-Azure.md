@@ -1,6 +1,6 @@
 # 在 Windows Azure 中运行SuperSocket
 
-> Windows Azure, WorkRole, InputEndPoint, 云计算, 微软云
+> 关键字: Windows Azure, WorkRole, InputEndPoint, 云计算, 微软云
 
 ## 什么是 Windows Azure?
 

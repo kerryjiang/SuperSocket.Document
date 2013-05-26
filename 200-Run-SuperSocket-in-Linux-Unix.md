@@ -1,6 +1,6 @@
 # 在Linux/Unix上运行SuperSocket
 
-> Linux, Unix, Mono, Mono Service
+> 关键字: Linux, Unix, Mono, Mono Service
 
 ## SuperSocket通过(Mono 2.10或更新版本)来实现跨平台的特性
 

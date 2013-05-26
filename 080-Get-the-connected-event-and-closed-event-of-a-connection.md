@@ -1,6 +1,6 @@
 # 获取会话的连接和断开事件
 
-> 连接事件, 断开事件, OnSessionStarted, OnSessionClosed, NewSessionConnected, SessionClosed
+> 关键字: 连接事件, 断开事件, OnSessionStarted, OnSessionClosed, NewSessionConnected, SessionClosed
 
 ## AppSession 的虚方法 OnSessionStarted() 和 OnSessionClosed(CloseReason reason)
 
