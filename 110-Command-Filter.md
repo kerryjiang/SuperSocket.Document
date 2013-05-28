@@ -1,8 +1,10 @@
-# Command Filter
+# 命令过滤器
 
-The Command Filter feature in SuperSocket looks like Action Filter in ASP.NET MVC, you can use it to intercept execution of Command, the Command Filter will be invoked before or after a command execution.
+> 关键字: 命令过滤器, 命令, 过滤器, OnCommandExecuting, OnCommandExecuted
 
-Command Filter class must inherit from Attribute CommandFilterAttribute:
+SuperSocket 中的命令过滤器看起来有些像 ASP.NET MVC 中的 Action Filter，你可以用它来做命令执行的拦截，命令过滤器会在命令执行前和执行后被调用。
+
+命令过滤器必须继承于 Attribute 类 CommandFilterAttribute:
 
      /// <summary>
     /// Command filter attribute
@@ -31,16 +33,15 @@ Command Filter class must inherit from Attribute CommandFilterAttribute:
         public abstract void OnCommandExecuted(CommandExecutingContext commandContext);
     }
 
-There are two methods you should to implement for your command filter:
+你需要为你的命令过滤器实现下面两个方法:
 
-**OnCommandExecuting**: This method is called before the execution of the Command;
+**OnCommandExecuting**: 此方法将在命令执行前被调用;
 
-**OnCommandExecuted**: This method is called after the execution of the Command;
+**OnCommandExecuted**: 此方法将在命令执行后被调用;
 
-**Order**: You also can set the Order property of the command filter to control the executing order
+**Order**: 此属性用于设置多个命令过滤器的执行顺序;
 
-
-The following code defines a Command Filter LogTimeCommandFilterAttribute for recording the command execution time if the time is longer than 5 seconds:
+下面的代码定义了一个命令过滤器 LogTimeCommandFilterAttribute 用于记录执行时间超过5秒钟的命令:
 
     public class LogTimeCommandFilter : CommandFilterAttribute
     {
@@ -62,7 +63,7 @@ The following code defines a Command Filter LogTimeCommandFilterAttribute for re
         }
     }
 
-And then apply the command filter to the command "QUERY" by adding attribute:
+然后通过增加属性的方法给命令 "QUERY" 应用此过滤器:
 
     [LogTimeCommandFilter]
     public class QUERY : StringCommandBase<TestSession>
@@ -73,7 +74,7 @@ And then apply the command filter to the command "QUERY" by adding attribute:
         }
     }
 
-If you want to apply this command filter to all commands, you should add this Command Filter Attribute to your AppServer class like the following code:
+如果你想应用次过滤器给所有的命令, 你可以向下面的代码这样将此命令过滤器的属性加到你的 AppServer 类上面去:
 
     [LogTimeCommandFilter]
     public class TestServer : AppServer<TestSession>
@@ -81,7 +82,7 @@ If you want to apply this command filter to all commands, you should add this Co
 
     }
 
-You also can cancel the command's execution by setting the commandContext's Cancel property to be true:
+你可以通过将 commandContext's 的 Cancel 属性设为 True 来取消当前命令的执行:
 
     public class LoggedInValidationFilter : CommandFilterAttribute
     {
