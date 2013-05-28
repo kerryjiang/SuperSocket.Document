@@ -33,7 +33,7 @@ Command Filter class must inherit from Attribute CommandFilterAttribute:
         public abstract void OnCommandExecuted(CommandExecutingContext commandContext);
     }
 
-There are two methods you should to implement for your command filter:
+There are two methods you should implement for your command filter:
 
 **OnCommandExecuting**: This method is called before the execution of the Command;
 
