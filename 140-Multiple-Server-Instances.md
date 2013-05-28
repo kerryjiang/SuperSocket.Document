@@ -1,8 +1,10 @@
 # Multiple Server Instances
 
-## SuperSocket support running multiple server instances in the same process
+> 关键字: 多服务器实例, 多实例, 隔离, 多实例交互
 
-The multiple server instances can be in same server type:
+## SuperSocket 支持在统一进程中运行多个服务器实例
+
+多个服务器实例可以是同一个服务器类型:
 
     <superSocket>
         <servers>
@@ -24,7 +26,7 @@ The multiple server instances can be in same server type:
         </serverTypes>
     </superSocket>
 
-They are also can be in different server types:
+也可以是不同的服务器类型:
 
     <superSocket>
         <servers>
@@ -45,21 +47,23 @@ They are also can be in different server types:
         </serverTypes>
     </superSocket>
 
-## Isolation level of the server instances
-As mentioned before, there is a configuration attribute in the SuperSocket root configuration:
+## 服务器实例的隔离级别
+前面提到过, 在 SuperSocket 配置的根节点有这样一个属性:
 
-    <superSocket isolation="AppDomain">//None or AppDomain
+    <superSocket isolation="AppDomain">//None, AppDomain, Process
         ....
     </superSocket>
 
-If the isolation level is 'None' (default value), these app server instances will share the same process and the same AppDomain. So they can access each other easily. (We'll discuss it later)
+如果这个isolation属性的值是 'None' (默认值), 这些服务器实例将会在同一进程的同一 AppDomain 中运行. 因策他们能够直接互相访问. (我们将会在后面讨论这一点)
 
-But if the isolation level is 'AppDomain', SuperSocket will create one AppDomain for each server instance and they will be run in the different AppDomains. Due to the AppDomain level isolation, the chances these server instances interfere with each other will be descreased. Oh the other hand the interaction ability among these server instances will be weaken.
+但是如果isolation属性的值是 'AppDomain', SuperSocket将为每个实例创建独立的AppDomai, 所有的服务器实例都会运行在各自独立的AppDomain之中。
 
-## Interactions among the multiple server instances
-As described in the previous section, if the isolation is 'None', the interactions among the multiple server instances is very easy.
+但是如果isolation属性的值是 'Process', SuperSocket将为每个实例创建独立的进程, 所有的服务器实例都会运行在各自独立的进程之中。
 
-For example, they can access each other by name using Bootstap provided by SuperSocket:
+## 多服务器实例之间的交互
+前面一部分提到了, 如果 isolation 设成 'None', 多服务器实例之间的交互是非常简单的事情.
+
+举个例子, 他们能通过 SuperSocket 提供的 Bootstap 来彼此访问:
     
     interface IDespatchServer
     {
@@ -94,4 +98,4 @@ For example, they can access each other by name using Bootstap provided by Super
         }
     }
 
-The above sample give you a demonstration about how dispatch a message from one server instance to a session of the other server instance.
+上面的示例代码演示了如何从一个服务器实例转发一条消息到另一个服务器实例一个 Session。
