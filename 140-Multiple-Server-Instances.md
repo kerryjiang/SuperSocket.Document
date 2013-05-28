@@ -50,13 +50,15 @@ They are also can be in different server types:
 ## Isolation level of the server instances
 As mentioned before, there is a configuration attribute in the SuperSocket root configuration:
 
-    <superSocket isolation="AppDomain">//None or AppDomain
+    <superSocket isolation="AppDomain">//None, AppDomain, Process
         ....
     </superSocket>
 
 If the isolation level is 'None' (default value), these app server instances will share the same process and the same AppDomain. So they can access each other easily. (We'll discuss it later)
 
-But if the isolation level is 'AppDomain', SuperSocket will create one AppDomain for each server instance and they will be run in the different AppDomains. Due to the AppDomain level isolation, the chances these server instances interfere with each other will be descreased. Oh the other hand the interaction ability among these server instances will be weaken.
+But if the isolation level is 'AppDomain', SuperSocket will create one AppDomain for each server instance and they will be run in the different AppDomains.
+
+But if the isolation level is 'Process', SuperSocket will create one Process for each server instance and they will be run in the different Processes.
 
 ## Interactions among the multiple server instances
 As described in the previous section, if the isolation is 'None', the interactions among the multiple server instances is very easy.
