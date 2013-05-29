@@ -1,10 +1,12 @@
-# Implement Your Own Communication Protocol with IRequestInfo, IReceiveFilter and etc
+# 使用 IRequestInfo 和 IReceiveFilter 等等其他对象来实现自定义协议
 
-## Why do you want to use Your Own Communication Protocol?
+> 关键字: IRequestInfo, IReceiveFilter, 自定义协议, 请求, 接收过滤器
 
-The communication protocol is used for converting your received binary data to the requests which your application can understand. SuperSocket provides a built-in communication protocol "Command Line Protocol" which defines each request must be ended with a carriage return "\r\n".
+## 为什么你要使用自定义协议?
 
-But some applications cannot use "Command Line Protocol" for many different reasons. In this case, you need to implement your own communication protocol using the tools below:
+通信协议用于将接收到的二进制数据转化成您的应用程序可以理解的请求。 SuperSocket提供了一个内置的通信协议“命令行协议”定义每个请求都必须以回车换行"\r\n"结尾。
+
+但是一些应用程序无法使用命令行协议由于不同的原因。 这种情况下,你需要使用下面的工具来实现你的自定义协议:
 
     * RequestInfo
     * ReceiveFilter
@@ -12,17 +14,17 @@ But some applications cannot use "Command Line Protocol" for many different reas
     * AppServer and AppSession
 
 
-## The RequestInfo
-RequestInfo is the entity class which represents a request from the client. Each request of client should be instantiated as a RequestInfo. The RequestInfo class must implement the interface IRequestInfo which only have a property named "Key" in string type:
+## 请求(RequestInfo)
+RequestInfo 是表示来自客户端请求的实体类。 每个来自客户端的请求都能应该被实例化为 RequestInfo 类型。 RequestInfo 类必须实现接口 IRequestInfo，该接口只有一个名为"Key"的字符串类型的属性:
 
     public interface IRequestInfo
     {
         string Key { get; }
     }
 
-Talked in the previous documentation, The request info class StringRequestInfo is used in SuperSocket command line protocol.
+上面文档提到了, 请求类型 StringRequestInfo 用在 SuperSocket 命令行协议中。
 
-You also can implement your own RequestInfo class as your application requirement. For instance, if all of your requests must have a DeviceID field, you can define a property for it in the RequestInfo class:
+你也可以根据你的应用程序的需要来定义你自己的请求类型。 例如, 如果所有请求都包含 DeviceID 信息，你可以在RequestInfo类里为它定义一个属性:
 
     public class MyRequestInfo : IRequestInfo
     {
@@ -35,7 +37,7 @@ You also can implement your own RequestInfo class as your application requiremen
          */
     }
 
-SuperSocket also provides another request info class "BinaryRequestInfo" used for binary protocol:
+SuperSocket 还提供了另外一个请求类 "BinaryRequestInfo" 用于二进制协议:
 
     public class BinaryRequestInfo
     {
@@ -44,13 +46,13 @@ SuperSocket also provides another request info class "BinaryRequestInfo" used fo
         public byte[] Body { get; }
     }
 
-You can use BinaryRequestInfo directly if it can satisfy your requirement.
+你可以直接使用此类型 BinaryRequestInfo, 如果他能满足你的需求的话。
 
-## The ReceiveFilter
+## 接收过滤器(ReceiveFilter)
 
-The ReceiveFilteris used for converting received binary data to your request info instances.
+接收过滤器(ReceiveFilter)用于将接收到的二进制数据转化成请求实例(RequestInfo)。
 
-To implement a ReceiveFilter, you need to implement the interface IReceiveFilter<TRequestInfo>:
+实现一个接收过滤器(ReceiveFilter), 你需要实现接口 IReceiveFilter<TRequestInfo>:
 
     public interface IReceiveFilter<TRequestInfo>
         where TRequestInfo : IRequestInfo
@@ -85,32 +87,31 @@ To implement a ReceiveFilter, you need to implement the interface IReceiveFilter
         void Reset();
     }
 
-* TRequestInfo: the type parameter "TRequestInfo" is the request info class you want to use in the application
-
-* LeftBufferSize: the data size which is cached in this request filter;
-* NextReceiveFilter: the request filter which will be used when next piece of binary data is received;
-* Reset(): resets this instance to initial state;
-* Filter(....): the filter method is executed when a piece of binary data is received by SuperSocket, the received data locates in the parameter readBuffer. Because the readBuffer is shared by all connections in the same appServer instance, so you need to load the received data from the position "offset"(method parameter) and with the size "length" (method parameter).
+* TRequestInfo: 类型参数 "TRequestInfo" 是你要在程序中使用的请求类型(RequestInfo);
+* LeftBufferSize: 该接收过滤器已缓存数据的长度;
+* NextReceiveFilter: 当下一块数据收到时，用于处理数据的接收过滤器实例;
+* Reset(): 重设接收过滤器实例到初始状态;
+* Filter(....): 该方法将会在 SuperSocket 收到一块二进制数据时被执行，接收到的数据在 readBuffer 中从 offset 开始， 长度为 length 的部分。
 
 
         TRequestInfo Filter(byte[] readBuffer, int offset, int length, bool toBeCopied, out int rest);
 
 
-  * readBuffer: the receiving buffer, the received data is stored in this array
-  * offset: the received data's start position in the readBuffer
-  * length: the length of the received data
-  * toBeCopied: indicate whether should create a copy of the readBuffer instead of use it directly when we want to cache data in it
-  * rest: it's a output parameter, it should be set to be the remaining received data size after you find a full request
+  * readBuffer: 接收缓冲区, 接收到的数据存放在此数组里
+  * offset: 接收到的数据在接收缓冲区的起始位置
+  * length: 本轮接收到的数据的长度
+  * toBeCopied: 表示当你想缓存接收到的数据时，是否需要为接收到的数据重新创建一个备份而不是直接使用接收缓冲区
+  * rest: 这是一个输出参数, 它应该被设置为当解析到一个为政的请求后，接收缓冲区还剩余多少数据未被解析
 
-  There are many cases you need to handle:
+  这儿有很多种情况需要你处理:
 
-  * If you find a full request from the received data, your must return a request info instance of your request info type.
-  * If you haven't find a full request, you just return NULL.
-  * If you have find a full request from the received data, but the received data not only contain one request, set the remaining data size to the output parameter "left". SuperSocket will examine the output parameter "rest", if it is bigger than 0, the Filter method will be executed again with the parameters "offset" and "length" adjusted.
+  * 当你冲接收缓冲区中找到一条完整的请求时，你必须返回一个你的请求类型的实例.
+  * 当你没有找到一个完整的请求时, 你需要返回 NULL.
+  * 当你冲接收缓冲区中找到一条完整的请求, 但接收到的数据并不仅仅包含一个请求时，设置剩余数据的长度到输出变量 "rest". SuperSocket 将会检查这个输出参数 "rest", 如果它大于 0, 此 Filter 方法 将会被再次执行, 参数 "offset" 和 "length" 会被调整为合适的值.
 
-## The ReceiveFilterFactory
-The ReceiveFilterFactory is used for creating receive filter for each session.
-To define you receive filter factory class, you must implement the interface IReceiveFilterFactory<TRequestInfo>. The type parameter "TRequestInfo" is the request info class you want to use in the application
+## 接收过滤器工厂(ReceiveFilterFactory)
+接收过滤器工厂(ReceiveFilterFactory)用于为每个回话生成接收过滤器.
+定义一个过滤器工厂(ReceiveFilterFactory)类型, 你必须实现接口 IReceiveFilterFactory<TRequestInfo>. 类型参数 "TRequestInfo" 是你要在整个程序中使用的请求类型
 
     /// <summary>
     /// Receive filter factory interface
@@ -132,19 +133,19 @@ To define you receive filter factory class, you must implement the interface IRe
     }
 
 
-You also can use the default receive filter factory 
+你也可以直接使用默认的过滤器工厂(ReceiveFilterFactory)
 
     DefaultReceiveFilterFactory<TReceiveFilter, TRequestInfo>
 
-, it will return the TReceiveFilter instance which is instantiated by the non-parameter constructor of class TReceiveFilter when method CreateFilter is invoked.
+, 当工厂的CreateFilter方法被调用时，它将会调用TReceiveFilter类型的无参构造方法来创建并返回TReceiveFilter.
 
 
-## Work together with AppSession and AppServer
+## 和 AppSession，AppServer 配合工作
 
-Now, you have RequestInfo, ReceiveFilter and ReceiveFilterFactory, but you haven't started use them.
-If you want to make them available in your application, you need to define your AppSession and AppServer using your created RequestInfo, ReceiveFilter and ReceiveFilterFactory.
+现在, 你已经有了 RequestInfo, ReceiveFilter 和 ReceiveFilterFactory, 但是你还没有正式使用它们.
+如果你想让他们在你的程序里面可用, 你需要定义你们的 AppSession 和 AppServer 来使用他们.
 
-* Set RequestInfo for AppSession
+* 为 AppSession 设置 RequestInfo
 
         public class YourSession : AppSession<YourSession, YourRequestInfo>
         {
@@ -152,7 +153,7 @@ If you want to make them available in your application, you need to define your 
         }
 
 
-* Set RequestInfo and ReceiveFilterFactory for AppServer
+* 为 AppServer 设置 RequestInfo 和 ReceiveFilterFactory
 
         public class YourAppServer : AppServer<YourSession, YourRequestInfo>
         {
@@ -164,4 +165,4 @@ If you want to make them available in your application, you need to define your 
         }
 
 
-After finish these two things, your custom communication protocol should work now.
+完成上面两件事情，你的自定义协议就应该可以工作了。

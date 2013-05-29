@@ -1,16 +1,19 @@
-# Implement Your Commands by Dynamic Language
+# 用动态语言实现你的命令
 
-## Enable dynamic language for your SuperSocket
-There are many steps:
+> 关键字: 动态语言, Dynamic Language, IronPython, IronRuby, 脚本, Dynamic Commands, 动态命令
 
-1. Add DLR (dynamic language runtime) configuration section;
 
-    Section definition:
+## 为你的 SuperSocket 启用动态语言
+步骤如下:
+
+1. 添加 DLR (dynamic language runtime) 配置片段;
+
+    Section 定义:
 
         <section name="microsoft.scripting" requirePermission="false"
              type="Microsoft.Scripting.Hosting.Configuration.Section, Microsoft.Scripting"/>
 
-    Section content:
+    Section 内容:
         
         <microsoft.scripting>
             <languages>
@@ -20,7 +23,7 @@ There are many steps:
             </languages>
         </microsoft.scripting>
 
-2. Add command loader for DLR;
+2. 增加 DLR 命令加载器;
 
         <SuperSocket>
             ......
@@ -29,7 +32,7 @@ There are many steps:
             </commandLoaders>
         </superSocket>
 
-3. Use the command loader for your server instances:
+3. 为你的服务器实例启用该命令加载器:
 
         <servers>
           <server name="IronPythonServer"
@@ -40,7 +43,7 @@ There are many steps:
           </server>
         </servers>
 
-The full configuration file will be:
+完整的配置如下:
 
     <?xml version="1.0"?>
     <configuration>
@@ -83,36 +86,36 @@ The full configuration file will be:
     </configuration>
 
 
-## Ensure all required assemblies exist in the working directory
-The files below are required:
+## 确保所有的程序集在你的工作目录都存在
+所需的文件如下:
 * Microsoft.Dynamic.dll
 * Microsoft.Scripting.dll
 * IronPython.dll
 * SuperSocket.Dlr.dll
 
-## Implement your commands
-Now, if we have a command line protocol SuperSocket server instance "IronPythonServer", and we want to create a "ADD" command in Python for adding two integers and then send back the result to client, we should the following steps:
+## 实现你的命令
+现在, 如果你有一个命令行协议的服务器实例 "IronPythonServer", 而且我们要用 Python 创建一个  "ADD" 命令用于让两个整数相加，然后把计算结果返回给客户端, 我们就要完成下面的步骤:
 
-1. Create a python script file named as "ADD.py" with the content below:
+1. 创建 python 脚本文件 "ADD.py"， 并书写如下内容:
 
         def execute(session, request):
 	        session.Send(str(int(request[0]) + int(request[1])))
 
-2. Put this file into the sub directory "Command" of the working directory
-
+2. 将此文件放入工作目录的子目录 "Command" 里
+3. 
         WorkRoot -> Command -> ADD.py
 
-3. Start the server, and verify the function by telnet
+3. 启动服务器，并通过Telnet客户端验证功能
 
         telnet 127.0.0.1 2012
         Client: ADD 100 150
         Server: 250
 
 
-You can find we put the file ADD.py in root of the Command folder, therefore SuperSocket allow all server instances load it. If you want to only allow the server instance "IronPythonServer" to use it, you should put this file in the sub directory "IronPythonServer" of the command folter:
+你会发现 ADD.py 位于 Command 文件夹的根目录, 因此 SuperSocket 允许所有实例加载它. 如果你只想要服务器实例 "IronPythonServer" 使用它, 你应该把脚本文件放到Command目录的子目录 "IronPythonServer" 里面:
 
     WorkRoot -> Command -> IronPythonServer -> ADD.py
 
-## Updating of the dynamic commands
+## 动态命令的更新
 
-The SuperSocket checks the updates of the command folder in the interval of 5 minutes. So if you have any command updates including adding, updating or removing, SuperSocket will adopt your changes within 5 minutes.
+SuperSocket每5分钟检查一次Command文件夹的更新. 如果你有任何包括新增，更新，删除的命令文件的操作, SuperSocket 将会在 5 分钟之内应用这些改动.

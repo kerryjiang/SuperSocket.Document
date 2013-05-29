@@ -1,6 +1,8 @@
-# The Built-in Common Format Protocol Implementation Tools
+# 内置的通用协议实现工具
 
-After reading the previous document, you probably find implementing your own protocol using SuperSocket probably is not easy for you. To make this job easier, SuperSocket provides some common protocol tools, which you can use to build your own protocol easily and fast:
+> 关键字: TerminatorReceiveFilter, CountSpliterReceiveFilter, FixedSizeReceiveFilter, BeginEndMarkReceiveFilter, FixedHeaderReceiveFilter
+
+阅读了前面一篇文档之后, 你可能会觉得用 SuperSocket 来实现你的自定义协议并不简单。 为了让这件事变得更容易一些, SuperSocket 提供了一些通用的协议解析工具, 你可以用他们简单而且快速的实现你自己的通信协议:
 
 * **TerminatorReceiveFilter**
 * **CountSpliterReceiveFilter**
@@ -8,10 +10,11 @@ After reading the previous document, you probably find implementing your own pro
 * **BeginEndMarkReceiveFilter**
 * **FixedHeaderReceiveFilter**
 
-## TerminatorReceiveFilter - Terminator Protocol
+## TerminatorReceiveFilter - 结束符协议
 
-Similar with command line protocol, some protocols use a terminator to identify a request.
-For example, one protocol uses two chars "##" as terminator, then you can use the class "TerminatorReceiveFilterFactory":
+与命令行协议类似，一些协议用结束符来确定一个请求.
+
+例如, 一个协议使用两个字符 "##" 作为结束符, 于是你可以使用类 "TerminatorReceiveFilterFactory":
 
     /// <summary>
     /// TerminatorProtocolServer
@@ -27,28 +30,28 @@ For example, one protocol uses two chars "##" as terminator, then you can use th
         }
     }
 
-The default RequestInfo is StringRequestInfo, you also can create your own RequestInfo class, but it requires a bit more work:
+默认的请求类型是 StringRequestInfo, 你也可以创建自己的请求类型, 不过这样需要你做一点额外的工作:
 
-Implement your ReceiveFilter base on TerminatorReceiveFilter:
+基于TerminatorReceiveFilter实现你的接收过滤器(ReceiveFilter):
 
     public class YourReceiveFilter : TerminatorReceiveFilter<YourRequestInfo>
     {
         //More code
     }
 
-Implement your ReceiveFilterFactory which can create your request filter instances:
+实现你的接收过滤器工厂(ReceiveFilterFactory)用于创建接受过滤器实例:
 
     public class YourReceiveFilterFactory : IReceiveFilterFactory<YourRequestInfo>
     {
         //More code
     }
 
-And then use the request filter factory in your AppServer.
+然后在你的 AppServer 中使用这个接收过滤器工厂(ReceiveFilterFactory).
 
 
-## CountSpliterReceiveFilter - Fixed Number Split Parts with Separator Protocol
+## CountSpliterReceiveFilter - 固定数量分隔符协议
 
-Some protocols defines their requests look like in the format of "#part1#part2#part3#part4#part5#part6#part7#". There are 7 parts in one request and all parts are separated by char '#'. This kind protocol's implementing also is quite easy:
+有些协议定义了像这样格式的请求 "#part1#part2#part3#part4#part5#part6#part7#". 每个请求有7个由 '#' 分隔的部分. 这种协议的实现非常简单:
         
     /// <summary>
     /// Your protocol likes like the format below:
@@ -63,18 +66,18 @@ Some protocols defines their requests look like in the format of "#part1#part2#p
         }
     }
 
-You also can customize your protocol deeper using the classes below:
+你也可以使用下面的类更深入的定制这种协议:
 
     CountSpliterReceiveFilter<TRequestInfo>
     CountSpliterReceiveFilterFactory<TReceiveFilter>
     CountSpliterReceiveFilterFactory<TReceiveFilter, TRequestInfo>
 
 
-## FixedHeaderReceiveFilter - Fixed Header with Body Length Protocol
+## FixedHeaderReceiveFilter - 头部格式固定并且包含内容长度的协议
 
-This kind protocol defines each request has two parts, the first part contains some basic information of this request include the length of the second part. We usually call the first part is header and the second part is body.
+这种协议将一个请求定义为两大部分, 第一部分定义了包含第二部分长度等等基础信息. 我们通常称第一部分为头部.
 
-For example, we have a protocol like that: the header contains 6 bytes, the first 4 bytes represent the request's name, the last 2 bytes represent the length of the body:
+例如, 我们有一个这样的协议: 头部包含 6 个字节, 前 4 个字节用于存储请求的名字, 后两个字节用于代表请求体的长度:
 
     /// +-------+---+-------------------------------+
     /// |request| l |                               |
@@ -83,7 +86,7 @@ For example, we have a protocol like that: the header contains 6 bytes, the firs
     /// |       |(2)|                               |
     /// +-------+---+-------------------------------+
 
-Using SuperSocket, you can implement this kind protocol easily:
+使用 SuperSocket, 你可以非常方便的实现这种协议:
 
     class MyReceiveFilter : FixedHeaderReceiveFilter<BinaryRequestInfo>
     {
@@ -105,9 +108,10 @@ Using SuperSocket, you can implement this kind protocol easily:
     }
 
 
-You need to implement your own request filter base on FixedHeaderReceiveFilter<TRequestInfo>.
-* The number 6 passed into the parent class's constructor means the size of the request header;
-* The method "GetBodyLengthFromHeader(...)" you should override returns the length of the body according the received header;
-* the method "ResolveRequestInfo(....)" you should override returns the RequestInfo instance according the received header and body.
+你需要基于类FixedHeaderReceiveFilter<TRequestInfo>实现你自己的接收过滤器.
 
-Then you can build a receive filter factory or use the default receive factory to use this receive filter in SuperSocket.
+* 传入父类构造函数的 6 表示头部的长度;
+* 方法"GetBodyLengthFromHeader(...)" 应该根据接收到的头部返回请求体的长度;
+* 方法 ResolveRequestInfo(....)" 应该根据你接收到的请求头部和请求体返回你的请求类型的实例.
+
+然后你就可以使用接收或者自己定义的接收过滤器工厂来在 SuperSocket 中启用该协议.
