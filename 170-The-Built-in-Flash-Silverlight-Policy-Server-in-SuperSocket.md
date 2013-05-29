@@ -2,7 +2,7 @@
 
 > 关键字: 策略服务器, Flash策略服务器, Silverlight策略服务器, Policy Server, Flash Policy Server, Silverlight Policy Server
 
-**SuperSocket** 包含一个可用于Flash和Silverlight的Socket策略服务器。 它被包含在SuperSocket.Facility.dll 这个程序集内。 因此，你要启用此策略服务器，你首先需要保证程序集SuperSocket.Facility.dll 只存在于SuperSocket的运行目录，然后在配置文件中增加策略服务器节点，配置代码如下：
+**SuperSocket** 包含一个可用于Flash和Silverlight的Socket策略服务器。 它被包含在SuperSocket.Facility.dll 这个程序集内。 因此，你要启用此策略服务器，你首先需要保证程序集SuperSocket.Facility.dll 存在于SuperSocket的运行目录，然后在配置文件中增加策略服务器节点，配置代码如下：
 
 **Flash 策略服务器:**
 
