@@ -50,16 +50,13 @@
 ## 服务器实例的隔离级别
 前面提到过, 在 SuperSocket 配置的根节点有这样一个属性:
 
-    <superSocket isolation="AppDomain">//None, AppDomain, Process
+    <superSocket isolation="AppDomain">//None, AppDomain
         ....
     </superSocket>
 
 如果这个isolation属性的值是 'None' (默认值), 这些服务器实例将会在同一进程的同一 AppDomain 中运行. 因策他们能够直接互相访问. (我们将会在后面讨论这一点)
 
 但是如果isolation属性的值是 'AppDomain', SuperSocket将为每个实例创建独立的AppDomai, 所有的服务器实例都会运行在各自独立的AppDomain之中。
-
-但是如果isolation属性的值是 'Process', SuperSocket将为每个实例创建独立的进程, 所有的服务器实例都会运行在各自独立的进程之中。
-
 ## 多服务器实例之间的交互
 前面一部分提到了, 如果 isolation 设成 'None', 多服务器实例之间的交互是非常简单的事情.
 

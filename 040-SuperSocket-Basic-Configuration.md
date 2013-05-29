@@ -49,9 +49,7 @@
 * isolation: SuperSocket 服务器实例隔离级别
        * None - 无隔离
        * AppDomain - 应用程序域级别的隔离，多个服务器实例运行在各自独立的应用程序域之中
-	   * Process - 进程级别的隔离，多个服务器实例运行在各自独立的进程之中
 * logFactory: 默认logFactory的名字, 所有可用的 log factories定义在子节点 "logFactories" 之中， 我们将会在下面的文档中介绍它;
-* defaultCulture: 整个程序的默认 thread culture，只在.Net 4.5中可用;
 
 ## 服务器实例配置
 在根节点中，有一个名为 "servers" 的子节点，你可以定义一个或者多个server节点来代表服务器实例。 这些服务器实例可以是同一种 AppServer 类型， 也可以是不同的类型。
@@ -82,8 +80,6 @@ Server 节点的所有属性如下:
 * idleSessionTimeOut: 会话超时时间，默认值为300，单位为秒;
 * security: Empty, Tls, Ssl3. Socket服务器所采用的传输层加密协议，默认值为空;
 * maxRequestLength: 最大允许的请求长度，默认值为1024;
-* textEncoding: 文本的默认编码，默认值是 ASCII;
-* defaultCulture: 此服务器实例的默认 thread culture, 只在.Net 4.5中可用而且在隔离级别为 'None' 时无效;
 * disableSessionSnapshot: 是否禁用回话快照, 默认值为 false.
 * sessionSnapshotInterval: 回话快照时间间隔, 默认值是 5, 单位为秒;
 * keepAliveTime: 网络连接正常情况下的keep alive数据的发送间隔, 默认值为 600, 单位为秒;
