@@ -108,7 +108,7 @@ To implement a ReceiveFilter, you need to implement the interface IReceiveFilter
 
   * If you find a full request from the received data, your must return a request info instance of your request info type.
   * If you haven't find a full request, you just return NULL.
-  * If you have find a full request from the received data, but the received data not only contain one request, set the remaining data size to the output parameter "left". SuperSocket will examine the output parameter "rest", if it is bigger than 0, the Filter method will be executed again with the parameters "offset" and "length" adjusted.
+  * If you have find a full request from the received data, but the received data not only contain one request, set the remaining data size to the output parameter "rest". SuperSocket will examine the output parameter "rest", if it is bigger than 0, the Filter method will be executed again with the parameters "offset" and "length" adjusted.
 
 ## The ReceiveFilterFactory
 The ReceiveFilterFactory is used for creating receive filter for each session.
