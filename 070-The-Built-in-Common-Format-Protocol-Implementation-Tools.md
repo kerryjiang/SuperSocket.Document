@@ -108,6 +108,7 @@ Using SuperSocket, you can implement this kind protocol easily:
 
 
 You need to implement your own request filter base on FixedHeaderReceiveFilter<TRequestInfo>.
+
 * The number 6 passed into the parent class's constructor means the size of the request header;
 * The method "GetBodyLengthFromHeader(...)" you should override returns the length of the body according the received header;
 * the method "ResolveRequestInfo(....)" you should override returns the RequestInfo instance according the received header and body.
