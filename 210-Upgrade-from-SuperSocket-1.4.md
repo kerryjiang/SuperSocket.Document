@@ -102,12 +102,17 @@
                 serverTypeName="GPSSocketService"
                 ip="Any" port="2012">
         </server>
-        
+
+
+* Replace the file log4net.config you are using with the one provided by 1.5
+
+  
 ## Logging API changes
 
 * Logger.LogInfo(*) => Logger.Info(*);
 * Logger.LogDebug(*) => Logger.Debug(*);
 * Logger.LogError(*) => Logger.Error(*);
+
 
 ## New bootstrap
 
