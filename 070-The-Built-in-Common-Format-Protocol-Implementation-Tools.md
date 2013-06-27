@@ -1,4 +1,4 @@
-# 内置的通用协议实现工具
+# 内置的常用协议实现工具
 
 > 关键字: TerminatorReceiveFilter, CountSpliterReceiveFilter, FixedSizeReceiveFilter, BeginEndMarkReceiveFilter, FixedHeaderReceiveFilter
 
