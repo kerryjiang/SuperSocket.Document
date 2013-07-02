@@ -171,7 +171,7 @@ As you know, SuperSocket provides a running container "SuperSocket.SocketService
 You can define the windows service's name by configuring:
 
     <appSettings>
-        <add key="ServiceName" value="SupperSocketService" />
+        <add key="ServiceName" value="SuperSocketService" />
     </appSettings>
 
 
