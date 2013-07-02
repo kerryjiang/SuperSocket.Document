@@ -124,7 +124,7 @@ Server 节点的所有属性如下:
         </server>
 
 
-* requestFilterFactory: 定义该实例所使用的请求过滤器工厂的名字;
+* receiveFilterFactory: 定义该实例所使用的接收过滤器工厂的名字;
 
 ## 服务器类型配置
 服务器类型节点是一个在根节点下面的配置集合。你可以添加一个或者多个拥有属性'name'和'type'的配置元素:
