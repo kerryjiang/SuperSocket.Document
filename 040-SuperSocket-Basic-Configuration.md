@@ -175,7 +175,7 @@ Server 节点的所有属性如下:
 你可以通过配置来定义此Windows服务的名字:
 
     <appSettings>
-        <add key="ServiceName" value="SupperSocketService" />
+        <add key="ServiceName" value="SuperSocketService" />
     </appSettings>
 
 它还支持其它针对Windows服务的配置属性:
