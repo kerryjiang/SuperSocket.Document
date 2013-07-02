@@ -135,10 +135,10 @@ You can install SuperSocket.SocketService.exe as windows service by running it w
 The windows service name is defined in configuration file, you can change it as your requirement:
 
     <appSettings>
-        <add key="ServiceName" value="SupperSocketService" />
+        <add key="ServiceName" value="SuperSocketService" />
     </appSettings>
 
 
 The service also can be uninstalled by the parameter "-u":
 
-    SuperSocket.SocketSerrvice.exe -u
+    SuperSocket.SocketService.exe -u
