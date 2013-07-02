@@ -123,7 +123,7 @@ All server node's attributes:
         </server>
 
 
-* requestFilterFactory: the name of the request filter factory you want to use it for this server instance;
+* receiveFilterFactory: the name of the receive filter factory you want to use it for this server instance;
 
 ## Server Types Configuration
 Server types node is a collection configuration node under the root. You are able to add one/more elements with element name "add" and attributes "name" and "type":
