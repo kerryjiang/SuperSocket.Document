@@ -130,16 +130,16 @@
 
 通过在命令行下加参数"-i"运行SuperSocket.SocketService.exe，你可以安装它成为一个Windows服务：
 
-    SuperSocket.SocketSerrvice.exe -i
+    SuperSocket.SocketService.exe -i
 
 
 这个Windows服务的名字定义在配置文件之中，你可以根据你的需要修改它：
 
     <appSettings>
-        <add key="ServiceName" value="SupperSocketService" />
+        <add key="ServiceName" value="SuperSocketService" />
     </appSettings>
 
 
 你也可以通过参数"-u"来卸载该服务：
 
-    SuperSocket.SocketSerrvice.exe -u
+    SuperSocket.SocketService.exe -u
