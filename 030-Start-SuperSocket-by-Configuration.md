@@ -136,10 +136,10 @@
 这个Windows服务的名字定义在配置文件之中，你可以根据你的需要修改它：
 
     <appSettings>
-        <add key="ServiceName" value="SupperSocketService" />
+        <add key="ServiceName" value="SuperSocketService" />
     </appSettings>
 
 
 你也可以通过参数"-u"来卸载该服务：
 
-    SuperSocket.SocketSerrvice.exe -u
+    SuperSocket.SocketService.exe -u
