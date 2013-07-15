@@ -87,3 +87,9 @@ To:
 
 
 The classes __ServerSummary__ and __NodeSummary__ have been removed. Now you should use the class __StatusInfoCollection__.
+
+
+## The new configuration attribute "storeLocation" for the certificate node
+You can specific the store location of the certificate which you want to load:
+
+    <certificate storeName="My" storeLocation="LocalMachine" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"/>
