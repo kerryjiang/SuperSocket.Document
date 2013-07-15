@@ -98,7 +98,7 @@ Server 节点的所有属性如下:
 
     - 从本地证书库加载证书
 
-              <certificate storeName="My" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"/>
+              <certificate storeName="My" storeLocation="LocalMachine" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"/>
 
 
 * connectionFilter: 定义该实例所使用的连接过滤器的名字，多个过滤器用 ',' 或者 ';' 分割开来。 可用的连接过滤器定义在根节点的一个子节点内，将会在下面的文档中做更多介绍;
