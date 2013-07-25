@@ -93,3 +93,15 @@ The classes __ServerSummary__ and __NodeSummary__ have been removed. Now you sho
 You can specific the store location of the certificate which you want to load:
 
     <certificate storeName="My" storeLocation="LocalMachine" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"/>
+
+
+## Start a connection from server initiatively
+
+You can connect a remote endpoint from the server side initiatively, the following network communications after the connection is established are same with the connections started from clients.
+
+    
+    var activeConnector = appServer as IActiveConnector;
+    var task = activeConnector.ActiveConnect(remoteEndPoint);
+    task.ContinueWith(t =>
+              Logger.InfoFormat("Client connected, SessionID: {0}", t.Result.Session.SessionID),
+          TaskContinuationOptions.OnlyOnRanToCompletion);
