@@ -102,6 +102,6 @@ You can connect a remote endpoint from the server side initiatively, the followi
     
     var activeConnector = appServer as IActiveConnector;
     var task = activeConnector.ActiveConnect(remoteEndPoint);
-    task.ContinueWith(t =>
-              Logger.InfoFormat("Client connected, SessionID: {0}", t.Result.Session.SessionID),
-          TaskContinuationOptions.OnlyOnRanToCompletion);
+    task.ContinueWith(
+              t => Logger.InfoFormat("Client connected, SessionID: {0}", t.Result.Session.SessionID),
+              TaskContinuationOptions.OnlyOnRanToCompletion);
