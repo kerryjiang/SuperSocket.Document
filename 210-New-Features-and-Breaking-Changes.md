@@ -1,5 +1,8 @@
 # New Features and Breaking Changes
 
+> __Keywords__: SuperSocket 1.6, New Features, Breaking Changes, textEncoding, defaultCulture, Process Isolation, SuperSocket.Agent.exe
+
+
 ## The new configuration attribute "textEncoding"
 In the __SuperSocket__ before 1.6, when you send a text message via session object, the default encoding to convert the text message to binary data which can be sent over socket is UTF8.
 You can change it by assigning a new encoding to the session's Charset property.
@@ -98,6 +101,6 @@ You can connect a remote endpoint from the server side initiatively, the followi
     
     var activeConnector = appServer as IActiveConnector;
     var task = activeConnector.ActiveConnect(remoteEndPoint);
-    task.ContinueWith(t =>
-              Logger.InfoFormat("Client connected, SessionID: {0}", t.Result.Session.SessionID),
-          TaskContinuationOptions.OnlyOnRanToCompletion);
+    task.ContinueWith(
+              t => Logger.InfoFormat("Client connected, SessionID: {0}", t.Result.Session.SessionID),
+              TaskContinuationOptions.OnlyOnRanToCompletion);
