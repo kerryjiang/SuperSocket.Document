@@ -1,14 +1,14 @@
-# New Features and Breaking Changes
+# 新功能和不兼容的更改
 
-> __Keywords__: SuperSocket 1.6, New Features, Breaking Changes, textEncoding, defaultCulture, Process Isolation, SuperSocket.Agent.exe
+> __关键字__: SuperSocket 1.6, 新功能, 不兼容的更改, textEncoding, defaultCulture, 进程级别隔离, SuperSocket.Agent.exe
 
 
-## The new configuration attribute "textEncoding"
-In the __SuperSocket__ before 1.6, when you send a text message via session object, the default encoding to convert the text message to binary data which can be sent over socket is UTF8.
-You can change it by assigning a new encoding to the session's Charset property.
+## 新的配置属性 "textEncoding"
+在 __SuperSocket__ 1.6 之前的版本, 当你通过Session对象发送文本时, 将文本信息转换成能够通过Socket传输的二进制数据的默认编码是UTF8。 你可以通过设置 Session 的 Charset 属性来修改这个编码。
 
-Now in __SuperSocket__ 1.6, you can define the default text encoding in the configuration.
-The new attribute "textEncoding" has been added into the server configuration node:
+现在在 __SuperSocket__ 1.6 中, 你可以在配置中定义字符编码。
+
+新的配置属性 "textEncoding" 被加入到了服务器配置节点:
 
 	<superSocket>
 		<servers>
@@ -20,10 +20,10 @@ The new attribute "textEncoding" has been added into the server configuration no
 		</servers>
 	</superSocket>
 
-## The new configuration attribute "defaultCulture"
-This new added feature is only for the .Net framework 4.5 and above. It allows you to set default culture for all the threads, no matter how the threads are created, by programming or come from thread pool.
+## 新的配置属性 "defaultCulture"
+这个新增的功能只支持 .Net framework 4.5 及其以上版本。 它允许你设置所有线程的默认Culture, 不管这些线程是如何创建，通过代码或者来自于线程池.
 
-The new configuration attribute "defaultCulture" can be added in the root node or the server node, so you can configure the default culture for all the server instances or for each server instance separately:
+这个新的配置属性 "defaultCulture" 可以加到配置根节点或者服务器实例节点，因此你可以为所有服务器实例配置默认的 Culture, 你也可以为每个服务器单独设置默认 Culture:
 
 	<superSocket defaultCulture="en-US">
 		<servers>
@@ -44,10 +44,11 @@ The new configuration attribute "defaultCulture" can be added in the root node o
 		</servers>
 	</superSocket>
 
-## Process level isolation
-In __SuperSocket__ 1.5, we added AppDomain level isolation, you can run your multiple appserver instances in the their own AppDomain. This feature provides higher level security and resource isolation and bring more benefits to the users who run SuperSocket as multiple hosting service.
+## 进程级别隔离
+在 __SuperSocket__ 1.5 中, 我们增加了 AppDomain 级别隔离的功能，让你可以运行多个服务器实例在相互独立的 AppDomain 上。
+此功能提供了较高级别的安全性和资源的隔离，并且给哪些希望将SuperSocket当做多服务托管程序运行的用户带来了很多其他的帮助。
 
-In __SuperSocket__ 1.6, we introduce much higher level isolation "Process". If you configure the SuperSocket in this kind isolation, you appserver instances will run in the separated processes. The configuration looks like that:
+在 __SuperSocket__ 1.6 中, 我们引入了更高级别的进程级隔离。 当你将 SuperSocket 配置成这种级别的隔离， 你的多个服务器实例将会运行在各自独立的进程当中。 配置文件请参考:
 
 	<superSocket isolation="Process">
 		<servers>
@@ -62,41 +63,40 @@ In __SuperSocket__ 1.6, we introduce much higher level isolation "Process". If y
 		</servers>
 	</superSocket>
 
-Beyond the configuration, you need to include an executable assembly "SuperSocket.Agent.exe" into your project output, which is provided by SuperSocket.
+除了上面的配置, 你还需要包含可执行文件 "SuperSocket.Agent.exe" 到你的项目输出里面去, 这个可执行文件是由SuperSocket提供的。
 
-After you start your SuperSocket, you will find more processes of SuperSocket:
+当你启动你的 SuperSocket 之后, 你将会发现 SuperSocket 启动了多个进程:
 
     SuperSocket.SocketService.exe
     SuperSocket.Agent.exe
 	SuperSocket.Agent.exe
 
 
-## Changes about the performance data collecting
-The API collecting performance data has been changed, two virtual method have been changed:
+## 性能数据采集的应用程序接口的改动
+性能数据采集的应用程序接口作了修改，两个虚方法已经被更改:
 
     protected virtual void UpdateServerSummary(ServerSummary serverSummary);
 
     protected virtual void OnServerSummaryCollected(NodeSummary nodeSummary, ServerSummary serverSummary)
 
-
-To:
+更改为:
 
 	protected virtual void UpdateServerStatus(StatusInfoCollection serverStatus)
 
 	protected virtual void OnServerStatusCollected(StatusInfoCollection nodeStatus, StatusInfoCollection serverStatus)
 
 
-The classes __ServerSummary__ and __NodeSummary__ have been removed. Now you should use the class __StatusInfoCollection__.
+类 __ServerSummary__ 和 __NodeSummary__ 已经被弃用，取而代之，你应该使用类 __StatusInfoCollection__。
 
-## The new configuration attribute "storeLocation" for the certificate node
-You can specific the store location of the certificate which you want to load:
+## 证书节点新增配置属性 "storeLocation"
+你可以指定你想要加载的证书的存储地点:
 
     <certificate storeName="My" storeLocation="LocalMachine" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"/>
 
 
-## Start a connection from server initiatively
+## 从服务器端主动发起连接
 
-You can connect a remote endpoint from the server side initiatively, the following network communications after the connection is established are same with the connections started from clients.
+你可以从服务器端主动连接客户端, 连接建立之后的网络通信处理将和客户端主动建立连接的处理方式一样。
 
     
     var activeConnector = appServer as IActiveConnector;
