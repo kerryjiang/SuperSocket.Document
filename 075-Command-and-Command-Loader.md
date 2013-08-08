@@ -40,6 +40,27 @@ Then SuperSocket will looking a command whose name is "ADD". If we have a comman
 
 Then this command will be found, because the StringCommandBase instance's name is filled by the class's name.
 
+But in some cases, the requestInfo's Key cannot be used as a class name. For example:
+
+    Key: "01"
+    Body: "1 2"
+
+To make your ADD command work, you need to override the name attribute of the command class:
+
+    public class ADD : StringCommandBase
+    {
+        public override string Name
+        {
+            get { return "01"; }
+        }
+
+		public void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
+        {
+              session.Send((int.Parse(requestInfo[0] + int.Parse(requestInfo[1])).ToString());
+        }
+    }
+
+
 ## Command assemblies definition
 
 Yes, it uses reflection to find public classes who implement the basic command interface, but it only look for from the assembly where your AppServer class is defined.
