@@ -9,7 +9,12 @@ SuperSocket 服务管理器是一个让你能够在客户中用图形化界面�
 
 ## 在服务器端配置服务器管理器
 
-事实上, 服务器管理器是一个独立的 SuperSocket AppServer。 要让起作用，你需要把它和其它你要监控的服务器实例配置在一起:
+事实上, 服务器管理器是一个独立的 SuperSocket AppServer。 要让起作用，首先你要先确定下面的程序集在你的工作目录中存在:
+
+- SuperSocket.ServerManager.dll (从源代码目录 "Management\Server" 编译)
+- SuperSocket.WebSocket.dll (从源代码目录 "Protocols\WebSocket" 编译)
+
+然后你需要把它和其它你要监控的服务器实例配置在一起:
 
 	<superSocket isolation="Process">
 		<servers>
