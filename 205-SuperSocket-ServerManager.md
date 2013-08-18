@@ -9,7 +9,12 @@ SuperSocket ServerManager is a component of SuperSocket which allow you to manag
 
 ## Setup ServerManager in the server side
 
-Actually, the ServerManager is an independent AppServer of SuperSocket. To let it work, you should configure a server instance for this AppServer together with the server instances which you want to manage and monitor:
+Actually, the ServerManager is an independent AppServer of SuperSocket. To let it work, please ensure these assemblies below exist in your working directory at first:
+
+- SuperSocket.ServerManager.dll (compile from the source code directory "Management\Server")
+- SuperSocket.WebSocket.dll (compile from the source code directory "Protocols\WebSocket")
+
+Then you should configure a server instance for this AppServer together with the server instances which you want to manage and monitor:
 
 	<superSocket isolation="Process">
 		<servers>
