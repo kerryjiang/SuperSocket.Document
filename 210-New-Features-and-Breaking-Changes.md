@@ -104,3 +104,8 @@
     task.ContinueWith(
               t => Logger.InfoFormat("Client connected, SessionID: {0}", t.Result.Session.SessionID),
               TaskContinuationOptions.OnlyOnRanToCompletion);
+
+
+## SuperSocket 服务器管理器 (ServerManager)
+
+> [SuperSocket服务器管理器文档](SuperSocket-ServerManager "SuperSocket服务器管理器")

@@ -1,15 +1,15 @@
-# SuperSocket ServerManager
+# SuperSocket 服务管理器 (ServerManager)
 
-> __Keywords__: ServerManager, Management, Management Client, SuperSocket Monitoring
+> __关键字__: ServerManager, 服务管理器, 管理, 管理客户端, SuperSocket 监控
 
-## What's the SuperSocket ServerManager?
+## 什么 SuperSocket 服务管理器?
 
-SuperSocket ServerManager is a component of SuperSocket which allow you to manage and monitor your SuperSocket server applications from a client application with GUI.
+SuperSocket 服务管理器是一个让你能够在客户中用图形化界面来管理和监控你的SuperSocket服务器程序的组件.
 
 
-## Setup ServerManager in the server side
+## 在服务器端配置服务器管理器
 
-Actually, the ServerManager is an independent AppServer of SuperSocket. To let it work, you should configure a server instance for this AppServer together with the server instances which you want to manage and monitor:
+事实上, 服务器管理器是一个独立的 SuperSocket AppServer。 要让起作用，你需要把它和其它你要监控的服务器实例配置在一起:
 
 	<superSocket isolation="Process">
 		<servers>
@@ -46,9 +46,9 @@ Actually, the ServerManager is an independent AppServer of SuperSocket. To let i
 	</superSocket>
 
 
-In above configuration, the ServerA and ServerB are your normal server instances. Additionally, you should add a server with "SuperSocket.ServerManager.ManagementServer, SuperSocket.ServerManager" as it's server type. As you see, the child node "users" defines the username/password which are allowed to connect to the ServerManager.
+在上面的配置中, ServerA 和 ServerB 是你要监控的普通服务器实例。另外，你需要加一个服务器类型为 "SuperSocket.ServerManager.ManagementServer, SuperSocket.ServerManager"的服务器实例节点。你可以看到，这个服务器实例下的子节点 "users" 定义了允许连接该服务器的用户名和密码。
 
-If you want Silverlight client to connect this ServerManager, you should add a policy server in the configuration:
+如果你要用Silverlight客户端连接此服务器管理器，你还应该在配置中增加一个策略服务器节点:
 
     <server name="SilverlightPolicyServer"
               serverType="SuperSocket.Facility.PolicyServer.SilverlightPolicyServer, SuperSocket.Facility"
@@ -60,47 +60,47 @@ If you want Silverlight client to connect this ServerManager, you should add a p
     </server>
 
 
-At the same time, you'd better add the policy server's name into the ServerManager's excludedServer list:
+通常你不必关心策略服务器的状态，所以你最好把策略服务器的名字加入到管理器服务器配置的excludedServer属性中，这样，Silverlight策略服务器不会在服务器管理器客户端中显示。
 
     excludedServers="SilverlightPolicyServer"
 
-Usually, you needn't care about the status of the policy server. After you add this configuration attribute, the Silverlight policy server will be hided in your ServerManager client.
-
-# SuperSocket ServerManager Client
-
-SuperSocket ServerManager now has two kinds of clients, Silverlight Client and WPF client. The code of both locates in the source code directory "Management", you can build them by yourself.
-
-We also provide an online Silverlight client, which can be used directly:
-
-    http://servermanager.supersocket.net/
 
 
-When you want to connect a SuperSocket server from the client, you need fill these information below:
+# SuperSocket 服务器管理器客户端
+
+SuperSocket 服务器管理器当前有两种类型的客户端, Silverlight客户端和WPF客户端。这两种客户端的代码都在源代码中的"Management"目录，你可以自行编译然后使用他们。
+
+我们还提供了能够直接使用的在线的Silverlight服务器管理器客户端:
+
+> [http://servermanager.supersocket.net/](http://servermanager.supersocket.net/ "http://servermanager.supersocket.net/")
+> 
+
+当你要从客户端连接SuperSocket服务器端的时候，你需要填写下面信息:
 
 ![SuperSocket ServerManager Client Configuration](images/servermanagerconfig.jpg)
 
-    Name: A identity of the server in your client;
-    URI: the SuperSocket ServerManager's listening endpoint, it is a websocket uri (start with "ws://" or "wss://", because we use websocket protocol between client and server);
-    User Name: the username which is configured in the SuperSocket ServerManager's users child node; 
-    Password: the password which is configured in the SuperSocket ServerManager's users child node; 
+    Name: 服务器在客户端的唯一标识;
+    URI: 服务器管理器的侦听地址, 他是一个websocket访问地址 (以 "ws://" 或者 "wss://" 开头, 因为服务器管理器服务端和客户端通过websocket协议进行通信);
+    User Name: 服务器管理器users子节点配置的用户名; 
+    Password: 服务器管理器users子节点配置的密码; 
 
 
-After the connection is established, you will see the SuperSocket server's status.
+当连接建立成功后, 你将会看到 SuperSocket 服务器端的状态.
 
 ![SuperSocket ServerManager Client Show](images/servermanagershow.jpg)
 
-You also can start and stop the server instances within the client:
+你也可以在服务器管理器客户端中定制或启动服务器实例:
 
 ![SuperSocket ServerManager Client Control](images/servermanagercontrol.jpg)
 
 
-# Security Consideration
+# 安全性考虑
 
-For security reasons, you can enable the TLS/SSL trasnferring layer encryption for your ServerManager instance, please read the document below, then you will know how to do it:
+出于安全性考虑, 你可以为你的服务器管理器实例启用TLS/SSL传输层加密, 请阅读下面文档来了解如何操作:
+> 
+> [在SuperSocket中启用TLS/SSL传输层加密](Enable-TLS-SSL-trasnferring-layer-encryption-in-SuperSocket)
 
-[Enable TLS/SSL trasnferring layer encryption in SuperSocket](Enable-TLS-SSL-trasnferring-layer-encryption-in-SuperSocket)
 
-
-After you enable TLS/SSL for the server side, you should use a secure websocket uri to connect the server:
+当你在服务器端启用TLS/SSL传输层加密之后, 你需要改用安全的websocket地址来连接服务器端:
 
     wss://***
