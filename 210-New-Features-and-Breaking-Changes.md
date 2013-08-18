@@ -105,3 +105,8 @@ You can connect a remote endpoint from the server side initiatively, the followi
     task.ContinueWith(
               t => Logger.InfoFormat("Client connected, SessionID: {0}", t.Result.Session.SessionID),
               TaskContinuationOptions.OnlyOnRanToCompletion);
+
+
+## SuperSocket ServerManager
+
+> [Document of SuperSocket ServerManager](SuperSocket-ServerManager "SuperSocket ServerManager")

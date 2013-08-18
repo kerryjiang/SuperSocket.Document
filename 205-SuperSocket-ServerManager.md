@@ -71,8 +71,8 @@ Usually, you needn't care about the status of the policy server. After you add t
 SuperSocket ServerManager now has two kinds of clients, Silverlight Client and WPF client. The code of both locates in the source code directory "Management", you can build them by yourself.
 
 We also provide an online Silverlight client, which can be used directly:
-
-    http://servermanager.supersocket.net/
+    
+> [http://servermanager.supersocket.net/](http://servermanager.supersocket.net/ "http://servermanager.supersocket.net/")
 
 
 When you want to connect a SuperSocket server from the client, you need fill these information below:
@@ -98,7 +98,7 @@ You also can start and stop the server instances within the client:
 
 For security reasons, you can enable the TLS/SSL trasnferring layer encryption for your ServerManager instance, please read the document below, then you will know how to do it:
 
-[Enable TLS/SSL trasnferring layer encryption in SuperSocket](Enable-TLS-SSL-trasnferring-layer-encryption-in-SuperSocket)
+> [Enable TLS/SSL trasnferring layer encryption in SuperSocket](Enable-TLS-SSL-trasnferring-layer-encryption-in-SuperSocket)
 
 
 After you enable TLS/SSL for the server side, you should use a secure websocket uri to connect the server:
