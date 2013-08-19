@@ -65,7 +65,7 @@ If you want Silverlight client to connect this ServerManager, you should add a p
     </server>
 
 
-At the same time, you'd better add the policy server's name into the ServerManager's excludedServer list:
+At the same time, you'd better add the policy server's name into the ServerManager's excludedServers list:
 
     excludedServers="SilverlightPolicyServer"
 
@@ -108,4 +108,4 @@ For security reasons, you can enable the TLS/SSL trasnferring layer encryption f
 
 After you enable TLS/SSL for the server side, you should use a secure websocket uri to connect the server:
 
-    wss://***
+> wss://***
