@@ -65,7 +65,7 @@ SuperSocket 服务管理器是一个让你能够在客户中用图形化界面�
     </server>
 
 
-通常你不必关心策略服务器的状态，所以你最好把策略服务器的名字加入到管理器服务器配置的excludedServer属性中，这样，Silverlight策略服务器不会在服务器管理器客户端中显示。
+通常你不必关心策略服务器的状态，所以你最好把策略服务器的名字加入到管理器服务器配置的excludedServers属性中，这样，Silverlight策略服务器不会在服务器管理器客户端中显示。
 
     excludedServers="SilverlightPolicyServer"
 
@@ -108,4 +108,4 @@ SuperSocket 服务器管理器当前有两种类型的客户端, Silverlight客�
 
 当你在服务器端启用TLS/SSL传输层加密之后, 你需要改用安全的websocket地址来连接服务器端:
 
-    wss://***
+> wss://***
