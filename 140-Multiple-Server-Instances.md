@@ -99,3 +99,31 @@
     }
 
 上面的示例代码演示了如何从一个服务器实例转发一条消息到另一个服务器实例一个 Session。
+
+
+## 独立控制服务器实例
+
+默认情况下, 所有的服务器实例会和SuperSocket程序一起启动和停止。是否有办法启动或停止一个实例而不影响其他它实例呢？ 当然，答案是有，而且SuperSocket提供了多种方案:
+
+1. SuperSocket 控制脚本
+	
+	SuperSocket 在 SuperSocket.SocketService 项目中提供了两个控制脚本:
+	
+	- supersocket.cmd  - for Windows
+		
+			supersocket list
+			supersocket start FTPServer
+			supersocket stop FTPServer
+
+	- supersocket.sh  - for Linux/Unix
+			
+			./supersocket list
+			./supersocket start FTPServer
+			./supersocket stop FTPServer
+
+
+2. SuperSocket ServerManager
+
+	你可以使用SuperSocket ServerManager 客户端程序以图形界面的形式来控制服务器实例。请阅读下面文档来学习如何使用SuperSocket ServerManager. [SuperSocket ServerManager文档](SuperSocket-ServerManager "SuperSocket ServerManager")
+
+   	![SuperSocket ServerManager Client Control](images/servermanagercontrol.jpg)
