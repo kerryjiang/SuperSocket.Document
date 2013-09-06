@@ -16,7 +16,7 @@
 
 SuperSocket 提供了一个 API 让你从 AppServer 的 Session 容器中通过 SessionID 获取 Session
 
-    var session = appServer.GetSessionByID(sessionID);
+    var session = appServer.GetAppSessionByID(sessionID);
 
     if(session != null)
         session.Send(data, 0, data.Length);
