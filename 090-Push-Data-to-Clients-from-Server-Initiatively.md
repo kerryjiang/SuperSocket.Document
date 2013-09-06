@@ -16,7 +16,7 @@ As mentioned in previous part, if you have got the connection's session instance
 
 SuperSocket provide a API to allow you get a session by session ID from the AppServer's session container.
 
-    var session = appServer.GetSessionByID(sessionID);
+    var session = appServer.GetAppSessionByID(sessionID);
 
     if(session != null)
         session.Send(data, 0, data.Length);
