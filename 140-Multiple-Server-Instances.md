@@ -99,3 +99,35 @@ For example, they can access each other by name using Bootstap provided by Super
     }
 
 The above sample give you a demonstration about how dispatch a message from one server instance to a session of the other server instance.
+
+
+## Control server instances independent
+
+By default, all server instances in a SuperSocket server will be started and stopped together. Is there a way to start/stop a server instance and don't affect other server instances? Of course, the answer is yes and SuperSocket provide more options:
+
+1. SuperSocket control script
+	
+	SuperSocket also provide two control scripts in SuperSocket.SocketService project:
+	
+	- supersocket.cmd  - for Windows
+		
+			supersocket list
+			supersocket start FTPServer
+			supersocket stop FTPServer
+
+	- supersocket.sh  - for Linux/Unix
+			
+			./supersocket list
+			./supersocket start FTPServer
+			./supersocket stop FTPServer
+
+
+2. SuperSocket ServerManager
+
+	You can use the ServerManager client application to control the server instances by GUI. Please read the documentation to learn how to setup ServerManager. [Document of SuperSocket ServerManager](SuperSocket-ServerManager "SuperSocket ServerManager")
+
+   	![SuperSocket ServerManager Client Control](images/servermanagercontrol.jpg)
+
+
+
+
