@@ -75,13 +75,13 @@ Server 节点的所有属性如下:
 * syncSend: 是否启用同步发送模式, 默认值: false;
 * logCommand: 是否记录命令执行的记录;
 * logBasicSessionActivity: 是否记录session的基本基本活动，如连接和断开;
-* clearIdleSession: true 或 false, 是否定时清空空闲回话，默认值是 false;
-* clearIdleSessionInterval: 清空空闲回话的时间间隔, 默认值是120, 单位为秒;
+* clearIdleSession: true 或 false, 是否定时清空空闲会话，默认值是 false;
+* clearIdleSessionInterval: 清空空闲会话的时间间隔, 默认值是120, 单位为秒;
 * idleSessionTimeOut: 会话超时时间，默认值为300，单位为秒;
 * security: Empty, Tls, Ssl3. Socket服务器所采用的传输层加密协议，默认值为空;
 * maxRequestLength: 最大允许的请求长度，默认值为1024;
-* disableSessionSnapshot: 是否禁用回话快照, 默认值为 false.
-* sessionSnapshotInterval: 回话快照时间间隔, 默认值是 5, 单位为秒;
+* disableSessionSnapshot: 是否禁用会话快照, 默认值为 false.
+* sessionSnapshotInterval: 会话快照时间间隔, 默认值是 5, 单位为秒;
 * keepAliveTime: 网络连接正常情况下的keep alive数据的发送间隔, 默认值为 600, 单位为秒;
 * keepAliveInterval: Keep alive失败之后, keep alive探测包的发送间隔，默认值为 60, 单位为秒;
 * certificate: 这各节点用于定义用于此服务器实例的X509Certificate证书的信息
