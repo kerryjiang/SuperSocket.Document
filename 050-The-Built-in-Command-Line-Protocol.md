@@ -80,13 +80,10 @@ SuperSocket 服务器将会收到一个 StringRequestInfo 实例，这个实例�
     
 ## 文本编码
 
-命令行协议的默认编码是 Ascii。 你也可以在实例化 CommandLineReceiveFilterFactory 时传入你想要的编码:
-
-    public class YourServer : AppServer<YourSession>
-    {
-        public YourServer()
-            : base(new CommandLineReceiveFilterFactory(Encoding.UTF8))
-        {
-
-        }
-    }
+命令行协议的默认编码是 Ascii，但是你也可以通过修改配置中的服务器节点的__"textEncoding"__属性来改变编码:
+    
+    <server name="TelnetServer"
+          textEncoding="UTF8"
+          serverType="YourAppServer, YourAssembly"
+          ip="Any" port="2020">
+    </server>
