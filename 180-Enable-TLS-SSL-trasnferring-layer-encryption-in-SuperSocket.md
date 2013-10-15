@@ -53,3 +53,27 @@ SuperSocket 有自动的对TLS/SSL的支持，你可以无须增加或者修改�
           <add ip="Any" port="443" security="tls" />
         </listeners>
     </server>
+
+## 客户端安全证书验证
+
+在 TLS/SSL 安全通信中, 客户端的安全证书不是必需的, 但是有些系统需要更高级别的安全保障. 此功能允许你在服务器端验证客户端证书.
+
+首先, 要启用客户端证书验证, 你需要在配置中的证书节点增加新的属性 "clientCertificateRequired":
+
+    <certificate storeName="My"
+				 storeLocation="LocalMachine"
+                 clientCertificateRequired="true"
+                 thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"/>
+
+
+然后你需要重写 AppServer 的方法 "ValidateClientCertificate(...)" 用于实现你的验证逻辑:
+
+    protected override bool ValidateClientCertificate(YourSession session, object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+    {
+       //Check sslPolicyErrors
+
+	   //Check certificate
+
+       //Return checking result
+       return true;
+    }
