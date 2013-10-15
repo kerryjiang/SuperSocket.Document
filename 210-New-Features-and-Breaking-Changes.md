@@ -110,3 +110,28 @@ You can connect a remote endpoint from the server side initiatively, the followi
 ## SuperSocket ServerManager
 
 > [Document of SuperSocket ServerManager](SuperSocket-ServerManager "SuperSocket ServerManager")
+
+
+## Client certificate validation
+
+In TLS/SSL communications, the client side certificate is not a must, but some systems require much higher security guarantee. So some users asked the feature validating client certificate from the server side. Now in SuperSocket 1.6, this feature has been added.
+
+At first, to enable the client certificate validation, you should add the attribute "clientCertificateRequired" in the certificate node of the configuration:
+
+    <certificate storeName="My"
+				 storeLocation="LocalMachine"
+                 clientCertificateRequired="true"
+                 thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"/>
+
+
+Then you can override the AppServer's method "ValidateClientCertificate(...)" the implement your validation logic:
+
+    protected override bool ValidateClientCertificate(YourSession session, object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+    {
+       //Check sslPolicyErrors
+
+	   //Check certificate
+
+       //Return checking result
+       return true;
+    }
