@@ -4,11 +4,11 @@
 
 阅读了前面一篇文档之后, 你可能会觉得用 SuperSocket 来实现你的自定义协议并不简单。 为了让这件事变得更容易一些, SuperSocket 提供了一些通用的协议解析工具, 你可以用他们简单而且快速的实现你自己的通信协议:
 
-* **TerminatorReceiveFilter**
-* **CountSpliterReceiveFilter**
-* **FixedSizeReceiveFilter**
-* **BeginEndMarkReceiveFilter**
-* **FixedHeaderReceiveFilter**
+* **TerminatorReceiveFilter** (SuperSocket.SocketBase.Protocol.TerminatorReceiveFilter, SuperSocket.SocketBase)
+* **CountSpliterReceiveFilter** (SuperSocket.Facility.Protocol.CountSpliterReceiveFilter, SuperSocket.Facility)
+* **FixedSizeReceiveFilter** (SuperSocket.Facility.Protocol.FixedSizeReceiveFilter, SuperSocket.Facility)
+* **BeginEndMarkReceiveFilter** (SuperSocket.Facility.Protocol.BeginEndMarkReceiveFilter, SuperSocket.Facility)
+* **FixedHeaderReceiveFilter** (SuperSocket.Facility.Protocol.FixedHeaderReceiveFilter, SuperSocket.Facility)
 
 ## TerminatorReceiveFilter - 结束符协议
 
