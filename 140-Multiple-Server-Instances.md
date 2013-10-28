@@ -60,6 +60,10 @@ But if the isolation level is 'AppDomain', SuperSocket will create one AppDomain
 
 But if the isolation level is 'Process', SuperSocket will create one Process for each server instance and they will be run in the different Processes.
 
+__The picture below demonstrate how isolation model works__:
+
+![SuperSocket Isolation Model](images/isolationmodel.jpg)
+
 ## Interactions among the multiple server instances
 As described in the previous section, if the isolation is 'None', the interactions among the multiple server instances is very easy.
 

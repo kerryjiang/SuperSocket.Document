@@ -15,3 +15,8 @@
 ## SuperSocket Request Handling Model
 
 ![SuperSocket Request Handling Model](images/requesthandlingmodel.jpg)
+
+
+## SuperSocket Isolation Model
+
+![SuperSocket Isolation Model](images/isolationmodel.jpg)
