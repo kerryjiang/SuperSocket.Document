@@ -7,7 +7,7 @@
 ![SuperSocket Layers](images/layermodel.jpg)
 
 
-## 对象模型图示意图
+## SuperSocket 对象模型图示意图
 
 ![SuperSocket Object Model](images/objectmodel.jpg)
 
@@ -15,3 +15,8 @@
 ## SuperSocket 请求处理模型示意图
 
 ![SuperSocket Request Handling Model](images/requesthandlingmodel.jpg)
+
+
+## SuperSocket 隔离模型示意图
+
+![SuperSocket Isolation Model](images/isolationmodel.jpg)

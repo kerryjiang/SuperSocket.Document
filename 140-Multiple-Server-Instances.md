@@ -60,6 +60,10 @@
 
 但是如果isolation属性的值是 'Process', SuperSocket将为每个实例创建独立的进程, 所有的服务器实例都会运行在各自独立的进程之中。
 
+__下面这张图展示了隔离模型如何工作__:
+
+![SuperSocket Isolation Model](images/isolationmodel.jpg)
+
 ## 多服务器实例之间的交互
 前面一部分提到了, 如果 isolation 设成 'None', 多服务器实例之间的交互是非常简单的事情.
 
