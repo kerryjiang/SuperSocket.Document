@@ -164,6 +164,19 @@ Server 节点的所有属性如下:
            port="2020">
     </server>
 
+## 配置智能感知提示
+
+SuperSocket 提供了在线的 XSD (XML Schema Document) 来帮助你方便的进行配置。 你只需在你的SuperSocket 配置节中增加三行代码即可:
+
+      <superSocket xmlns="http://schema.supersocket.net/supersocket"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.supersocket.net/supersocket http://schema.supersocket.net/v1-5/supersocket.xsd">
+	  	<!---->
+      </superSocket>
+
+然后你就可以在你更新 SuperSocket 配置的时候获得智能感知的自动提示功能:
+
+![SuperSocket Configuration Intellisense](images/configinteli.jpg)
 
 ## SuperSocket Windows 服务的配置
 你可能知道, SuperSocket提供了一个可以Windows服务形式运行的容器 "SuperSocket.SocketService.exe".
