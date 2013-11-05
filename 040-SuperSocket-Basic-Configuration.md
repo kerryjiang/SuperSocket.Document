@@ -167,6 +167,19 @@ Use it in server node:
            port="2020">
     </server>
 
+## Configuration Intellisense
+
+SuperSocket provides online XSD (XML Schema Document) file to help your configuration. You just need to add 3 extra lines in your SuperSocket configuration section:
+
+      <superSocket xmlns="http://schema.supersocket.net/supersocket"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.supersocket.net/supersocket http://schema.supersocket.net/v1-6/supersocket.xsd">
+	  	<!---->
+      </superSocket>
+
+Then you will get the intelligent auto completion function when you update the configuration:
+
+![SuperSocket Configuration Intellisense](images/configinteli.jpg)
 
 ## SuperSocket Windows Service Configuration
 As you know, SuperSocket provides a running container "SuperSocket.SocketService.exe" which can run as a windows service.
