@@ -1,4 +1,4 @@
-# 内置的常用协议实现工具
+# 内置的常用协议实现模版
 
 > 关键字: TerminatorReceiveFilter, CountSpliterReceiveFilter, FixedSizeReceiveFilter, BeginEndMarkReceiveFilter, FixedHeaderReceiveFilter
 
@@ -72,6 +72,69 @@
     CountSpliterReceiveFilterFactory<TReceiveFilter>
     CountSpliterReceiveFilterFactory<TReceiveFilter, TRequestInfo>
 
+## FixedSizeReceiveFilter - 固定请求大小的协议
+
+在这种协议之中, 所有请求的大小都是相同的。如果你的每个请求都是有9个字符组成的字符串，如"KILL BILL", 你应该做的事就是想如下代码这样实现一个接收过滤器(ReceiveFilter):
+
+    class MyReceiveFilter : FixedSizeReceiveFilter<StringRequestInfo>
+	{
+	    public MyReceiveFilter()
+	        : base(9) //传入固定的请求大小
+	    {
+	
+	    }
+	
+	    protected override StringRequestInfo ProcessMatchedRequest(byte[] buffer, int offset, int length, bool toBeCopied)
+	    {
+	        //TODO: 通过解析到的数据来构造请求实例，并返回
+	    }
+	}
+
+
+然后在你的 AppServer 类中使用这个接受过滤器 (ReceiveFilter):
+
+    public class MyAppServer : AppServer
+    {
+        public MyAppServer()
+            : base(new DefaultReceiveFilterFactory<MyReceiveFilter, StringRequestInfo>()) //使用默认的接受过滤器工厂 (DefaultReceiveFilterFactory)
+        {
+            
+        }
+    }
+
+
+## BeginEndMarkReceiveFilter - 带起止符的协议
+
+在这类协议的每个请求之中 都有固定的开始和结束标记。例如, 我有个协议，它的所有消息都遵循这种格式 "!xxxxxxxxxxxxxx$"。因此，在这种情况下， "!" 是开始标记， "$" 是结束标记，于是你的接受过滤器可以定义成这样:
+
+    class MyReceiveFilter : BeginEndMarkReceiveFilter<StringRequestInfo>
+    {
+        //开始和结束标记也可以是两个或两个以上的字节
+        private readonly static byte[] BeginMark = new byte[] { (byte)'!' };
+        private readonly static byte[] EndMark = new byte[] { (byte)'$' };
+
+        public MyReceiveFilter()
+            : base(BeginMark, EndMark) //传入开始标记和结束标记
+        {
+
+        }
+
+        protected override StringRequestInfo ProcessMatchedRequest(byte[] readBuffer, int offset, int length)
+        {
+            //TODO: 通过解析到的数据来构造请求实例，并返回
+        }
+    }
+
+然后在你的 AppServer 类中使用这个接受过滤器 (ReceiveFilter):
+
+    public class MyAppServer : AppServer
+    {
+        public MyAppServer()
+            : base(new DefaultReceiveFilterFactory<MyReceiveFilter, StringRequestInfo>()) //使用默认的接受过滤器工厂 (DefaultReceiveFilterFactory)
+        {
+            
+        }
+    }
 
 ## FixedHeaderReceiveFilter - 头部格式固定并且包含内容长度的协议
 
