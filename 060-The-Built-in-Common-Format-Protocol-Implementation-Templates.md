@@ -1,4 +1,4 @@
-# The Built-in Common Format Protocol Implementation Tools
+# The Built-in Common Format Protocol Implementation Templates
 
 > __Keywords__: Protocol Tools, Custom Protocol, TerminatorReceiveFilter, CountSpliterReceiveFilter, FixedSizeReceiveFilter, BeginEndMarkReceiveFilter, FixedHeaderReceiveFilter
 
@@ -71,6 +71,70 @@ You also can customize your protocol deeper using the classes below:
     CountSpliterReceiveFilterFactory<TReceiveFilter>
     CountSpliterReceiveFilterFactory<TReceiveFilter, TRequestInfo>
 
+
+## FixedSizeReceiveFilter - Fixed Size Request Protocol
+
+In this kind protocol, the size of all requests are same. If your each request is 9 characters string like "KILL BILL", what you should do is implementing a ReceiveFilter like the code below:
+
+    class MyReceiveFilter : FixedSizeReceiveFilter<StringRequestInfo>
+	{
+	    public MyReceiveFilter()
+	        : base(9) //pass in the fixed request size
+	    {
+	
+	    }
+	
+	    protected override StringRequestInfo ProcessMatchedRequest(byte[] buffer, int offset, int length, bool toBeCopied)
+	    {
+	        //TODO: construct the request info instance from the parsed data and then return
+	    }
+	}
+
+
+Then use the receive filter in your AppServer class:
+
+    public class MyAppServer : AppServer
+    {
+        public MyAppServer()
+            : base(new DefaultReceiveFilterFactory<MyReceiveFilter, StringRequestInfo>()) //using default receive filter factory
+        {
+            
+        }
+    }
+
+
+## BeginEndMarkReceiveFilter - The Protocol with Begin and End Mark
+
+Every message in this protocol have fixed begin mark and end mark. For example, I have a protocol all messages are in the format "!xxxxxxxxxxxxxx$". In this case "!" is begin mark and the "$" is end mark, so my receive filter looks like:
+
+    class MyReceiveFilter : BeginEndMarkReceiveFilter<StringRequestInfo>
+    {
+        //Both begin mark and end mark can be two or more bytes
+        private readonly static byte[] BeginMark = new byte[] { (byte)'!' };
+        private readonly static byte[] EndMark = new byte[] { (byte)'$' };
+
+        public MyReceiveFilter()
+            : base(BeginMark, EndMark) //pass in the begin mark and end mark
+        {
+
+        }
+
+        protected override StringRequestInfo ProcessMatchedRequest(byte[] readBuffer, int offset, int length)
+        {
+            //TODO: construct the request info instance from the parsed data and then return
+        }
+    }
+
+Then use the receive filter in your AppServer class:
+
+    public class MyAppServer : AppServer
+    {
+        public MyAppServer()
+            : base(new DefaultReceiveFilterFactory<MyReceiveFilter, StringRequestInfo>()) //using default receive filter factory
+        {
+            
+        }
+    }
 
 ## FixedHeaderReceiveFilter - Fixed Header with Body Length Protocol
 
