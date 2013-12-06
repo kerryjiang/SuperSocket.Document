@@ -57,7 +57,7 @@ SuperSocket 服务器将会收到一个 StringRequestInfo 实例，这个实例�
 
     "LOGIN:kerry,12345" + NewLine
 
-请求的 key 和 body 通过自负 ':' 分隔, 而且多个参数被字符 ',' 分隔。 支持这种类型的请求非常简单, 你只需要用下面的代码扩展命令行协议:
+请求的 key 和 body 通过字符 ':' 分隔, 而且多个参数被字符 ',' 分隔。 支持这种类型的请求非常简单, 你只需要用下面的代码扩展命令行协议:
 
     public class YourServer : AppServer<YourSession>
     {
