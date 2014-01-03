@@ -13,7 +13,7 @@ The new attribute "textEncoding" has been added into the server configuration no
 	<superSocket>
 		<servers>
 		  <server name="TelnetServer"
-			  textEncoding="UTF8"
+			  textEncoding="UTF-8"
 			  serverType="YourAppServer, YourAssembly"
 			  ip="Any" port="2020">
 		  </server>
