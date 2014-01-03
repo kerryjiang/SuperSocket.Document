@@ -85,7 +85,7 @@ If you want to customize the request format much deeper, you can implement a Req
 The default encoding of the command line protocol is Ascii, but you can change it in the configuration by setting the __"textEncoding"__ attribute of the server node:
 
     <server name="TelnetServer"
-          textEncoding="UTF8"
+          textEncoding="UTF-8"
           serverType="YourAppServer, YourAssembly"
           ip="Any" port="2020">
     </server>
