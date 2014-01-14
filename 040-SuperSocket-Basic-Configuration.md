@@ -77,7 +77,7 @@ All server node's attributes:
 * logBasicSessionActivity: whether log the session's basic activities like connected and closed
 * clearIdleSession: true or false, whether clear idle sessions. Default value is false.
 * clearIdleSessionInterval: the clearing timeout idle session interval. Default value is 120, in seconds.
-* idleSessionTimeOut: The session timeout period. Default value is 300, in seconds.
+* idleSessionTimeOut: The session timeout period; If the session's idle time exceeds the value, it will be closed in case of clearIdleSession is configured to be true; Default value is 300, in seconds;
 * security: Empty, Tls, Ssl3. The security option of the socket server. Default value is empty.
 * maxRequestLength: The maximum allowed request length. Default value is 1024.
 * disableSessionSnapshot: Indicate whether disable session snapshot. Default value is false.
