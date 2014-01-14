@@ -64,6 +64,16 @@ __下面这张图展示了隔离模型如何工作__:
 
 ![SuperSocket Isolation Model](images/isolationmodel.jpg)
 
+### 进程级别隔离
+
+如果你想启用进程级别隔离，除了上面的配置, 你还需要包含可执行文件 "SuperSocket.Agent.exe" 到你的项目输出里面去, 这个可执行文件是由SuperSocket提供的。
+
+当你启动你的 SuperSocket 之后, 你将会发现 SuperSocket 启动了多个进程:
+
+    SuperSocket.SocketService.exe
+    SuperSocket.Agent.exe
+	SuperSocket.Agent.exe
+
 ## 多服务器实例之间的交互
 前面一部分提到了, 如果 isolation 设成 'None', 多服务器实例之间的交互是非常简单的事情.
 
