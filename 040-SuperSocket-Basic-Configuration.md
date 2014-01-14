@@ -77,7 +77,7 @@ Server 节点的所有属性如下:
 * logBasicSessionActivity: 是否记录session的基本基本活动，如连接和断开;
 * clearIdleSession: true 或 false, 是否定时清空空闲会话，默认值是 false;
 * clearIdleSessionInterval: 清空空闲会话的时间间隔, 默认值是120, 单位为秒;
-* idleSessionTimeOut: 会话超时时间，默认值为300，单位为秒;
+* idleSessionTimeOut: 会话空闲超时时间; 当此会话空闲时间超过此值，同时clearIdleSession被配置成true时，此会话将会被关闭; 默认值为300，单位为秒;
 * security: Empty, Tls, Ssl3. Socket服务器所采用的传输层加密协议，默认值为空;
 * maxRequestLength: 最大允许的请求长度，默认值为1024;
 * disableSessionSnapshot: 是否禁用会话快照, 默认值为 false.
