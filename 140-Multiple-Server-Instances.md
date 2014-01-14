@@ -64,6 +64,16 @@ __The picture below demonstrate how isolation model works__:
 
 ![SuperSocket Isolation Model](images/isolationmodel.jpg)
 
+
+### Process level isolation
+If you want to use Process level isolation, beyond the configuration, you need to include an executable assembly "SuperSocket.Agent.exe" into your project output, which is provided by SuperSocket.
+
+After you start your SuperSocket, you will find more processes of SuperSocket:
+
+    SuperSocket.SocketService.exe
+    SuperSocket.Agent.exe
+	SuperSocket.Agent.exe
+
 ## Interactions among the multiple server instances
 As described in the previous section, if the isolation is 'None', the interactions among the multiple server instances is very easy.
 
