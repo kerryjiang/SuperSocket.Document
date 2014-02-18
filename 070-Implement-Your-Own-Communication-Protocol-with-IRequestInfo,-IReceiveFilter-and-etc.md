@@ -105,12 +105,12 @@ SuperSocket 还提供了另外一个请求类 "BinaryRequestInfo" 用于二进�
 
   这儿有很多种情况需要你处理:
 
-  * 当你冲接收缓冲区中找到一条完整的请求时，你必须返回一个你的请求类型的实例.
-  * 当你没有找到一个完整的请求时, 你需要返回 NULL.
-  * 当你冲接收缓冲区中找到一条完整的请求, 但接收到的数据并不仅仅包含一个请求时，设置剩余数据的长度到输出变量 "rest". SuperSocket 将会检查这个输出参数 "rest", 如果它大于 0, 此 Filter 方法 将会被再次执行, 参数 "offset" 和 "length" 会被调整为合适的值.
+  * 当你在接收缓冲区中找到一条完整的请求时，你必须返回一个你的请求类型的实例.
+  * 当你在接收缓冲区中没有找到一个完整的请求时, 你需要返回 NULL.
+  * 当你在接收缓冲区中找到一条完整的请求, 但接收到的数据并不仅仅包含一个请求时，设置剩余数据的长度到输出变量 "rest". SuperSocket 将会检查这个输出参数 "rest", 如果它大于 0, 此 Filter 方法 将会被再次执行, 参数 "offset" 和 "length" 会被调整为合适的值.
 
 ## 接收过滤器工厂(ReceiveFilterFactory)
-接收过滤器工厂(ReceiveFilterFactory)用于为每个回话生成接收过滤器.
+接收过滤器工厂(ReceiveFilterFactory)用于为每个会话创建接收过滤器.
 定义一个过滤器工厂(ReceiveFilterFactory)类型, 你必须实现接口 IReceiveFilterFactory<TRequestInfo>. 类型参数 "TRequestInfo" 是你要在整个程序中使用的请求类型
 
     /// <summary>
