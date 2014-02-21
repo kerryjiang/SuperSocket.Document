@@ -17,6 +17,6 @@
 
 **Mono Service:**
 
-    mono-service -l:supersocket.lock -m:supersocket.log [-d:<workdir>]SuperSocket.SocketService.exe
+    mono-service -l:supersocket.lock -m:supersocket.log [-d:<workdir>] SuperSocket.SocketService.exe
 
 如果当前目录不是你的可执行程序SuperSocket.SocketService.exe所在的目录，命令中参数 -d:&lt;workdir> 是必须的。
