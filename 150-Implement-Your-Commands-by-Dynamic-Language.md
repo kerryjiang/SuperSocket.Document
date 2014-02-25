@@ -119,3 +119,15 @@
 ## 动态命令的更新
 
 SuperSocket每5分钟检查一次Command文件夹的更新. 如果你有任何包括新增，更新，删除的命令文件的操作, SuperSocket 将会在 5 分钟之内应用这些改动.
+
+## 为动态命令增加命令过滤器
+
+由于我们无法像 C# 中一样方便的将 CLR 属性添加到 Python 文件或者函数中，因此我们需要定义一个函数 "getFilters()" 用于将命令过滤器方会给 CLR 运行时.
+
+ADD.py
+
+	def getFilters():
+		return [LogTimeCommandFilter(), LoggedInValidationFilter()]
+	
+	def execute(session, request):
+		session.Send(str(int(request[0]) + int(request[1])))
