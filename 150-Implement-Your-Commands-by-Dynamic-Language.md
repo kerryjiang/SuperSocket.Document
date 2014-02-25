@@ -118,3 +118,17 @@ You can find we put the file ADD.py in root of the Command folder, therefore Sup
 ## Updating of the dynamic commands
 
 The SuperSocket checks the updates of the command folder in the interval of 5 minutes. So if you have any command updates including adding, updating or removing, SuperSocket will adopt your changes within 5 minutes.
+
+
+## Add command filter for dynamic commands
+
+Because we cannot add CLR attribute for Python file or function easily like C#, so you need yo add the extra method "getFilters()" to return command filters to CLR runtime.
+
+ADD.py
+
+	def getFilters():
+		return [LogTimeCommandFilter(), LoggedInValidationFilter()]
+	
+	def execute(session, request):
+		session.Send(str(int(request[0]) + int(request[1])))
+	
