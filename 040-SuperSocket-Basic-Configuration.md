@@ -76,7 +76,7 @@ Server 节点的所有属性如下:
 * sendBufferSize: 发送缓冲区大小;
 * syncSend: 是否启用同步发送模式, 默认值: false;
 * logCommand: 是否记录命令执行的记录;
-* logBasicSessionActivity: 是否记录session的基本基本活动，如连接和断开;
+* logBasicSessionActivity: 是否记录session的基本活动，如连接和断开;
 * clearIdleSession: true 或 false, 是否定时清空空闲会话，默认值是 false;
 * clearIdleSessionInterval: 清空空闲会话的时间间隔, 默认值是120, 单位为秒;
 * idleSessionTimeOut: 会话空闲超时时间; 当此会话空闲时间超过此值，同时clearIdleSession被配置成true时，此会话将会被关闭; 默认值为300，单位为秒;
