@@ -66,9 +66,9 @@ All server node's attributes:
 * listenBacklog: the listen back log size
 * mode: the socket server's running mode, Tcp (default) or Udp
 * disabled: whether the server instance is disabled
-* startupOrder: the server instance start order, the bootstrap will start all server instances order by this   value
+* startupOrder: the server instance start order, the bootstrap will start all server instances order by this value
 * sendTimeOut: sending data timeout
-* sendingQueueSize: the sending queue's maximum size
+* sendingQueueSize: the sending queue's maximum size, default value is 5;
 * maxConnectionNumber: maximum connection number the server instance allow to connect at the same time
 * receiveBufferSize: receiving buffer size
 * sendBufferSize: sending buffer size
