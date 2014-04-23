@@ -68,7 +68,7 @@ Server 节点的所有属性如下:
 * disabled: 服务器实例是否禁用了;
 * startupOrder: 服务器实例启动顺序, bootstrap 将按照此值的顺序来启动多个服务器实例;
 * sendTimeOut: 发送数据超时时间;
-* sendingQueueSize: 发送队列最大长度;
+* sendingQueueSize: 发送队列最大长度, 默认值为5;
 * maxConnectionNumber: 可允许连接的最大连接数;
 * receiveBufferSize: 接收缓冲区大小;
 * sendBufferSize: 发送缓冲区大小;
