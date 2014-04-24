@@ -52,7 +52,7 @@ SuperSocket 服务器将会收到一个 StringRequestInfo 实例，这个实例�
 
 ## 自定义你的命令行协议
 
-有些用户可能会有不同的请求格式t, 比如:
+有些用户可能会有不同的请求格式, 比如:
 
     "LOGIN:kerry,12345" + NewLine
 
@@ -67,7 +67,7 @@ SuperSocket 服务器将会收到一个 StringRequestInfo 实例，这个实例�
         }
     }
 
-如果你想更深度的定义请求的格式, 你可以基于接口 IRequestInfoParser<StringRequestInfo> 来实现一个 RequestInfoParser 类, and 然后当实例化 CommandLineReceiveFilterFactory 时传入拟定一个 RequestInfoParser 实例:
+如果你想更深度的定义请求的格式, 你可以基于接口 IRequestInfoParser<StringRequestInfo> 来实现一个 RequestInfoParser 类, 然后当实例化 CommandLineReceiveFilterFactory 时传入拟定一个 RequestInfoParser 实例:
 
     public class YourServer : AppServer<YourSession>
     {
