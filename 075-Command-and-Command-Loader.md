@@ -68,12 +68,12 @@ SuperSocket 中的命令设计出来是为了处理来自客户端的请求的, 
 举例来说, 你的 AppServer 定义在程序集 GameServer.dll 中, 但是你的 ADD 命令是定义在程序集 BasicModules.dll 中:
 
     GameServer.dll
-    MyGameServer.cs
+    	+ MyGameServer.cs
 
 >
 
     BasicModules.dll
-    ADD.cs
+    	+ ADD.cs
 
 默认的, 命令 "ADD" 将不会被加载到游戏服务器实例。 如果你想要加载该命令, 你如要在配置中添加程序集 BasicModules.dll 到命令程序集列表之中:
 
