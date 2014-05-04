@@ -68,12 +68,12 @@ Yes, it uses reflection to find public classes who implement the basic command i
 For example, your AppServer is defined in the assembly GameServer.dll, but your command ADD is defined in the assembly BasicModules.dll:
 
     GameServer.dll
-    MyGameServer.cs
+    	+ MyGameServer.cs
 
 >
 
     BasicModules.dll
-    ADD.cs
+    	+ ADD.cs
 
 By default, the command "ADD" cannot be loaded into the game server instance. If you want to load the command, you should add the assembly BasicModules.dll into command assemblies in the configuration:
 
