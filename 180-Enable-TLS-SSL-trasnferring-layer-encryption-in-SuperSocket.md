@@ -33,6 +33,15 @@ SuperSocket 有自动的对TLS/SSL的支持，你可以无须增加或者修改�
 
 提示: certificate节点的password属性的值是这个证书文件的私钥
 
+还有一个可选的配置选项 "**keyStorageFlags**" 用于证书加载:
+
+	<certificate filePath="localhost.pfx"
+				 password="supersocket"
+                 keyStorageFlags="UserKeySet"></certificate>
+
+你可以通过阅读下面这篇MSDN文章了解关于这个选项的更多信息:
+[http://msdn.microsoft.com/zh-cn/library/system.security.cryptography.x509certificates.x509keystorageflags(v=vs.110).aspx](http://msdn.microsoft.com/zh-cn/library/system.security.cryptography.x509certificates.x509keystorageflags(v=vs.110).aspx)
+
 ## 通过本地证书仓库的证书来启用 TLS/SSL
 
 你也可以通过本地证书仓库的证书，而不是使用一个物理文件。 你只需要在配置中设置你要使用的证书的storeName和thumbprint：
@@ -43,6 +52,15 @@ SuperSocket 有自动的对TLS/SSL的支持，你可以无须增加或者修改�
             security="tls">
         <certificate storeName="My" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"></certificate>
     </server>
+
+其他可选参数:
+
+* **storeLocation** - CurrentUser, LocalMachine
+	
+		<certificate storeName="My"
+					 thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3">
+					 storeLocation="LocalMachine"
+		</certificate>
 
 ## 你也可以只为服务器实例的其中一个监听启用TLS/SSL，而其它监听仍然使用明文传输。
 
