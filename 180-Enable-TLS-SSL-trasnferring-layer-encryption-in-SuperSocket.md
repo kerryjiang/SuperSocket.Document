@@ -30,7 +30,16 @@ The configuration should look like:
         <certificate filePath="localhost.pfx" password="supersocket"></certificate>
     </server>
 
-Note: the password of the certificate node is the private key of the certificate file
+Note: the password of the certificate node is the private key of the certificate file.
+
+There is one more option named "**keyStorageFlags**" for certificate loading:
+
+	<certificate filePath="localhost.pfx"
+				 password="supersocket"
+                 keyStorageFlags="UserKeySet"></certificate>
+
+You can read the MSDN article below for more information about this option:
+[http://msdn.microsoft.com/zh-cn/library/system.security.cryptography.x509certificates.x509keystorageflags(v=vs.110).aspx](http://msdn.microsoft.com/zh-cn/library/system.security.cryptography.x509certificates.x509keystorageflags(v=vs.110).aspx)
 
 ## Enable TLS/SSL by a certificate in local certificate store
 
@@ -42,6 +51,16 @@ You also can use a certificate in your local certificate store without a physica
             security="tls">
         <certificate storeName="My" thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3"></certificate>
     </server>
+
+Other optional options:
+
+* **storeLocation** - CurrentUser, LocalMachine
+	
+		<certificate storeName="My"
+					 thumbprint="‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3">
+					 storeLocation="LocalMachine"
+		</certificate>
+	
 
 ## You also can only apply TLS/SSL for one listener of the appserver instance
 
