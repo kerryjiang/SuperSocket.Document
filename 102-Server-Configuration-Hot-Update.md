@@ -17,7 +17,7 @@ SuperSocket 支持以下配置选项的热更新:
 
 ## SuperSocket 支持所有自定义配置属性和自定义配置子节点的热更新。
 
-下面的代码将想你演示如何让你的自定义配置支持热更新:
+下面的代码将演示如何让你的自定义配置支持热更新:
 
 	public class PushServer : AppServer
     {
