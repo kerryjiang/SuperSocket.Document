@@ -76,6 +76,7 @@ All server node's attributes:
 * syncSend: sending data in sync mode, default value: false;
 * logCommand: whether log command execution record;
 * logBasicSessionActivity: whether log the session's basic activities like connected and closed;
+* logAllSocketException: whether log all socket exceptions and errors;
 * clearIdleSession: true or false, whether clear idle sessions, default value is false;
 * clearIdleSessionInterval: the clearing timeout idle session interval, default value is 120, in seconds;
 * idleSessionTimeOut: The session timeout period; If the session's idle time exceeds the value, it will be closed in case of clearIdleSession is configured to be true; Default value is 300, in seconds;
