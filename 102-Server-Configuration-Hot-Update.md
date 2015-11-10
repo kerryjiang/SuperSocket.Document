@@ -21,14 +21,14 @@ The code below will show you how hot update can be supported for your customized
 
 	public class PushServer : AppServer
     {
-        private int m_Interval; //1 minute
+        private int m_Interval;
 
         protected override bool Setup(IRootConfig rootConfig, IServerConfig config)
         {
             RegisterConfigHandler(config, "pushInterval", (value) =>
                 {
 					// the code in this scope will be executed automatically
-					// after the configuration attribute "pushInterval" was changed
+					// after the configuration attribute "pushInterval" is changed
 					
                     var interval = 0;
                     int.TryParse(value, out interval);
