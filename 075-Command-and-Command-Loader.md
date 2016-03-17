@@ -32,7 +32,7 @@ Then SuperSocket will looking a command whose name is "ADD". If we have a comman
 
     public class ADD : StringCommandBase
     {
-		public void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
+		public override void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
         {
               session.Send((int.Parse(requestInfo[0] + int.Parse(requestInfo[1])).ToString());
         }
@@ -54,7 +54,7 @@ To make your ADD command work, you need to override the name attribute of the co
             get { return "01"; }
         }
 
-		public void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
+		public override void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
         {
               session.Send((int.Parse(requestInfo[0] + int.Parse(requestInfo[1])).ToString());
         }
