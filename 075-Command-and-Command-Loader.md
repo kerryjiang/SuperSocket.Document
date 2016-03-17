@@ -32,7 +32,7 @@ SuperSocket 中的命令设计出来是为了处理来自客户端的请求的, 
 
     public class ADD : StringCommandBase
     {
-		public void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
+		public override void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
         {
               session.Send((int.Parse(requestInfo[0] + int.Parse(requestInfo[1])).ToString());
         }
@@ -54,7 +54,7 @@ SuperSocket 中的命令设计出来是为了处理来自客户端的请求的, 
             get { return "01"; }
         }
 
-		public void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
+		public override void ExecuteCommand(AppSession session, StringRequestInfo requestInfo)
         {
               session.Send((int.Parse(requestInfo[0] + int.Parse(requestInfo[1])).ToString());
         }
