@@ -1,5 +1,3 @@
-<div data-type="ad" data-publisher="supersocket.net" data-format="300x250" data-zone="docbottom" ></div>
-
 <script type='text/javascript'>
     function _dmBootstrap(file) {
         var _dma = document.createElement('script');
@@ -33,3 +31,5 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+<div data-type="ad" data-publisher="supersocket.net" data-format="300x250" data-zone="docbottom" ></div>
