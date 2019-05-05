@@ -1,3 +1,3 @@
-SuperSocket 1.6 Documentation
+SuperSocket 2.0 Documentation
 ===========================================================
-[http://docs.supersocket.net/v1-6/en-US/](http://docs.supersocket.net/v1-6/en-US/)
+[http://docs.supersocket.net/v2-0/en-US/](http://docs.supersocket.net/v2-0/en-US/)
