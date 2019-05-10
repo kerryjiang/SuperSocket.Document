@@ -5,7 +5,7 @@
 ## 创建一个控制台项目然后引用SuperSocket
 
 	dotnet new console
-	dotnet add package SuperSocket.Server --version 2.0.0-*
+	dotnet add package SuperSocket --version 2.0.0-*
 
 
 ## 添加SuperSocket的namespace的using
@@ -56,19 +56,16 @@
 
 ### 配置服务器如服务器名和监听端口等基本信息
 
-	.ConfigureServices((hostCtx, services) =>
+	.ConfigureSuperSocket(options =>
 	{
-		services.Configure<ServerOptions>(options =>
-		{
-			options.Name = "Echo Server";
-			options.Listeners = new [] {
-				new ListenOptions
-				{
-					Ip = "Any",
-					Port = 4040
-				}
-			};
-		});
+		options.Name = "Echo Server";
+		options.Listeners = new [] {
+			new ListenOptions
+			{
+				Ip = "Any",
+				Port = 4040
+			}
+		};
 	}).Build();
 
 
