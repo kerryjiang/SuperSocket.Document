@@ -5,7 +5,7 @@
 ## Create a Console project and add references of SuperSocket
 
 	dotnet new console
-	dotnet add package SuperSocket.Server --version 2.0.0-*
+	dotnet add package SuperSocket --version 2.0.0-*
 
 
 ## Using the namespaces of SuperSocket
@@ -56,19 +56,16 @@ Enable the console output only.
 
 ### Configure server's information like name and listning endpoint adn build the host
 
-	.ConfigureServices((hostCtx, services) =>
+	.ConfigureSuperSocket(options =>
 	{
-		services.Configure<ServerOptions>(options =>
-		{
-			options.Name = "Echo Server";
-			options.Listeners = new [] {
-				new ListenOptions
-				{
-					Ip = "Any",
-					Port = 4040
-				}
-			};
-		});
+		options.Name = "Echo Server";
+		options.Listeners = new [] {
+			new ListenOptions
+			{
+				Ip = "Any",
+				Port = 4040
+			}
+		};
 	}).Build();
 
 
