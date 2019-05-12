@@ -54,7 +54,7 @@ Send the received text back to the clinet.
 Enable the console output only.
 
 
-### Configure server's information like name and listning endpoint adn build the host
+### Configure server's information like name and listening endpoint adn build the host
 
 	.ConfigureSuperSocket(options =>
 	{
