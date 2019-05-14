@@ -28,7 +28,7 @@
 ### Create the host
 
 	var host = SuperSocketHostBuilder
-		.Create<TextPackageInfo, LinePipelineFilter>()
+		.Create<StringPackageInfo, CommandLinePipelineFilter>()
 
 Create the SuperSocket host with the package type and the pipeline filter type.
 
@@ -38,7 +38,30 @@ Create the SuperSocket host with the package type and the pipeline filter type.
 
 	.ConfigurePackageHandler(async (s, p) =>
 	{
-		await s.SendAsync(Encoding.UTF8.GetBytes(p.Text + "\r\n"));
+			var result = 0;
+
+			switch (p.Key.ToUpper())
+			{
+					case ("ADD"):
+							result = package.Parameters
+                    .Select(p => int.Parse(p))
+                    .Sum();
+							break;
+
+					case ("SUB"):
+							result = package.Parameters
+                    .Select(p => int.Parse(p))
+                    .Aggregate((x, y) => x - y);
+							break;
+
+					case ("MULT"):
+							result = package.Parameters
+										.Select(p => int.Parse(p))
+										.Aggregate((x, y) => x * y);
+							break;
+			}
+
+			await s.SendAsync(Encoding.UTF8.GetBytes(result.ToString() + "\r\n"));
 	})
 
 Send the received text back to the clinet.
