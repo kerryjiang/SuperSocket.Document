@@ -44,20 +44,20 @@
 			{
 					case ("ADD"):
 							result = package.Parameters
-                    .Select(p => int.Parse(p))
-                    .Sum();
+								.Select(p => int.Parse(p))
+								.Sum();
 							break;
 
 					case ("SUB"):
 							result = package.Parameters
-                    .Select(p => int.Parse(p))
-                    .Aggregate((x, y) => x - y);
+								.Select(p => int.Parse(p))
+								.Aggregate((x, y) => x - y);
 							break;
 
 					case ("MULT"):
 							result = package.Parameters
-										.Select(p => int.Parse(p))
-										.Aggregate((x, y) => x * y);
+								.Select(p => int.Parse(p))
+								.Aggregate((x, y) => x * y);
 							break;
 			}
 
