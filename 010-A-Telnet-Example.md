@@ -28,7 +28,7 @@
 ### 创建宿主
 
 	var host = SuperSocketHostBuilder
-		.Create<TextPackageInfo, LinePipelineFilter>()
+		.Create<StringPackageInfo, CommandLinePipelineFilter>()
 
 用Package的类型和PipeLineFilter的类型创建SuperSocket宿主。
 
@@ -38,7 +38,30 @@
 
 	.ConfigurePackageHandler(async (s, p) =>
 	{
-		await s.SendAsync(Encoding.UTF8.GetBytes(p.Text + "\r\n"));
+			var result = 0;
+
+			switch (p.Key.ToUpper())
+			{
+					case ("ADD"):
+							result = package.Parameters
+                    .Select(p => int.Parse(p))
+                    .Sum();
+							break;
+
+					case ("SUB"):
+							result = package.Parameters
+                    .Select(p => int.Parse(p))
+                    .Aggregate((x, y) => x - y);
+							break;
+
+					case ("MULT"):
+							result = package.Parameters
+										.Select(p => int.Parse(p))
+										.Aggregate((x, y) => x * y);
+							break;
+			}
+
+			await s.SendAsync(Encoding.UTF8.GetBytes(result.ToString() + "\r\n"));
 	})
 
 将收到的文字发送给客户端。
