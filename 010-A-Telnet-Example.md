@@ -2,7 +2,11 @@
 
 > 关键字: Telnet, 控制台示例, 创建项目，启动服务，停止服务，处理连接，处理请求
 
-## 创建一个控制台项目然后引用SuperSocket
+## 准备工作
+
+确保你已经安装了最新的 .NET Core SDK 3.0 (预览版)。
+
+## 创建一个控制台项目然后引用SuperSocket (目标框架为netcoreapp3.0)
 
 	dotnet new console
 	dotnet add package SuperSocket --version 2.0.0-*
