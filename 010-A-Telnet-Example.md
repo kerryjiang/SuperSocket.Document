@@ -2,7 +2,12 @@
 
 > __Keywords__: Telnet, Console Project, References
 
-## Create a Console project and add references of SuperSocket
+## Prerequisites
+
+Make sure you have installed the latest .NET Core 3.0 SDK (preview version)
+
+
+## Create a Console project and add references of SuperSocket (targets to netcoreapp3.0)
 
 	dotnet new console
 	dotnet add package SuperSocket --version 2.0.0-*
