@@ -12,8 +12,11 @@
 	dotnet add package SuperSocket.Server --version 2.0.0-*
 
 
-## 添加SuperSocket的namespace的using
+## 添加SuperSocket和其它你可能需要使用的namespace的using 
 
+	using System.Threading.Tasks;
+	using Microsoft.Extensions.Hosting;
+	using Microsoft.Extensions.Logging;
 	using SuperSocket;
 	using SuperSocket.ProtoBase;
 
