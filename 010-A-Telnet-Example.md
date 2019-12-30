@@ -13,8 +13,11 @@ Make sure you have installed the latest .NET Core SDK (3.0 or above version)
 	dotnet add package SuperSocket.Server --version 2.0.0-*
 
 
-## Using the namespaces of SuperSocket
+## Using the namespaces of SuperSocket and other namespaces you might need
 
+	using System.Threading.Tasks;
+	using Microsoft.Extensions.Hosting;
+	using Microsoft.Extensions.Logging;
 	using SuperSocket;
 	using SuperSocket.ProtoBase;
 
