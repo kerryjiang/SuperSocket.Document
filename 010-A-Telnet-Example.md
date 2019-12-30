@@ -4,19 +4,18 @@
 
 ## 准备工作
 
-确保你已经安装了最新的 .NET Core SDK 3.0 (预览版)。
+确保你已经安装了最新的 .NET Core SDK (3.0 或更高版本)。
 
 ## 创建一个控制台项目然后引用SuperSocket (目标框架为netcoreapp3.0)
 
 	dotnet new console
-	dotnet add package SuperSocket --version 2.0.0-*
+	dotnet add package SuperSocket.Server --version 2.0.0-*
 
 
 ## 添加SuperSocket的namespace的using
 
 	using SuperSocket;
 	using SuperSocket.ProtoBase;
-	using SuperSocket.Server;
 
 
 ## 在Main方法中书写SuperSocket宿主启动的方法
@@ -78,7 +77,7 @@
 		loggingBuilder.AddConsole();
 	})
 
-仅仅启用Console日志输出。
+仅仅启用Console日志输出, 你也可以在此处注册你自己需要的第三方日志类库。
 
 
 ### 配置服务器如服务器名和监听端口等基本信息
