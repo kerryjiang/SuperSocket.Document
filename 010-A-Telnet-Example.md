@@ -4,20 +4,19 @@
 
 ## Prerequisites
 
-Make sure you have installed the latest .NET Core 3.0 SDK (preview version)
+Make sure you have installed the latest .NET Core SDK (3.0 or above version)
 
 
 ## Create a Console project and add references of SuperSocket (targets to netcoreapp3.0)
 
 	dotnet new console
-	dotnet add package SuperSocket --version 2.0.0-*
+	dotnet add package SuperSocket.Server --version 2.0.0-*
 
 
 ## Using the namespaces of SuperSocket
 
 	using SuperSocket;
 	using SuperSocket.ProtoBase;
-	using SuperSocket.Server;
 
 
 ## Write the code about SuperSocket host startup in the Main method
@@ -32,8 +31,7 @@ Make sure you have installed the latest .NET Core 3.0 SDK (preview version)
 
 ### Create the host
 
-	var host = SuperSocketHostBuilder
-		.Create<StringPackageInfo, CommandLinePipelineFilter>()
+	var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>()
 
 Create the SuperSocket host with the package type and the pipeline filter type.
 
@@ -79,7 +77,7 @@ Send the received text back to the clinet.
 		loggingBuilder.AddConsole();
 	})
 
-Enable the console output only.
+Enable the console output only. You also can register your own thirdparty logging library over here.
 
 
 ### Configure server's information like name and listening endpoint adn build the host
