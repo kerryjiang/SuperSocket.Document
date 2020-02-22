@@ -7,43 +7,52 @@ Command in SuperSocket is designed to handle the requests coming from the client
 
 Command class must implement the basic command interface below, choose Sync Command or Async Commnad as your need:
 
-    public interface ICommand<TKey>
-    {
-        TKey Key { get; }
-
-        string Name { get; }
-    }
-
+ 
     // Sync Command
-    public interface ICommand<TKey, TPackageInfo> : ICommand<TKey>
-        where TPackageInfo : IKeyedPackageInfo<TKey>
+    public interface ICommand<TAppSession, TPackageInfo>
+        where TAppSession : IAppSession
     {
-        void Execute(IAppSession session, TPackageInfo package);
+        void Execute(TAppSession session, TPackageInfo package);
     }
 
     // Async Command
-    public interface IAsyncCommand<TKey, TPackageInfo> : ICommand<TKey>
-        where TPackageInfo : IKeyedPackageInfo<TKey>
+    public interface IAsyncCommand<TAppSession, TPackageInfo> : ICommand
+        where TAppSession : IAppSession
     {
-        Task ExecuteAsync(IAppSession session, TPackageInfo package);
+        ValueTask ExecuteAsync(TAppSession session, TPackageInfo package);
     }
 
 
-The request processing code should be placed in the method "Execute" or "ExecuteAsync" and the property "Key" is used for matching the received packageInfo. When a packageInfo instance is received, SuperSocket will look for the command which has the responsibility to handle it by matching the packageInfo's Key and the command's Key.
+The request package processing code should be placed in the method "Execute" or "ExecuteAsync".
+Every command has its own metadata which includes Name and Key.
+
+Name: human friendly name of the command;
+Key: the object we use to match package's key;
+
+We can define command's metadata (Name='ShowVoltage', Key=0x03) by attribute on the command class:
+
+    [Command(Key = 0x03)]
+    public class ShowVoltage : IAsyncCommand<StringPackageInfo>
+    {
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
+        {
+            ...
+        }
+    }
+
+By default, command's Name and Key would be same as its class name if there is no command metadata attribute defined for the command class.
+
+The metadata value "Key" is used for matching the received packageInfo. When a packageInfo instance is received, SuperSocket will look for the command which has the responsibility to handle it by matching the packageInfo's Key and the command's Key.
 
 For instance, if we receive a packageInfo like below:
 
     Key: "ADD"
     Body: "1 2"
 
-Then SuperSocket will looking a command whose key is "ADD". If we have a command defined below:
+Then SuperSocket will looking for a command whose key is "ADD". If we have a command defined below:
 
     public class ADD : IAsyncCommand<string, StringPackageInfo>
     {
-        public string Key => "ADD";
-
-        public string Name => Key;
-
         public async Task ExecuteAsync(IAppSession session, StringPackageInfo package)
         {
             var result = package.Parameters
