@@ -1,6 +1,6 @@
 # 命令和命令加载器
 
-> __关键字__: 命令, 命令加载器, 多命令程序集
+> __关键字__: 命令, 命令过滤器
 
 ## 命令 (Command)
 SuperSocket 中的命令设计出来是为了处理来自客户端的请求的, 它在业务逻辑处理之中起到了很重要的作用。
@@ -77,4 +77,68 @@ Key: 用于匹配接收到的包的Key的对象;
 
         // 注册程序集重的所有命令
         //commandOptions.AddCommandAssembly(typeof(SUB).GetTypeInfo().Assembly);
+    }
+
+## 命令过滤器
+
+SuperSocket中的命令过滤器的作用类似于ASP.NET MVC中的Action Filter。
+你可以用它来拦截命令的执行。命令过滤器被在命令运行的前后被调用。
+
+同步命令过滤器:
+
+    public class HelloCommandFilterAttribute : CommandFilterAttribute
+    {
+        public override void OnCommandExecuted(CommandExecutingContext commandContext)
+        {
+            Console.WriteLine("Hello");
+        }
+
+        public override bool OnCommandExecuting(CommandExecutingContext commandContext)
+        {
+            Console.WriteLine("Bye bye");
+            return true;
+        }
+    }
+
+
+异步命令过滤器:
+
+    public class AsyncHelloCommandFilterAttribute  : AsyncCommandFilterAttribute
+    {
+        public override async ValueTask OnCommandExecutedAsync(CommandExecutingContext commandContext)
+        {
+            Console.WriteLine("Hello");
+            await Task.Delay(0);
+        }
+
+        public override async ValueTask<bool> OnCommandExecutingAsync(CommandExecutingContext commandContext)
+        {
+            Console.WriteLine("Bye bye");
+            await Task.Delay(0);
+            return true;
+        }
+    }
+
+在命令上应用命令过滤器:
+
+    [AsyncHelloCommandFilter]
+    [HelloCommandFilter]
+    class COUNTDOWN : IAsyncCommand<StringPackageInfo>
+    {
+        //...
+    }
+
+## 全局命令过滤器
+
+全局命令过滤器就是被应用在所有命令之上的命令过滤器。
+
+注册全局命令过滤器:
+
+    hostBuilder.UseCommand((commandOptions) =>
+    {
+        commandOptions.AddCommand<COUNT>();
+        commandOptions.AddCommand<COUNTDOWN>();
+
+        // register global command filter
+        commandOptions.AddGlobalCommandFilter<HitCountCommandFilterAttribute>();
     }
