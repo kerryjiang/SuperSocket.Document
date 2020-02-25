@@ -1,6 +1,6 @@
 # Command and Command Loader
 
-> __Keywords__: Command, Command Loader, Multiple Command Assemblies
+> __Keywords__: Command, Command Filter
 
 ## Command
 Command in SuperSocket is designed to handle the requests coming from the clients, it play an important role in the business logic processing.
@@ -76,4 +76,68 @@ This command will be found after you register it.
 
         // register all commands in one aassembly
         //commandOptions.AddCommandAssembly(typeof(SUB).GetTypeInfo().Assembly);
+    }
+
+
+## Command Filter
+
+The Command Filter in SuperSocket works like Action Filter in ASP.NET MVC, you can use it to intercept execution of Command。 The Command Filter will be invoked before or after the command executes.
+
+Synchronous CommandFilter:
+
+    public class HelloCommandFilterAttribute : CommandFilterAttribute
+    {
+        public override void OnCommandExecuted(CommandExecutingContext commandContext)
+        {
+            Console.WriteLine("Hello");
+        }
+
+        public override bool OnCommandExecuting(CommandExecutingContext commandContext)
+        {
+            Console.WriteLine("Bye bye");
+            return true;
+        }
+    }
+
+
+Asynchronous CommandFilter:
+
+    public class AsyncHelloCommandFilterAttribute  : AsyncCommandFilterAttribute
+    {
+        public override async ValueTask OnCommandExecutedAsync(CommandExecutingContext commandContext)
+        {
+            Console.WriteLine("Hello");
+            await Task.Delay(0);
+        }
+
+        public override async ValueTask<bool> OnCommandExecutingAsync(CommandExecutingContext commandContext)
+        {
+            Console.WriteLine("Bye bye");
+            await Task.Delay(0);
+            return true;
+        }
+    }
+
+Apply CommandFilter to Command:
+
+    [AsyncHelloCommandFilter]
+    [HelloCommandFilter]
+    class COUNTDOWN : IAsyncCommand<StringPackageInfo>
+    {
+        //...
+    }
+
+## Global Command Filter
+
+Global command filter is just one command filter which is applied to all the commands.
+
+Register global command filter:
+
+    hostBuilder.UseCommand((commandOptions) =>
+    {
+        commandOptions.AddCommand<COUNT>();
+        commandOptions.AddCommand<COUNTDOWN>();
+
+        // register global command filter
+        commandOptions.AddGlobalCommandFilter<HitCountCommandFilterAttribute>();
     }
