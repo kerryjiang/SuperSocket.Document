@@ -1,4 +1,4 @@
-# Command and Command Loader
+# Command and Command Filter
 
 > __Keywords__: Command, Command Filter
 
