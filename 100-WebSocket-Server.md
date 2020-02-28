@@ -69,3 +69,15 @@
 
 
 类型参数 StringPackageConverter 是能够将 WebSocketPackage 转化成你自己的应用程序包的转化器的类型。
+
+    class StringPackageConverter : IPackageMapper<WebSocketPackage, StringPackageInfo>
+    {
+        public StringPackageInfo Map(WebSocketPackage package)
+        {
+            var pack = new StringPackageInfo();
+            var arr = package.Message.Split(' ', 3, StringSplitOptions.RemoveEmptyEntries);
+            pack.Key = arr[0];
+            pack.Parameters = arr.Skip(1).ToArray();
+            return pack;
+        }
+    }
