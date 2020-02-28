@@ -69,3 +69,15 @@ Register the command
 
 
 The type parameter StringPackageConverter is the type which can convert WebSocketPackage to your application package.
+
+    class StringPackageConverter : IPackageMapper<WebSocketPackage, StringPackageInfo>
+    {
+        public StringPackageInfo Map(WebSocketPackage package)
+        {
+            var pack = new StringPackageInfo();
+            var arr = package.Message.Split(' ', 3, StringSplitOptions.RemoveEmptyEntries);
+            pack.Key = arr[0];
+            pack.Parameters = arr.Skip(1).ToArray();
+            return pack;
+        }
+    }
