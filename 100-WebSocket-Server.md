@@ -1,4 +1,4 @@
-# WebSocketServer
+# WebSocket Server
 
 > __Keywords__: WebSocket
 
