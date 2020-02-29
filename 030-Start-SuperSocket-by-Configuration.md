@@ -50,16 +50,16 @@ It is a sample:
 
 配置项目:
 
-name: 服务器的名称;
-maxPackageLength: 此服务器允许的最大的包的大小; 默认4M;
-receiveBufferSize: 接收缓冲区的大小; 默认4k;
-sendBufferSize: 发送缓冲区的大小; 默认4k;
-receiveTimeout: 接收超时时间; 微秒为单位;
-sendTimeout: 发送超时的事件; 微秒为单位;
-listeners: 服务器的监听器;
-name/listeners/*/ip: 监听IP; Any: 所有 ipv4 地址, IPv6Any: 所有 ipv6 地址, 其它具体的IP地址;
-name/listeners/*/port: 监听端口;
-name/listeners/*/backLog: 连接等待队列的最大长度;
-name/listeners/*/noDelay: 定义 Socket 是否启用 Nagle 算法;
-name/listeners/*/security: None/Ssl3/Tls11/Tls12/Tls13; 传输层加密所使用的TLS协议版本号;
-name/listeners/*/certificateOptions: 用于TLS加密/揭秘的证书的配置项目;
+* name: 服务器的名称;
+* maxPackageLength: 此服务器允许的最大的包的大小; 默认4M;
+* receiveBufferSize: 接收缓冲区的大小; 默认4k;
+* sendBufferSize: 发送缓冲区的大小; 默认4k;
+* receiveTimeout: 接收超时时间; 微秒为单位;
+* sendTimeout: 发送超时的事件; 微秒为单位;
+* listeners: 服务器的监听器;
+* listeners/*/ip: 监听IP; Any: 所有 ipv4 地址, IPv6Any: 所有 ipv6 地址, 其它具体的IP地址;
+* listeners/*/port: 监听端口;
+* listeners/*/backLog: 连接等待队列的最大长度;
+* listeners/*/noDelay: 定义 Socket 是否启用 Nagle 算法;
+* listeners/*/security: None/Ssl3/Tls11/Tls12/Tls13; 传输层加密所使用的TLS协议版本号;
+* listeners/*/certificateOptions: 用于TLS加密/揭秘的证书的配置项目;
