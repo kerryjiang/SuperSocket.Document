@@ -50,16 +50,16 @@ It is a sample:
 
 Options:
 
-name: the name of the server;
-maxPackageLength: max allowed package size in the server; 4M by default;
-receiveBufferSize: the size of the receiving buffer; 4k by default;
-sendBufferSize: the size of the sending buffer; 4k by default;
-receiveTimeout: the timeout for receiving; in milliseconds;
-sendTimeout: the timeout for sending; in milliseconds;
-listeners: the listener enpoints of this server;
-name/listeners/*/ip: the listener's listening IP; Any: any ipv4 ip addresses, IPv6Any: any ipv6 ip addresses, other actual IP addresses;
-name/listeners/*/port: the listener's listening port;
-name/listeners/*/backLog: the maximum length of the pending connections queue;
-name/listeners/*/noDelay: specifies whether the stream Socket is using the Nagle algorithm;
-name/listeners/*/security: None/Ssl3/Tls11/Tls12/Tls13; the TLS protocol version the communication uses;
-name/listeners/*/certificateOptions: the options of the certificate which will be used for the TLS encryption/decryption;
+* name: the name of the server;
+* maxPackageLength: max allowed package size in the server; 4M by default;
+* receiveBufferSize: the size of the receiving buffer; 4k by default;
+* sendBufferSize: the size of the sending buffer; 4k by default;
+* receiveTimeout: the timeout for receiving; in milliseconds;
+* sendTimeout: the timeout for sending; in milliseconds;
+* listeners: the listener enpoints of this server;
+* listeners/*/ip: the listener's listening IP; Any: any ipv4 ip addresses, IPv6Any: any ipv6 ip addresses, other actual IP addresses;
+* listeners/*/port: the listener's listening port;
+* listeners/*/backLog: the maximum length of the pending connections queue;
+* listeners/*/noDelay: specifies whether the stream Socket is using the Nagle algorithm;
+* listeners/*/security: None/Ssl3/Tls11/Tls12/Tls13; the TLS protocol version the communication uses;
+* listeners/*/certificateOptions: the options of the certificate which will be used for the TLS encryption/decryption;
