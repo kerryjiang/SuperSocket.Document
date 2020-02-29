@@ -1,6 +1,6 @@
 # 通过配置启动 SuperSocket
 
-> __Keywords__: 通过配置启动, 配置
+> __关键字__: 通过配置启动, 配置
 
 ## SuperSocket的配置文件
 
