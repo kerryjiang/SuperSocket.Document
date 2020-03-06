@@ -26,7 +26,6 @@ SuperSocketService 代表了监听所有客户端连接的服务器实例，宿�
         }
 
 2. 你也可以根据业务需要给你的 AppSession 添加新的属性
-
 让我们创建一个可以用与游戏服务器的一个 AppSession:
 
         public class PlayerSession ：AppSession
@@ -79,8 +78,8 @@ SuperSocketService 代表了监听所有客户端连接的服务器实例，宿�
 
 - 使用默认的 SuperSocketService
 
-    var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>();
+        var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>();
 
 - 使用你自己的 supersocket service type:
 
-    var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
+        var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
