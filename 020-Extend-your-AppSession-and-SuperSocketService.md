@@ -28,6 +28,7 @@ SuperSocketService stands for the service instance which listens all client conn
 2. You also can add new properties for your session according your business requirement
 Let me create a AppSession which would be used in a game server:
 
+
         public class PlayerSession ：AppSession
         {
             public int GameHallId { get; internal set; }
@@ -78,8 +79,8 @@ Register the service type through builder:
 
 - Use default SuperSocketService
 
-    var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>();
+        var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>();
 
 - Use your own supersocket service type:
 
-    var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
+        var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
