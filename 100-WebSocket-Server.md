@@ -16,7 +16,7 @@
 让我创建这个 WebSocket 服务器，这个服务器将把收到的消息再发送回客户端：
 
 
-    var host = WebSocketHostBuilder.Create();
+    var host = WebSocketHostBuilder.Create()
         .ConfigureWebSocketMessageHandler(
             async (session, message) =>
             {
