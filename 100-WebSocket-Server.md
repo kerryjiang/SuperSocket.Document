@@ -16,7 +16,7 @@ Then add the using statement
 Let's create the WebSocket server. This server just echo messages back to the client
 
 
-    var host = WebSocketHostBuilder.Create();
+    var host = WebSocketHostBuilder.Create()
         .ConfigureWebSocketMessageHandler(
             async (session, message) =>
             {
