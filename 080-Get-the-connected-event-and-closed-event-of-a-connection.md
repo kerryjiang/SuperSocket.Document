@@ -12,3 +12,47 @@
         {
             // things to do after the session closes
         });
+
+## 通过扩展应用程序会话类型来处理会话事件
+
+定义你自己的应用程序会话类型，然后在重写（override）方法内处理会话事件:
+
+    public class MyAppSession : AppSession
+    {
+        protected override ValueTask OnSessionConnectedAsync()
+        {
+            // 会话连接建立后的逻辑
+        }
+
+        protected override ValueTask OnSessionClosedAsync(EventArgs e)
+        {
+            // 会话连接断开后的逻辑
+        }
+    }
+
+通过HostBuilder来启用你扩展的应用程序会话类型:
+
+    hostBuiler.UseSession<MyAppSession>();
+
+
+## 通过扩展 SuperSocket 服务来处理会话事件
+
+定义你的 SuperSocket 服务类型然后重写会话事件处理方法:
+
+        public class GameService<TReceivePackageInfo> : SuperSocketService<TReceivePackageInfo>
+            where TReceivePackageInfo : class
+        {
+            protected override ValueTask OnSessionConnectedAsync(IAppSession session)
+            {
+                // 会话连接建立后的逻辑
+            }
+
+            protected override ValueTask OnSessionClosedAsync(IAppSession session)
+            {
+                // 会话连接断开后的逻辑
+            }
+        }
+
+当你在创建 SuperSocket 服务宿主的时候使用你定义的 SuperSocket 服务类型:
+
+        var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
