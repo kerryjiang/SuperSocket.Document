@@ -77,10 +77,5 @@ Register the application session type through builder:
 2. Start to use your own service type
 Register the service type through builder:
 
-    Use default SuperSocketService
 
-        var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>();
-
-    Use your own supersocket service type:
-
-        var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
+        builder.UseHostedService<GameService<TReceivePackageInfo>>();
