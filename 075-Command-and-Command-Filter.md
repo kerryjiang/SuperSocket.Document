@@ -141,3 +141,44 @@ Register global command filter:
         // register global command filter
         commandOptions.AddGlobalCommandFilter<HitCountCommandFilterAttribute>();
     }
+
+
+## Register Commands from the Configuration File
+
+You can add command assemblies under the node "commands/assemblies". At the meanwhile, please make sure the command assembly files are copied into the working directory of the application.
+
+It is the sample of the configuration:
+
+    {
+        "serverOptions": {
+            "name": "GameMsgServer",
+            "listeners": [
+                {
+                    "ip": "Any",
+                    "port": "2020"
+                },
+                {
+                    "ip": "192.168.3.1",
+                    "port": "2020"
+                }
+            ],
+            "commands": {
+                "assemblies": [
+                    {
+                        "name": "CommandAssemblyName"
+                    }
+                ]
+            }
+        }
+    }
+
+Beside that, you may neeed do one more thing. Because .NET Core application only look for assembly in its depedency tree (*.deps.json) by default when it does reflection. Your command assembly may not be able to be founed if you didn't add it as reference in the major project. To work around this problem, you should add a runtime config file "runtimeconfig.json" in the root of your major
+project.
+
+runtimeconfig.json
+
+    {
+        "runtimeOptions": {
+            "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths" : true            
+        }
+    }
