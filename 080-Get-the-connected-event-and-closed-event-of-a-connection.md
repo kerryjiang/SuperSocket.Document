@@ -55,4 +55,4 @@
 
 当你在创建 SuperSocket 服务宿主的时候使用你定义的 SuperSocket 服务类型:
 
-        var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
+        builder.UseHostedService<GameService<StringPackageInfo>>();
