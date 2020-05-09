@@ -76,10 +76,4 @@ SuperSocketService 代表了监听所有客户端连接的服务器实例，宿�
 2. 开始使用你自己的 Serivce 类型
 通过 builder 注册你的 service 类型:
 
-    使用默认的 SuperSocketService
-
-        var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>();
-
-    使用你自己的 supersocket service type:
-
-        var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
+    builder.UseHostedService<GameService<TReceivePackageInfo>>();
