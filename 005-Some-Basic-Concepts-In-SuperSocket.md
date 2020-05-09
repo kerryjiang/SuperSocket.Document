@@ -95,10 +95,10 @@ In some cases, you may need implement IPipelineFilterFactory<TPackageInfo> to ge
         }
     }
 
-Then you will need to use a different method to create the SuperSocket host:
+Then you will need to use the PipelineFilterFactory after your create the SuperSocket host:
 
-
-    hostBuilder.UseSuperSocketWithFilterFactory<TextPackageInfo, MyFilterFactory>();
+    var host = SuperSocketHostBuilder.Create<StringPackageInfo>();
+    host.UsePipelineFilterFactory<MyFilterFactory>();
 
 
 
