@@ -56,4 +56,4 @@ Define your own SuperSocket service type and override the session event handling
 
 Use your own SuperSocket service type when you create the host:
 
-        var host = SuperSocketHostBuilder.Create<StringPackageInfo, GameService<StringPackageInfo>, CommandLinePipelineFilter>();
+        builder.UseHostedService<GameService<StringPackageInfo>>();
