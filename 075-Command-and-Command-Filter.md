@@ -142,3 +142,43 @@ SuperSocket中的命令过滤器的作用类似于ASP.NET MVC中的Action Filter
         // register global command filter
         commandOptions.AddGlobalCommandFilter<HitCountCommandFilterAttribute>();
     }
+
+
+## 通过配置文件注册命令
+
+你可以吧命令程序集添加到配置文件的节点 "commands/assemblies" 下。与此同时，请确保此命令程序集被复制到的程序的运行目录。
+
+这是配置文件示例:
+
+    {
+        "serverOptions": {
+            "name": "GameMsgServer",
+            "listeners": [
+                {
+                    "ip": "Any",
+                    "port": "2020"
+                },
+                {
+                    "ip": "192.168.3.1",
+                    "port": "2020"
+                }
+            ],
+            "commands": {
+                "assemblies": [
+                    {
+                        "name": "CommandAssemblyName"
+                    }
+                ]
+            }
+        }
+    }
+
+除此之外，你可能还需要干另外一件事情。因为 .NET Core 应用程序反射时默认只在此程序的依赖树（*.deps.json）里寻找程序集。所以你的命令程序集如果没有被加为你的主程序的依赖，它可能不会被找到。解决这个问题，你需要在你的主程序根目录添加一个运行时配置文件 "runtimeconfig.json"。
+
+runtimeconfig.json
+
+    {
+        "runtimeOptions": {
+            "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths" : true            
+        }
+    }
