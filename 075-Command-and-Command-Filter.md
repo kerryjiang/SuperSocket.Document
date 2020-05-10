@@ -172,7 +172,7 @@ It is the sample of the configuration:
         }
     }
 
-Beside that, you may neeed do one more thing. Because .NET Core application only look for assembly in its depedency tree (*.deps.json) by default when it does reflection. Your command assembly may not be able to be founed if you didn't add it as reference in the major project. To work around this problem, you should add a runtime config file "runtimeconfig.json" in the root of your major
+Beside that, you may need do one more thing. Because .NET Core application only look for assembly in its depedency tree (*.deps.json) by default when it does reflection. Your command assembly may not be able to be founed if you didn't add it as reference in the major project. To work around this problem, you should add a runtime config file "runtimeconfig.json" in the root of your major
 project.
 
 runtimeconfig.json

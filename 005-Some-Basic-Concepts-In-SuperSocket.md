@@ -39,7 +39,7 @@ In the following parts of the document, we will explain how to define commands t
 
 ## PipelineFilter Type
 
-This kind type plays an important role in the network protocol decoding, which defines how we decode IO stream into packages which can be understanded by the application.
+This kind type plays an important role in the network protocol decoding. It defines how we decode IO stream into packages which can be understanded by the application.
 
 These are the basic interfaces for PipelineFilter. At least one PipelineFilter type which implement this interface is required in the system.
 
@@ -63,7 +63,7 @@ These are the basic interfaces for PipelineFilter. At least one PipelineFilter t
         
     }
 
-Actually, you don't need implement PipelineFilter by yourself from scratch, because SuperSocket provides at many built-in PipelineFilter templates (base classes) which almost cover 90% of the cases and simplify your development work significantly. Even if the templates are not fitting your requirement, developing a PipelineFilter completely by yourself should be easy as well.
+Actually, you don't need implement PipelineFilter by yourself from scratch, because SuperSocket provides already many built-in PipelineFilter templates (base classes) which almost cover 90% of the cases and simplify your development work significantly. Even if the templates are not fitting your requirement, developing a PipelineFilter completely by yourself should be easy as well.
 
 These built-in PipelineFilter templates are:
 
