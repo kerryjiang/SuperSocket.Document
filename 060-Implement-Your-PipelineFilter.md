@@ -54,6 +54,7 @@ Next step is to design the PipelineFilter:
 
         }
 
+        // get body length from the header
         protected override int GetBodyLengthFromHeader(ref ReadOnlySequence<byte> buffer)
         {
             var reader = new SequenceReader<byte>(buffer);
