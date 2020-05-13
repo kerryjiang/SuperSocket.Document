@@ -44,9 +44,12 @@ Key: 用于匹配接收到的包的Key的对象;
 
 元数据中的Key的值是用于匹配接收到的包请求的。当一个包被接收到，SuperSocket会去通过包的Key去寻找拥有相同Key的命令，找到的命令将会用于处理这个包。
 
-但是，有个前提条件是包的类型必须实现接口 IKeyedPackageInfo<TKey> (TKey 可以是任意元数据类型如 int，string，short 或 byte)。
+但是，有个前提条件是包的类型必须实现接口 IKeyedPackageInfo<TKey> (TKey 可以是任意元数据类型如 int，string，short 或 byte)， 例如 StringPackageInfo：
 
-举个例子, 如果你收到如下请求(packageInfo):
+    public class StringPackageInfo : IKeyedPackageInfo<string>
+
+
+举个例子, 如果你收到如下请求(package):
 
     Key: "ADD"
     Body: "1 2"
