@@ -44,7 +44,10 @@ By default, command's Name and Key would be same as its class name if there is n
 
 The metadata value "Key" is used for matching the received package. When a package instance is received, SuperSocket will look for the command which has the responsibility to handle it by matching the package's Key and the command's Key.
 
-But, there is a prerequisite that the package type must implement the interface IKeyedPackageInfo<TKey> (TKey may be any primitive type like int, string, short or byte).
+But, there is a prerequisite that the package type must implement the interface IKeyedPackageInfo<TKey> (TKey may be any primitive type like int, string, short or byte), like StringPackageInfo:
+
+    public class StringPackageInfo : IKeyedPackageInfo<string>
+
 
 For instance, if we receive a package like below:
 
