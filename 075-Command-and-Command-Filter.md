@@ -38,11 +38,13 @@ Key: 用于匹配接收到的包的Key的对象;
         }
     }
 
-请求处理代码必须被放置于方法 "Execute" or "ExecuteAsync" 之中，并且属性 "Keys" 的值用于匹配接收到请求实例(packageInfo)的Key。当一个请求实例(packageInfo) 被收到时，SuperSocket 将会通过匹配请求实例(packageInfo)的Key和命令的Keys的方法来查找用于处理该请求的命令。
+请求处理代码必须被放置于方法 "Execute" or "ExecuteAsync" 之中，并且属性 "Keys" 的值用于匹配接收到请求实例(packageInfo)的Key。当一个请求实例(packageInfo) 被收到时，SuperSocket 将会通过匹配请求实例(package)的Key和命令的Keys的方法来查找用于处理该请求的命令。
 
 如果命令没有定义元数据的Attribute，它的Name 和 Key 将会默认为这个命令类的类名。
 
 元数据中的Key的值是用于匹配接收到的包请求的。当一个包被接收到，SuperSocket会去通过包的Key去寻找拥有相同Key的命令，找到的命令将会用于处理这个包。
+
+但是，有个前提条件是包的类型必须实现接口 IKeyedPackageInfo<TKey> (TKey 可以是任意元数据类型如 int，string，short 或 byte)。
 
 举个例子, 如果你收到如下请求(packageInfo):
 
