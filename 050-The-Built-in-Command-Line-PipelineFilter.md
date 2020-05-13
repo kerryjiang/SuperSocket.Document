@@ -1,6 +1,6 @@
-# 内置的命令行协议
+# 内置的命令行PipelineFilter
 
-> 关键字: 命令行, 命令行协议, Telnet
+> 关键字: 命令行, 命令行协议, Telnet, CommandLinePipelineFilter
 
 ## 什么是协议?
 
@@ -8,7 +8,7 @@
 
 ## 内置的命令行协议
 
-命令行协议是一种被广泛应用的协议。一些成熟的协议如 Telnet, SMTP, POP3 和 FTP 都是基于命令行协议的。 在SuperSocket 中， 如果你没有定义自己的协议，SuperSocket 将会使用命令行协议, 这会使这样的协议的开发变得很简单。
+命令行协议是一种被广泛应用的协议。一些成熟的协议如 Telnet, SMTP, POP3 和 FTP 都是基于命令行协议的。 CommandLinePipelineFilter是设计用于命令行协议的 PipelineFilter。
 
 命令行协议定义了每个请求必须以回车换行结尾 "\r\n"。
 
@@ -56,7 +56,7 @@ SuperSocket 服务器将会收到一个 StringRequestInfo 实例，这个实例�
 
     public class CustomPackageDecoder : IPackageDecoder<StringPackageInfo>
     {
-        public StringPackageInfo Decode(ReadOnlySequence<byte> buffer, object context)
+        public StringPackageInfo Decode(ref ReadOnlySequence<byte> buffer, object context)
         {
             var text = buffer.GetString(new UTF8Encoding(false));
             var parts = text.Split(':', 2);
@@ -72,9 +72,4 @@ SuperSocket 服务器将会收到一个 StringRequestInfo 实例，这个实例�
 
     // register the custom package decoder through the host builder
 
-    builder.ConfigureServices(
-        (hostCtx, services) =>
-        {
-            services.AddSingleton<IPackageDecoder<StringPackageInfo>, CustomPackageDecoder>();
-        }
-    );
+    builder.UsePackageDecoder<CustomPackageDecoder>();

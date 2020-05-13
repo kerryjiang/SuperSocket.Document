@@ -42,7 +42,7 @@
 ### 注册用于处理接收到的数据的包处理器
 
 
-    .ConfigurePackageHandler(async (s, p) =>
+    .UsePackageHandler(async (s, p) =>
     {
         var result = 0;
 

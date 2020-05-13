@@ -65,15 +65,7 @@
 
 事实上，由于 SuperSocket 已经提供了一些内置的 PipelineFilter 模版，这些几乎可以覆盖 90% 的场景的模版极大的简化了你的开发工作。所以你不需要完全从头开始实现 PipelineFilter。即使这些内置的模版无法满足你的需求，完全自己实现PipelineFilter也不是难事。
 
-内置的 PipelineFilter 模版包含:
-
-* **TerminatorPipelineFilter** (SuperSocket.ProtoBase.TerminatorPipelineFilter, SuperSocket.ProtoBase)
-* **TerminatorTextPipelineFilter** (SuperSocket.ProtoBase.TerminatorTextPipelineFilter, SuperSocket.ProtoBase)
-* **LinePipelineFilter** (SuperSocket.ProtoBase.LinePipelineFilter, SuperSocket.ProtoBase)
-* **CommandLinePipelineFilter** (SuperSocket.ProtoBase.CommandLinePipelineFilter, SuperSocket.ProtoBase)
-* **BeginEndMarkPipelineFilter** (SuperSocket.ProtoBase.BeginEndMarkPipelineFilter, SuperSocket.ProtoBase)
-* **FixedSizePipelineFilter** (SuperSocket.ProtoBase.FixedSizePipelineFilter, SuperSocket.ProtoBase)
-* **FixedHeaderPipelineFilter** (SuperSocket.ProtoBase.FixedHeaderPipelineFilter, SuperSocket.ProtoBase)
+**CommandLinePipelineFilter** (SuperSocket.ProtoBase.CommandLinePipelineFilter, SuperSocket.ProtoBase) 是在我们最常用的内置PipleFilter模版之一。我们将会在文档和示例代码中经常使用它。
 
 
 ## 使用 Package Type 和 PipelineFilter Type 创建 SuperSocket 宿主

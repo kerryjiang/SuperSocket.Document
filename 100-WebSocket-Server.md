@@ -17,7 +17,7 @@
 
 
     var host = WebSocketHostBuilder.Create()
-        .ConfigureWebSocketMessageHandler(
+        .UseWebSocketMessageHandler(
             async (session, message) =>
             {
                 await session.SendAsync(message.Message);

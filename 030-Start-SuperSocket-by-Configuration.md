@@ -15,7 +15,7 @@
 事实上，我们除了书写正常的启动代码之外就不需要做任何其它事情了。
 
     var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>()
-        .ConfigurePackageHandler(async (s, p) =>
+        .UsePackageHandler(async (s, p) =>
         {
             // handle packages
         })
