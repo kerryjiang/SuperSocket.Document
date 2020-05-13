@@ -17,7 +17,7 @@ Let's create the WebSocket server. This server just echo messages back to the cl
 
 
     var host = WebSocketHostBuilder.Create()
-        .ConfigureWebSocketMessageHandler(
+        .UseWebSocketMessageHandler(
             async (session, message) =>
             {
                 await session.SendAsync(message.Message);

@@ -15,7 +15,7 @@ Same as Asp.Net Core, SuperSocket uses the JSON configuration file appsettings.j
 Actually, you don't need do anything else except writing the normal startup code.
 
     var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>()
-        .ConfigurePackageHandler(async (s, p) =>
+        .UsePackageHandler(async (s, p) =>
         {
             // handle packages
         })

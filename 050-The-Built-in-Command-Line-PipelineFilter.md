@@ -1,4 +1,4 @@
-# The Built-in Command Line Protocol
+# The Built-in Command Line PipelineFilter
 
 > __Keywords__: Command Line, Protocol, StringRequestInfo, Text Encoding
 
@@ -6,9 +6,9 @@
 
 What's the Protocol? Lots of people probably will answer "TCP" or "UDP". But to build a network application, only TCP or UDP is not enough. TCP and UDP are transport-layer protocols. It's far from enough to enable talking between two endpoints in the network if you only define transport-layer protocol. You need to define your application level protocol to convert your received binary data to the requests which your application can understand.
 
-## The Built-in Command Line Protocol
+## The Built-in Command Line PipelineFilter
 
-The command line protocol is a widely used protocols, lots of protocols like Telnet, SMTP, POP3 and FTP protocols are base on command line protocol etc. If you do not have a custom protocol, then SuperSocket will use command line protocol by default, which can simplify the development of this kind of protocols.
+The command line protocol is a widely used protocols, lots of protocols like Telnet, SMTP, POP3 and FTP protocols are base on command line protocol etc. The CommandLinePipelineFilter is a PipelineFilter which was designed for command line protocol.
 
 The command line protocol defines each request must be ended with a carriage return "\r\n".
 
@@ -58,7 +58,7 @@ The request's key is separated with body by the char ':', and the parameters are
 
     public class CustomPackageDecoder : IPackageDecoder<StringPackageInfo>
     {
-        public StringPackageInfo Decode(ReadOnlySequence<byte> buffer, object context)
+        public StringPackageInfo Decode(ref ReadOnlySequence<byte> buffer, object context)
         {
             var text = buffer.GetString(new UTF8Encoding(false));
             var parts = text.Split(':', 2);
@@ -74,9 +74,4 @@ The request's key is separated with body by the char ':', and the parameters are
 
     // register the custom package decoder through the host builder
 
-    builder.ConfigureServices(
-        (hostCtx, services) =>
-        {
-            services.AddSingleton<IPackageDecoder<StringPackageInfo>, CustomPackageDecoder>();
-        }
-    );
+    builder.UsePackageDecoder<CustomPackageDecoder>();

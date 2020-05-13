@@ -63,17 +63,8 @@ These are the basic interfaces for PipelineFilter. At least one PipelineFilter t
         
     }
 
-Actually, you don't need implement PipelineFilter by yourself from scratch, because SuperSocket provides already many built-in PipelineFilter templates (base classes) which almost cover 90% of the cases and simplify your development work significantly. Even if the templates are not fitting your requirement, developing a PipelineFilter completely by yourself should be easy as well.
 
-These built-in PipelineFilter templates are:
-
-* **TerminatorPipelineFilter** (SuperSocket.ProtoBase.TerminatorPipelineFilter, SuperSocket.ProtoBase)
-* **TerminatorTextPipelineFilter** (SuperSocket.ProtoBase.TerminatorTextPipelineFilter, SuperSocket.ProtoBase)
-* **LinePipelineFilter** (SuperSocket.ProtoBase.LinePipelineFilter, SuperSocket.ProtoBase)
-* **CommandLinePipelineFilter** (SuperSocket.ProtoBase.CommandLinePipelineFilter, SuperSocket.ProtoBase)
-* **BeginEndMarkPipelineFilter** (SuperSocket.ProtoBase.BeginEndMarkPipelineFilter, SuperSocket.ProtoBase)
-* **FixedSizePipelineFilter** (SuperSocket.ProtoBase.FixedSizePipelineFilter, SuperSocket.ProtoBase)
-* **FixedHeaderPipelineFilter** (SuperSocket.ProtoBase.FixedHeaderPipelineFilter, SuperSocket.ProtoBase)
+**CommandLinePipelineFilter** (SuperSocket.ProtoBase.CommandLinePipelineFilter, SuperSocket.ProtoBase) is one of our most common PipelineFilter templates. We use it in documents and samples very often.
 
 
 ## Create the SuperSocket Host with Package Type and PipelineFilter Type

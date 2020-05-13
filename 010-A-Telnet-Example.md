@@ -42,7 +42,7 @@ Create the SuperSocket host with the package type and the pipeline filter type.
 ### Register package handler which processes incoming data
 
 
-    .ConfigurePackageHandler(async (s, p) =>
+    .UsePackageHandler(async (s, p) =>
     {
         var result = 0;
 
