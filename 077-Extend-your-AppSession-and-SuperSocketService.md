@@ -51,13 +51,19 @@ Register the application session type through builder:
         public class GameService<TReceivePackageInfo> : SuperSocketService<TReceivePackageInfo>
             where TReceivePackageInfo : class
         {
-            protected override ValueTask OnSessionConnectedAsync(IAppSession session)
+            public GameService(IServiceProvider serviceProvider, IOptions<ServerOptions> serverOptions)
+                : base(serviceProvider, serverOptions)
+            {
+                
+            }
+
+            protected override async ValueTask OnSessionConnectedAsync(IAppSession session)
             {
                 // do something right after the sesssion is connected
                 await base.OnSessionConnectedAsync(session);
             }
 
-            protected override ValueTask OnSessionClosedAsync(IAppSession session)
+            protected override async ValueTask OnSessionClosedAsync(IAppSession session)
             {
                 // do something right after the sesssion is closed
                 await base.OnSessionClosedAsync(session);
