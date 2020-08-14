@@ -58,7 +58,7 @@ Key: 用于匹配接收到的包的Key的对象;
 
     public class ADD : IAsyncCommand<StringPackageInfo>
     {
-        public async Task ExecuteAsync(IAppSession session, StringPackageInfo package)
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
         {
             var result = package.Parameters
                 .Select(p => int.Parse(p))
