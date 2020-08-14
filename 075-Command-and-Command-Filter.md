@@ -58,7 +58,7 @@ Then SuperSocket will looking for a command whose key is "ADD". If we have a com
 
     public class ADD : IAsyncCommand<string, StringPackageInfo>
     {
-        public async Task ExecuteAsync(IAppSession session, StringPackageInfo package)
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
         {
             var result = package.Parameters
                 .Select(p => int.Parse(p))
