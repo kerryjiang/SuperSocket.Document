@@ -1,6 +1,6 @@
-# Multiple Listeners
+# 多个 Listener
 
-> __Keywords__: Multiple Listeners, Multiple Port, Multiple Endpoints, Multiple Listeners Configuration, IP, Port
+> __关键字__: 多个端口, 多个监听, Listener, 多个Listener
 
 ## 单个 listener
 在下面的配置中，你可以配置服务器监听 IP 和端口：
