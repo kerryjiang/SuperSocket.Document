@@ -42,11 +42,11 @@ Create the SuperSocket host with the package type and the pipeline filter type.
 ### Register package handler which processes incoming data
 
 
-    .UsePackageHandler(async (s, p) =>
+    .UsePackageHandler(async (session, package) =>
     {
         var result = 0;
 
-        switch (p.Key.ToUpper())
+        switch (package.Key.ToUpper())
         {
             case ("ADD"):
                 result = package.Parameters
@@ -67,7 +67,7 @@ Create the SuperSocket host with the package type and the pipeline filter type.
                 break;
         }
 
-        await s.SendAsync(Encoding.UTF8.GetBytes(result.ToString() + "\r\n"));
+        await session.SendAsync(Encoding.UTF8.GetBytes(result.ToString() + "\r\n"));
     })
 
 Send the received text back to the clinet.
