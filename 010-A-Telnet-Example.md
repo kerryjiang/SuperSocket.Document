@@ -42,11 +42,11 @@
 ### 注册用于处理接收到的数据的包处理器
 
 
-    .UsePackageHandler(async (s, p) =>
+    .UsePackageHandler(async (session, package) =>
     {
         var result = 0;
 
-        switch (p.Key.ToUpper())
+        switch (package.Key.ToUpper())
         {
             case ("ADD"):
                 result = package.Parameters
@@ -67,7 +67,7 @@
                 break;
         }
 
-        await s.SendAsync(Encoding.UTF8.GetBytes(result.ToString() + "\r\n"));
+        await session.SendAsync(Encoding.UTF8.GetBytes(result.ToString() + "\r\n"));
     })
 
 将收到的文字发送给客户端。
