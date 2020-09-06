@@ -18,7 +18,7 @@ SuperSocket 内置对 TLS 的支持。你不需要对你的代码做任何改动
 
 你应该通过下面的步骤更新配置来使用证书文件:
 
-1. 设置 listener 的 security 属性；
+1. 设置 listener 的 security 属性；此属性的值是 listener 支持的 TLS 协议类型；适用的值包括 "Tls11", "Tls12", "Tls13" 等等； 多个协议种类用逗号分隔开， 例如 "Tls11,Tls12,Tls13"；
 2. 在 listener 配置节点增加 certificate option 节点；
 
 配置文件应如:
