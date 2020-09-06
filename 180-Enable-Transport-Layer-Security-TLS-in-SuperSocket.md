@@ -1,4 +1,4 @@
-# 在 SuperSocket 中启用传输层加密
+# 在 SuperSocket 中启用传输层加密 (TLS)
 
 > __关键字__: TLS, SSL, Certificate, X509 Certificate, Local Certificate Store, 证书, X509证书
 
