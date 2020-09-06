@@ -66,11 +66,11 @@ SuperSocket 内置对 TLS 的支持。你不需要对你的代码做任何改动
 
 * **storeLocation** - CurrentUser, LocalMachine
 
-    "certificateOptions": {
-        "storeName": "My",
-        "thumbprint": "‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3",
-        "storeLocation": "LocalMachine"
-    }
+        "certificateOptions": {
+            "storeName": "My",
+            "thumbprint": "‎f42585bceed2cb049ef4a3c6d0ad572a6699f6f3",
+            "storeLocation": "LocalMachine"
+        }
 
 
 ## 客户端证书验证
