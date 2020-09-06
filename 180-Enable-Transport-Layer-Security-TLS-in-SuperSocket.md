@@ -18,7 +18,7 @@ There are two ways to provide the certificate:
 
 You should update your configuration to use the certificate file following the below steps:
 
-1. set security attribute for the listener;
+1. set security attribute for the listener; This attribute is for the TLS protocols what the listener will support; The appilicable values include "Tls11", "Tls12", "Tls13" and so on; Multiple values should be seperated by comma, like "Tls11,Tls12,Tls13";
 2. add the certificate option node under the listener node;
 
 The configuration should look like:
