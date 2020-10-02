@@ -4,12 +4,15 @@
 
 ## Register session open/close handlers by the method ConfigureSessionHandler of the host builder
 
-    builder.ConfigureSessionHandler((s) =>
+    builder.UseSessionHandler((s) =>
         {
             // things to do when the session just connects
         },
-        (s) =>
+        (s, e) =>
         {
+            // s: the session
+            // e: the CloseEventArgs
+            // e.Reason: the close reason
             // things to do after the session closes
         });
 
@@ -25,7 +28,7 @@ Define your own application session type and handle the session events in the ov
             // the logic after the session gets connected
         }
 
-        protected override ValueTask OnSessionClosedAsync(EventArgs e)
+        protected override ValueTask OnSessionClosedAsync(CloseEventArgs e)
         {
             // the logic after the session gets closed
         }
@@ -48,7 +51,7 @@ Define your own SuperSocket service type and override the session event handling
                 // do something right after the sesssion gets connected
             }
 
-            protected override ValueTask OnSessionClosedAsync(IAppSession session)
+            protected override ValueTask OnSessionClosedAsync(IAppSession session, CloseEventArgs e)
             {
                 // do something right after the sesssion gets closed
             }
