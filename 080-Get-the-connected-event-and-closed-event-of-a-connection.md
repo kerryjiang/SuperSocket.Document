@@ -4,13 +4,17 @@
 
 ## 通过 host builder 的方法 ConfigureSessionHandler 注册 session 的连接和断开处理代码
 
-    builder.ConfigureSessionHandler((s) =>
+    builder.UseSessionHandler((s) =>
         {
-            // things to do when the session just connects
+            // 会话连接建立后的逻辑
         },
-        (s) =>
+        (s, e) =>
         {
-            // things to do after the session closes
+            // s: 当前会话
+            // e: 会话关闭事件参数
+            // e.Reason: 会话关闭原因
+
+            // 会话连接断开后的逻辑
         });
 
 ## 通过扩展应用程序会话类型来处理会话事件
@@ -24,7 +28,7 @@
             // 会话连接建立后的逻辑
         }
 
-        protected override ValueTask OnSessionClosedAsync(EventArgs e)
+        protected override ValueTask OnSessionClosedAsync(CloseEventArgs e)
         {
             // 会话连接断开后的逻辑
         }
@@ -47,7 +51,7 @@
                 // 会话连接建立后的逻辑
             }
 
-            protected override ValueTask OnSessionClosedAsync(IAppSession session)
+            protected override ValueTask OnSessionClosedAsync(IAppSession session, CloseEventArgs e)
             {
                 // 会话连接断开后的逻辑
             }
