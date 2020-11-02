@@ -4,7 +4,7 @@
 
 ## Enable UDP in SuperSocket
 
-Other than TCP, SuperSocket can support UDP as well.
+Beside TCP, SuperSocket can support UDP as well.
 
 First of all, you need add reference to the package SuperSocket.Udp.
 
