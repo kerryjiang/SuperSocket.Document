@@ -39,7 +39,7 @@ SuperSocket 服务器将会收到一个 StringRequestInfo 实例，这个实例�
 
     public class LOGIN : IAsyncCommand<StringPackageInfo>
     {
-        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package, CancellationToken cancellationToken)
         {
             //Implement your business logic
         }

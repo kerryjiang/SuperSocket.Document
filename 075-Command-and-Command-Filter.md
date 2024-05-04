@@ -18,7 +18,7 @@ SuperSocket 中的命令设计出来是为了处理来自客户端的请求的, 
     public interface IAsyncCommand<TAppSession, TPackageInfo> : ICommand
         where TAppSession : IAppSession
     {
-        ValueTask ExecuteAsync(TAppSession session, TPackageInfo package);
+        ValueTask ExecuteAsync(TAppSession session, TPackageInfo package), CancellationToken cancellationToken;
     }
 
 请求包的处理代码应被放置于方法 "Execute" 或 "ExecuteAsync"之内。
@@ -32,7 +32,7 @@ Key: 用于匹配接收到的包的Key的对象;
     [Command(Key = 0x03)]
     public class ShowVoltage : IAsyncCommand<StringPackageInfo>
     {
-        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package, CancellationToken cancellationToken)
         {
             ...
         }
@@ -58,7 +58,7 @@ Key: 用于匹配接收到的包的Key的对象;
 
     public class ADD : IAsyncCommand<StringPackageInfo>
     {
-        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package, CancellationToken cancellationToken)
         {
             var result = package.Parameters
                 .Select(p => int.Parse(p))
