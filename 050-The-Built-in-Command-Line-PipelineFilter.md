@@ -41,7 +41,7 @@ If you have defined a Command with name "LOGIN", the command's ExecuteCommand me
 
     public class LOGIN : IAsyncCommand<StringPackageInfo>
     {
-        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package, CancellationToken cancellationToken)
         {
             //Implement your business logic
         }

@@ -19,7 +19,7 @@ Command class must implement the basic command interface below, choose Sync Comm
     public interface IAsyncCommand<TAppSession, TPackageInfo> : ICommand
         where TAppSession : IAppSession
     {
-        ValueTask ExecuteAsync(TAppSession session, TPackageInfo package);
+        ValueTask ExecuteAsync(TAppSession session, TPackageInfo package, CancellationToken cancellationToken);
     }
 
 
@@ -34,7 +34,7 @@ We can define command's metadata (Name='ShowVoltage', Key=0x03) by attribute on 
     [Command(Key = 0x03)]
     public class ShowVoltage : IAsyncCommand<StringPackageInfo>
     {
-        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package, CancellationToken cancellationToken)
         {
             ...
         }
@@ -58,7 +58,7 @@ Then SuperSocket will looking for a command whose key is "ADD". If we have a com
 
     public class ADD : IAsyncCommand<string, StringPackageInfo>
     {
-        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package)
+        public async ValueTask ExecuteAsync(IAppSession session, StringPackageInfo package, CancellationToken cancellationToken)
         {
             var result = package.Parameters
                 .Select(p => int.Parse(p))
