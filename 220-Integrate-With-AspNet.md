@@ -1,6 +1,6 @@
-# 与 ASP.Net Core 网站 和 ABP 框架集成
+# 与 ASP.Net Core 网站集成
 
-> __关键字__: ASP.NET Core, ABP, 集成
+> __关键字__: ASP.NET Core, 集成
 
 ## 与 ASP.Net Core 网站框架集成
 
