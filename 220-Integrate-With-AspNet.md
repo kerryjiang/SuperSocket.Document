@@ -1,6 +1,6 @@
-# Integrate with ASP.Net Core Website and ABP Framework
+# Integrate with ASP.Net Core Website
 
-> __Keywords__: ASP.NET Core, ABP, Integrate
+> __Keywords__: ASP.NET Core, Integrate
 
 ## Integrate with ASP.Net Core Website
 
