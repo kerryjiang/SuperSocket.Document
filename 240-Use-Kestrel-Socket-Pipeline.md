@@ -15,15 +15,13 @@ dotnet add package SuperSocket.Kestrel
 
 ## 使用 Kestrel connection factory
 
-```
-var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>()
-    .UsePackageHandler(async (s, p) =>
-    {
-        // handle packages
-    })
-    .UseKestrelPipeConnection()
-    .Build();
 
-await host.RunAsync();
+    var host = SuperSocketHostBuilder.Create<StringPackageInfo, CommandLinePipelineFilter>()
+        .UsePackageHandler(async (s, p) =>
+        {
+            // handle packages
+        })
+        .UseKestrelPipeConnection()
+        .Build();
 
-```
+    await host.RunAsync();
