@@ -2,7 +2,7 @@
 
 > __Keywords__: Proxy, Load Balancer
 
-It is very common to run SuperSocket behind proxy or load balancer for the concerns about security and availability. In this scenario, the client of SuperSocket will be proxy, load balancer, or other front end service. That would be difficult for SuperSocket application to know where the connections really come from. Well, SuperSocket provides the ability to allow you to get real remote endpoints of the connections.
+Running SuperSocket behind a proxy or load balancer is common for security and availability reasons. In this setup, the client of SuperSocket is typically the proxy, load balancer, or another front-end service, making it challenging for the SuperSocket application to identify the true origin of connections. However, SuperSocket offers the capability to retrieve the real remote endpoints of these connections.
 
 ## Enable Proxy Protocol V1/V2
 
