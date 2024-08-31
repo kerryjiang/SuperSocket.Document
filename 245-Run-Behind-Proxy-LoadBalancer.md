@@ -8,45 +8,40 @@
 
 来源: https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt
 
-通过 API 启用 Proxy Protocol
+### 通过 API 启用 Proxy Protocol
 
-```
-var host = SuperSocketHostBuilder.Create<MyPackage, MyPackageFilter>(args)    
-    .ConfigureSuperSocket(options =>
-    {
-        options.Name = "CustomProtocol Server";
-        options.EnableProxyProtocol = true;
-    }).Build();
-```
+    var host = SuperSocketHostBuilder.Create<MyPackage, MyPackageFilter>(args)    
+        .ConfigureSuperSocket(options =>
+        {
+            options.Name = "CustomProtocol Server";
+            options.EnableProxyProtocol = true;
+        }).Build();
 
-通过配置文件启用 Proxy Protocol
+
+### 通过配置文件启用 Proxy Protocol
 
 appsettings.json
 
-```
-{
-  "serverOptions": {
-      "name": "TestServer",
-      "enableProxyProtocol": true,
-      "listeners": [
-          {
-              "ip": "Any",
-              "port": 4040
-          }
-      ]
-  },
-  "AllowedHosts": "*"
-}
-```
+    {
+        "serverOptions": {
+            "name": "TestServer",
+            "enableProxyProtocol": true,
+            "listeners": [
+                {
+                    "ip": "Any",
+                    "port": 4040
+                }
+            ]
+        },
+        "AllowedHosts": "*"
+    }
 
 ## 获取连接的真实来源地址
 
-```
-// AppSession session
+    // AppSession session
 
-session.RemoteEndPoint
+    session.RemoteEndPoint
 
-or
+    or
 
-(session as IAppSession).Connection.ProxyInfo?.SourceEndPoint
-```
+    (session as IAppSession).Connection.ProxyInfo?.SourceEndPoint
