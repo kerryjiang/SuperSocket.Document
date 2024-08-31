@@ -8,46 +8,41 @@ Running SuperSocket behind a proxy or load balancer is common for security and a
 
 Reference: https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt
 
-Enable Proxy Protocol by API
+### Enable Proxy Protocol by API
 
-```
-var host = SuperSocketHostBuilder.Create<MyPackage, MyPackageFilter>(args)    
-    .ConfigureSuperSocket(options =>
-    {
-        options.Name = "CustomProtocol Server";
-        options.EnableProxyProtocol = true;
-    }).Build();
-```
 
-Enable Proxy Protocol by settings
+    var host = SuperSocketHostBuilder.Create<MyPackage, MyPackageFilter>(args)    
+        .ConfigureSuperSocket(options =>
+        {
+            options.Name = "CustomProtocol Server";
+            options.EnableProxyProtocol = true;
+        }).Build();
+
+### Enable Proxy Protocol by settings
 
 appsettings.json
 
-```
-{
-  "serverOptions": {
-      "name": "TestServer",
-      "enableProxyProtocol": true,
-      "listeners": [
-          {
-              "ip": "Any",
-              "port": 4040
-          }
-      ]
-  },
-  "AllowedHosts": "*"
-}
-```
+    {
+        "serverOptions": {
+            "name": "TestServer",
+            "enableProxyProtocol": true,
+            "listeners": [
+                {
+                    "ip": "Any",
+                    "port": 4040
+                }
+            ]
+        },
+        "AllowedHosts": "*"
+    }
 
 ## Access the connection's real remote endpoint
 
-```
-// AppSession session
+    // AppSession session
 
-session.RemoteEndPoint
+    session.RemoteEndPoint
 
-or
+    or
 
-(session as IAppSession).Connection.ProxyInfo?.SourceEndPoint
-```
+    (session as IAppSession).Connection.ProxyInfo?.SourceEndPoint
 
