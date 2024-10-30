@@ -18,8 +18,8 @@ SuperSocket 内置对 TLS 的支持。你不需要对你的代码做任何改动
 
 你应该通过下面的步骤更新配置来使用证书文件:
 
-1. 设置 listener 的 security 属性；此属性的值是 listener 支持的 TLS 协议类型；适用的值包括 "Tls11", "Tls12", "Tls13" 等等； 多个协议种类用逗号分隔开， 例如 "Tls11,Tls12,Tls13"；
-2. 在 listener 配置节点增加 certificate option 节点；
+1. 设置 listener/authenticationOptions 的 enabledSslProtocols 属性；此属性的值是 listener 支持的 TLS 协议类型；适用的值包括 "Tls11", "Tls12", "Tls13" 等等； 多个协议种类用逗号分隔开， 例如 "Tls11,Tls12,Tls13"；
+2. 在 listener/authenticationOptions 配置节点增加 certificate option 节点；
 
 配置文件应如:
 
@@ -30,10 +30,12 @@ SuperSocket 内置对 TLS 的支持。你不需要对你的代码做任何改动
                 {
                     "ip": "Any",
                     "port": 4040,
-                    "security": "Tls12",
-                    "certificateOptions": {
-                        "filePath": "supersocket.pfx",
-                        "password": "supersocket"
+                    "authenticationOptions": {
+                        "certificateOptions": {
+                            "filePath": "supersocket.pfx",
+                            "password": "supersocket"
+                        },
+                        "enabledSslProtocols": "Tls12"
                     }
                 }
             ]
@@ -77,22 +79,21 @@ SuperSocket 内置对 TLS 的支持。你不需要对你的代码做任何改动
 
 在 TLS 通信中，客户端证书不是必须的。但是有些系统需要更高的安全性。此功能允许你在服务器端验证客户端的证书。
 
-首先，要启用客户端验证，你需要在监听器的 certificateOptions 配置节点之中设置属性 "clientCertificateRequired"：
+首先，要启用客户端验证，你需要在监听器的 authenticationOptions 配置节点之中设置属性 "clientCertificateRequired"：
 
-    "certificateOptions": {
-        "filePath": "supersocket.pfx",
-        "password": "supersocket",
-        "clientCertificateRequired": true
+    "authenticationOptions": {
+        "clientCertificateRequired": true,
+        ...
     }
 
-然后你应该在你配置服务器选项的时候通过 CertificateOptions 的 *RemoteCertificateValidationCallback* 定义你的客户端证书验证逻辑：
+然后你应该在你配置服务器选项的时候通过 authenticationOptions 的 *RemoteCertificateValidationCallback* 定义你的客户端证书验证逻辑：
 
     var host = SuperSocketHostBuilder.Create<TextPackageInfo, LinePipelineFilter>(args)
         .ConfigureSuperSocket(options =>
         {
-            foreach (var certOptions in options.Listeners.Where(l => l.CertificateOptions != null && l.CertificateOptions.ClientCertificateRequired))
+            foreach (var listenerOptions in options.Listeners.Where(l => l.AuthenticationOptions != null && l.AuthenticationOptions.ClientCertificateRequired))
             {
-                certOptions.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+                listenerOptions.AuthenticationOptions.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             }
         }).Build();
 
