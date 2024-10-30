@@ -18,8 +18,8 @@ There are two ways to provide the certificate:
 
 You should update your configuration to use the certificate file following the below steps:
 
-1. set security attribute for the listener; This attribute is for the TLS protocols what the listener will support; The appilicable values include "Tls11", "Tls12", "Tls13" and so on; Multiple values should be seperated by comma, like "Tls11,Tls12,Tls13";
-2. add the certificate option node under the listener node;
+1. set the attribute "enabledSslProtocols" for the listener's authenticationOptions; This attribute is for the TLS protocols what the listener will support; The appilicable values include "Tls11", "Tls12", "Tls13" and so on; Multiple values should be seperated by comma, like "Tls11,Tls12,Tls13";
+2. add the certificate options node under the listener/authenticationOptions;
 
 The configuration should look like:
 
@@ -30,10 +30,12 @@ The configuration should look like:
                 {
                     "ip": "Any",
                     "port": 4040,
-                    "security": "Tls12",
-                    "certificateOptions": {
-                        "filePath": "supersocket.pfx",
-                        "password": "supersocket"
+                    "authenticationOptions": {
+                        "certificateOptions": {
+                            "filePath": "supersocket.pfx",
+                            "password": "supersocket"
+                        },
+                        "enabledSslProtocols": "Tls12"
                     }
                 }
             ]
@@ -77,12 +79,11 @@ Other optional options:
 
 In TLS communications, the client side certificate is not a must, but some systems require much higher security guarantee. This feature allow you to validate the client side certificate from the server side.
 
-At first, to enable the client certificate validation, you should add the attribute "clientCertificateRequired" in the certificate options node of the listener:
+At first, to enable the client certificate validation, you should add the attribute "clientCertificateRequired" in the authenticationOptions node of the listener:
 
-    "certificateOptions": {
-        "filePath": "supersocket.pfx",
-        "password": "supersocket",
-        "clientCertificateRequired": true
+    "authenticationOptions": {
+        "clientCertificateRequired": true,
+        ...
     }
 
 
@@ -91,9 +92,9 @@ And then you should define you client certificate validation logic with the *Rem
     var host = SuperSocketHostBuilder.Create<TextPackageInfo, LinePipelineFilter>(args)
         .ConfigureSuperSocket(options =>
         {
-            foreach (var certOptions in options.Listeners.Where(l => l.CertificateOptions != null && l.CertificateOptions.ClientCertificateRequired))
+            foreach (var listenerOptions in options.Listeners.Where(l => l.AuthenticationOptions != null && l.AuthenticationOptions.ClientCertificateRequired))
             {
-                certOptions.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+                listenerOptions.AuthenticationOptions.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             }
         }).Build();
 
